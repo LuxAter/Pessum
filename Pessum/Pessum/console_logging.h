@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 namespace pessum {
+	//consolelogging namespace is used to provide debuging assistance to the
+	//user. It saves data to a seperate file incase of a crash.
 	namespace consolelogging {
 		//Used to define different posible log types
 		enum LogType
