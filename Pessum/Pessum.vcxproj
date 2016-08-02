@@ -82,6 +82,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -110,16 +113,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Pessum\console_logging.cpp" />
+    <ClCompile Include="Pessum\logging.cpp" />
+    <ClCompile Include="Pessum\lux_reader.cpp" />
     <ClCompile Include="Pessum\pessum_core.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Pessum\console_logging.h" />
+    <ClInclude Include="Pessum\logging.h" />
+    <ClInclude Include="Pessum\lux_reader.h" />
     <ClInclude Include="Pessum\pessum_core.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="console_log_output.log" />
+    <Text Include="log_output.log" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

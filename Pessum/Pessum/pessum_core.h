@@ -1,5 +1,5 @@
-#ifndef PESSUM_PESSUM_PESSUM_CORE_H_
-#define PESSUM_PESSUM_PESSUM_CORE_H_
+#ifndef _PESSUM_PESSUM_CORE_H_
+#define _PESSUM_PESSUM_CORE_H_
 namespace pessum {
 }
-#endif // !PESSUM_PESSUM_PESUM_CORE_H_
+#endif // !_PESSUM_PESSUM_CORE_H_

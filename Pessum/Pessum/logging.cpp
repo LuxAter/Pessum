@@ -1,16 +1,14 @@
 #include <string>
 #include <fstream>
 #include <ctime>
-#include "console_logging.h"
+#include "logging.h"
 
-namespace pessum {
-	namespace consolelogging {
-		std::ofstream logfile;
-		std::vector<std::string> loglocationbindings;
-	}
+namespace logging {
+	std::ofstream logfile;
+	std::vector<std::string> loglocationbindings;
 }
 
-bool pessum::consolelogging::InitializeConsoleLogging(std::string outputfile)
+bool logging::InitializeConsoleLogging(std::string outputfile)
 {
 	logfile.open(outputfile.c_str(), NULL);
 	if (logfile.is_open()) {
@@ -25,7 +23,7 @@ bool pessum::consolelogging::InitializeConsoleLogging(std::string outputfile)
 	}
 }
 
-void pessum::consolelogging::Log(LogType type, std::string logstring, std::string logfilelocation)
+void logging::Log(LogType type, std::string logstring, std::string logfilelocation)
 {
 	std::string logline = InterpretType(type) + logstring + ">>" + logfilelocation;
 	if (logfile.is_open()) {
@@ -33,15 +31,15 @@ void pessum::consolelogging::Log(LogType type, std::string logstring, std::strin
 	}
 }
 
-void pessum::consolelogging::Log(LogType type, std::string logstring, int logfilelocation)
+void logging::LogLoc(LogType type, std::string logstring, int logfilelocation, std::string functionname)
 {
-	std::string logline = InterpretType(type) + logstring + ">>" + loglocationbindings[logfilelocation];
+	std::string logline = InterpretType(type) + logstring + ">>" + loglocationbindings[logfilelocation] + functionname;
 	if (logfile.is_open()) {
 		logfile << logline << std::endl;
 	}
 }
 
-std::string pessum::consolelogging::InterpretType(LogType type)
+std::string logging::InterpretType(LogType type)
 {
 	std::string logtypeline = "";
 	if (type == LOG_ERROR) {
@@ -65,14 +63,14 @@ std::string pessum::consolelogging::InterpretType(LogType type)
 	return(logtypeline);
 }
 
-int pessum::consolelogging::AddLogLocation(std::string loglocationstring)
+int logging::AddLogLocation(std::string loglocationstring)
 {
 	int loglocationindex = loglocationbindings.size();
 	loglocationbindings.push_back(loglocationstring);
 	return loglocationindex;
 }
 
-void pessum::consolelogging::TerminateConsoleLogging()
+void logging::TerminateConsoleLogging()
 {
 	if (logfile.is_open()) {
 		time_t logclosetime = time(NULL);
