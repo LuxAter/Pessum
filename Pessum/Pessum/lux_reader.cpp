@@ -175,6 +175,43 @@ luxreader::Hierarchy luxreader::LoadLuxHierarchyFile(std::string filedirectory)
 
 void luxreader::SaveLuxDataFile(std::string filedirectory, DataFile ouputdata)
 {
+	RawLuxCode outputluxcode;
+	for (unsigned a = 0; a < ouputdata.datafilevariables.size(); a++) {
+		std::string outputline;
+		outputline = ouputdata.datafilevariables[a].variabletype + " ";
+		if (ouputdata.datafilevariables[a].variabletype == "vector") {
+			outputline = outputline + ouputdata.datafilevariables[a].variabledefinitiontype + " ";
+		}
+		outputline = outputline + ouputdata.datafilevariables[a].variablename;
+		if (ouputdata.datafilevariables[a].variabletype == "int") {
+			outputline = outputline + " " + std::to_string(ouputdata.datafilevariables[a].intvalue);
+		}
+		if (ouputdata.datafilevariables[a].variabletype == "string") {
+			outputline = outputline + " " + ouputdata.datafilevariables[a].stringvalue;
+		}
+		if (ouputdata.datafilevariables[a].variabletype == "double") {
+			outputline = outputline + " " + std::to_string(ouputdata.datafilevariables[a].doublevalue);
+		}
+		if (ouputdata.datafilevariables[a].variabletype == "vector") {
+			if (ouputdata.datafilevariables[a].variabledefinitiontype == "int") {
+				for (unsigned b = 0; b < ouputdata.datafilevariables[a].intvectorvalues.size(); b++) {
+					outputline = outputline + " " + std::to_string(ouputdata.datafilevariables[a].intvectorvalues[b]);
+				}
+			}
+			if (ouputdata.datafilevariables[a].variabledefinitiontype == "string") {
+				for (unsigned b = 0; b < ouputdata.datafilevariables[a].stringvectorvalues.size(); b++) {
+					outputline = outputline + " " + ouputdata.datafilevariables[a].stringvectorvalues[b];
+				}
+			}
+			if (ouputdata.datafilevariables[a].variabledefinitiontype == "double") {
+				for (unsigned b = 0; b < ouputdata.datafilevariables[a].doublevectorvalues.size(); b++) {
+					outputline = outputline + " " + std::to_string(ouputdata.datafilevariables[a].doublevectorvalues[b]);
+				}
+			}
+		}
+		outputluxcode.luxcodelines.push_back(outputline);
+	}
+	OuputRawFileData(LUX_DATA, filedirectory, outputluxcode);
 }
 
 luxreader::RawLuxCode luxreader::GetRawFileData(LuxFileType filetype, std::string filedirectory)
@@ -233,4 +270,23 @@ luxreader::RawLuxCode luxreader::GetRawFileData(LuxFileType filetype, std::strin
 
 void luxreader::OuputRawFileData(LuxFileType filetype, std::string filedirectory, RawLuxCode rawoutputcode)
 {
+	std::ofstream outputfile(filedirectory.c_str());
+	if (outputfile.is_open()) {
+		if (filetype == LUX_DATA) {
+			outputfile << "#DATAFILE\n";
+		}
+		if (filetype == LUX_HIERARCHY) {
+			outputfile << "#HIERARCHYFILE\n";
+		}
+		if (filetype == LUX_CODE) {
+			outputfile << "#CODEFILE\n";
+		}
+		if (filetype == LUX_LIST) {
+			outputfile << "#LISTFILE\n";
+		}
+		for (unsigned a = 0; a < rawoutputcode.luxcodelines.size(); a++) {
+			outputfile << rawoutputcode.luxcodelines[a] << "\n";
+		}
+		outputfile.close();
+	}
 }
