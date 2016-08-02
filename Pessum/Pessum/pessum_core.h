@@ -1,0 +1,5 @@
+#ifndef PESSUM_PESSUM_PESSUM_CORE_H_
+#define PESSUM_PESSUM_PESSUM_CORE_H_
+namespace pessum {
+}
+#endif // !PESSUM_PESSUM_PESUM_CORE_H_

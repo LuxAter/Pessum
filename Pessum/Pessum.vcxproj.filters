@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Pessum">
+      <UniqueIdentifier>{782c94df-c12c-49b4-8078-bdb460a65ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pessum\Console Logging">
+      <UniqueIdentifier>{25f10d4b-a784-425f-9942-671b0076245e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pessum\Lux Reader">
+      <UniqueIdentifier>{15b77925-1aaf-4ae3-aede-32c7db8c4d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pessum\REST Interface">
+      <UniqueIdentifier>{1be4c8fb-54b3-4b33-b981-63f4749e54f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pessum\pessum_core.cpp">
+      <Filter>Pessum</Filter>
+    </ClCompile>
+    <ClCompile Include="Pessum\console_logging.cpp">
+      <Filter>Pessum\Console Logging</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Pessum\pessum_core.h">
+      <Filter>Pessum</Filter>
+    </ClInclude>
+    <ClInclude Include="Pessum\console_logging.h">
+      <Filter>Pessum\Console Logging</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="console_log_output.log">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
