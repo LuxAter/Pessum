@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
-//consolelogging namespace is used to provide debuging assistance to the
+//logging namespace is used to provide debuging assistance to the
 //user. It saves data to a seperate file incase of a crash.
 namespace logging {
 	//Used to define different posible log types
@@ -17,15 +17,19 @@ namespace logging {
 	};
 	extern std::ofstream logfile;
 	extern std::vector<std::string> loglocationbindings;
+
 	//Used to initialize and open logging file for log output
 	bool InitializeConsoleLogging(std::string outputfile = "log_output.log");
+
 	//Enters the logstring into the output log
 	void Log(LogType type = LOG_DEVELOPMENT_CHECK, std::string logstring = "NULL", std::string logfilelocation = "NULL");
 	void LogLoc(LogType type = LOG_DEVELOPMENT_CHECK, std::string logstring = "NULL", int logfilelocation = 0, std::string functionname = "NULL");
+
 	//Used to determin log type and convert into a string
 	std::string InterpretType(LogType type);
 	//Used to add a log location to the vector, making logging shorter
 	int AddLogLocation(std::string loglocationstring);
+
 	//Used to clear loglocationbindigns, and close out the outputfile
 	void TerminateConsoleLogging();
 }

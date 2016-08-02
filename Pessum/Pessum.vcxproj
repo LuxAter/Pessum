@@ -116,12 +116,14 @@
     <ClCompile Include="Pessum\logging.cpp" />
     <ClCompile Include="Pessum\lux_reader.cpp" />
     <ClCompile Include="Pessum\pessum_core.cpp" />
+    <ClCompile Include="Pessum\rest.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pessum\logging.h" />
     <ClInclude Include="Pessum\lux_reader.h" />
     <ClInclude Include="Pessum\pessum_core.h" />
+    <ClInclude Include="Pessum\rest.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log_output.log" />

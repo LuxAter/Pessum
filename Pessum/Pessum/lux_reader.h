@@ -2,7 +2,8 @@
 #define _PESSUM_LUX_READER_H_
 #include <string>
 #include <vector>
-
+//luxreader namespace provides support for lux files, and reading the data files
+//from lux code to be used in a program.
 namespace luxreader {
 	//Struct for raw lux code loading
 	struct RawLuxCode
@@ -41,7 +42,7 @@ namespace luxreader {
 		std::string datafilename;
 		std::vector<Variable> datafilevariables;
 	};
-
+	//Defines different types of Lux Code files for the file reader
 	enum LuxFileType
 	{
 		LUX_DATA,
@@ -51,14 +52,20 @@ namespace luxreader {
 	};
 	extern int logloc;
 
+	//Sets the logging location code(must be called)
 	void InitializeLuxReader();
 
+	//Loads the data from a lux data file, and returns in a DataFile struct
 	DataFile LoadLuxDataFile(std::string filedirectory);
+	//Loads the data from a lux hierarchy file, and returns in a Hierarchy struct
 	Hierarchy LoadLuxHierarchyFile(std::string filedirectory);
 
+	//Takes a DataFile structure, and converts it to RawLuxCode, to output
 	void SaveLuxDataFile(std::string filedirectory, DataFile ouputdata);
 
+	//Loads the raw lux code data from specified file
 	RawLuxCode GetRawFileData(LuxFileType filetype, std::string filedirectory);
+	//Saves a raw lux code data to specifed file
 	void OuputRawFileData(LuxFileType filetype, std::string filedirectory, RawLuxCode rawoutputcode);
 }
 #endif // !_PESSUM_LUX_READER_H_

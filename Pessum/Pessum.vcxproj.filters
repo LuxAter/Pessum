@@ -19,11 +19,11 @@
     <Filter Include="Pessum\Lux Reader">
       <UniqueIdentifier>{15b77925-1aaf-4ae3-aede-32c7db8c4d1b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pessum\REST Interface">
-      <UniqueIdentifier>{1be4c8fb-54b3-4b33-b981-63f4749e54f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pessum\Logging">
       <UniqueIdentifier>{25f10d4b-a784-425f-9942-671b0076245e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pessum\REST">
+      <UniqueIdentifier>{1be4c8fb-54b3-4b33-b981-63f4749e54f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +39,9 @@
     <ClCompile Include="Pessum\logging.cpp">
       <Filter>Pessum\Logging</Filter>
     </ClCompile>
+    <ClCompile Include="Pessum\rest.cpp">
+      <Filter>Pessum\REST</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pessum\pessum_core.h">
@@ -49,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="Pessum\logging.h">
       <Filter>Pessum\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Pessum\rest.h">
+      <Filter>Pessum\REST</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

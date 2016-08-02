@@ -1,4 +1,6 @@
 #include "lux_reader.h"
+#include <string>
+#include <vector>
 #include "logging.h"
 
 namespace luxreader {
@@ -7,7 +9,7 @@ namespace luxreader {
 
 void luxreader::InitializeLuxReader()
 {
-	logloc = logging::AddLogLocation("lux_reader");
+	logloc = logging::AddLogLocation("Pessum/lux_reader/");
 }
 
 luxreader::DataFile luxreader::LoadLuxDataFile(std::string filedirectory)

@@ -1,7 +1,7 @@
+#include "logging.h"
 #include <string>
 #include <fstream>
 #include <ctime>
-#include "logging.h"
 
 namespace logging {
 	std::ofstream logfile;
