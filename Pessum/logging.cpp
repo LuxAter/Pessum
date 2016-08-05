@@ -10,7 +10,7 @@ namespace logging {
 
 bool logging::InitializeConsoleLogging(std::string outputfile)
 {
-	logfile.open(outputfile.c_str(), NULL);
+	logfile.open(outputfile.c_str(), std::ios::out);
 	if (logfile.is_open()) {
 		std::string outputline;
 		time_t logopentime = time(NULL);
