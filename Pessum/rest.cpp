@@ -14,6 +14,10 @@ void rest::Initialzierest()
 	logloc = logging::AddLogLocation("Pessum/rest/");
 }
 
+void rest::Terminaterest(){
+	loadedjsonfiles.clear();
+}
+
 void rest::RunScript(std::vector<std::string> scriptargs)
 {
 	if (scriptargs.size() <= 1) {
@@ -54,10 +58,10 @@ void rest::InterpretJson(std::string scriptoutputfiledirectory)
 		while (getline(load, line)) {
 			for (unsigned a = 0; a < line.size(); a++) {
 				if (line[a] == '[') {
-					line[a] = NULL;
+					line[a] = '\0';
 				}
 				if (line[a] == ']') {
-					line[a] = NULL;
+					line[a] = '\0';
 				}
 			}
 			raw = raw + line;

@@ -19,7 +19,7 @@ namespace logging {
 	extern std::vector<std::string> loglocationbindings;
 
 	//Used to initialize and open logging file for log output
-	bool InitializeConsoleLogging(std::string outputfile = "log_output.log");
+	bool InitializeLogging(std::string outputfile = "log_output.log");
 
 	//Enters the logstring into the output log
 	void Log(LogType type = LOG_DEVELOPMENT_CHECK, std::string logstring = "NULL", std::string logfilelocation = "NULL");
@@ -31,7 +31,7 @@ namespace logging {
 	int AddLogLocation(std::string loglocationstring);
 
 	//Used to clear loglocationbindigns, and close out the outputfile
-	void TerminateConsoleLogging();
+	void TerminateLogging();
 }
 
 #endif // !_PESSUM_LOGGING_H_
