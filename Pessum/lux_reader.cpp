@@ -2,23 +2,26 @@
 #include <string>
 #include <vector>
 #include "logging.h"
+#include "pessum_core.h"
 
-namespace luxreader {
+namespace pessum {
+	namespace luxreader {
 	int logloc = 0;
 }
-
-void luxreader::InitializeLuxReader()
-{
-	logloc = logging::AddLogLocation("Pessum/lux_reader/");
 }
 
-luxreader::DataFile luxreader::LoadLuxDataFile(std::string filedirectory)
+void pessum::luxreader::InitializeLuxReader()
+{
+	logloc = pessum::logging::AddLogLocation("Pessum/lux_reader/");
+}
+
+pessum::luxreader::DataFile pessum::luxreader::LoadLuxDataFile(std::string filedirectory)
 {
 	RawLuxCode rawcode = GetRawFileData(LUX_DATA, filedirectory);
 	DataFile newdata;
 	newdata.datafilename = filedirectory;
 	if (rawcode.luxcodelines[0] == "-1") {
-		logging::LogLoc(logging::LOG_ERROR, filedirectory + " contains the incorrect file designation", logloc, "LoadLuxDataFile");
+		pessum::logging::LogLoc(logging::LOG_ERROR, filedirectory + " contains the incorrect file designation", logloc, "LoadLuxDataFile");
 		return(newdata);
 	}
 	bool readType, readTypeTwo, readName, readValue;
@@ -122,7 +125,7 @@ luxreader::DataFile luxreader::LoadLuxDataFile(std::string filedirectory)
 	return(newdata);
 }
 
-luxreader::Hierarchy luxreader::LoadLuxHierarchyFile(std::string filedirectory)
+pessum::luxreader::Hierarchy pessum::luxreader::LoadLuxHierarchyFile(std::string filedirectory)
 {
 	RawLuxCode rawcode = GetRawFileData(LUX_HIERARCHY, filedirectory);
 	Hierarchy newHierarchy;
@@ -132,7 +135,7 @@ luxreader::Hierarchy luxreader::LoadLuxHierarchyFile(std::string filedirectory)
 	std::string currentLine = "";
 	std::string codeLine = "";
 	if (rawcode.luxcodelines[0] == "-1") {
-		logging::LogLoc(logging::LOG_ERROR, filedirectory + " contains the incorrect file designation", logloc, "LoadLuxHierarchyFile");
+		pessum::logging::LogLoc(logging::LOG_ERROR, filedirectory + " contains the incorrect file designation", logloc, "LoadLuxHierarchyFile");
 		return(newHierarchy);
 	}
 	for (unsigned a = 0; a < rawcode.luxcodelines.size(); a++) {
@@ -175,7 +178,7 @@ luxreader::Hierarchy luxreader::LoadLuxHierarchyFile(std::string filedirectory)
 	return(newHierarchy);
 }
 
-void luxreader::SaveLuxDataFile(std::string filedirectory, DataFile ouputdata)
+void pessum::luxreader::SaveLuxDataFile(std::string filedirectory, DataFile ouputdata)
 {
 	RawLuxCode outputluxcode;
 	for (unsigned a = 0; a < ouputdata.datafilevariables.size(); a++) {
@@ -216,7 +219,7 @@ void luxreader::SaveLuxDataFile(std::string filedirectory, DataFile ouputdata)
 	OuputRawFileData(LUX_DATA, filedirectory, outputluxcode);
 }
 
-luxreader::RawLuxCode luxreader::GetRawFileData(LuxFileType filetype, std::string filedirectory)
+pessum::luxreader::RawLuxCode pessum::luxreader::GetRawFileData(LuxFileType filetype, std::string filedirectory)
 {
 	std::string line;
 	RawLuxCode rawcode;
@@ -249,7 +252,7 @@ luxreader::RawLuxCode luxreader::GetRawFileData(LuxFileType filetype, std::strin
 		load.close();
 	}
 	else {
-		logging::LogLoc(logging::LOG_ERROR, "Unable to open: " + filedirectory, logloc, "GetRawFileData");
+		pessum::logging::LogLoc(logging::LOG_ERROR, "Unable to open: " + filedirectory, logloc, "GetRawFileData");
 	}
 	std::string cleanLine;
 	bool tabSpace;
@@ -270,7 +273,7 @@ luxreader::RawLuxCode luxreader::GetRawFileData(LuxFileType filetype, std::strin
 	return(rawcode);
 }
 
-void luxreader::OuputRawFileData(LuxFileType filetype, std::string filedirectory, RawLuxCode rawoutputcode)
+void pessum::luxreader::OuputRawFileData(LuxFileType filetype, std::string filedirectory, RawLuxCode rawoutputcode)
 {
 	std::ofstream outputfile(filedirectory.c_str());
 	if (outputfile.is_open()) {

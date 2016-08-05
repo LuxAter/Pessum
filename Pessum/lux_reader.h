@@ -2,9 +2,11 @@
 #define _PESSUM_LUX_READER_H_
 #include <string>
 #include <vector>
+#include "pessum_core.h"
 //luxreader namespace provides support for lux files, and reading the data files
 //from lux code to be used in a program.
-namespace luxreader {
+namespace pessum {
+	namespace luxreader {
 	//Struct for raw lux code loading
 	struct RawLuxCode
 	{
@@ -67,5 +69,6 @@ namespace luxreader {
 	RawLuxCode GetRawFileData(LuxFileType filetype, std::string filedirectory);
 	//Saves a raw lux code data to specifed file
 	void OuputRawFileData(LuxFileType filetype, std::string filedirectory, RawLuxCode rawoutputcode);
+}
 }
 #endif // !_PESSUM_LUX_READER_H_

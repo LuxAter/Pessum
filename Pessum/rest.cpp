@@ -2,26 +2,30 @@
 #include <string>
 #include <vector>
 #include "logging.h"
+#include "pessum_core.h"
 
-namespace rest {
+namespace pessum {
+	namespace rest {
 	int logloc = 0;
 	unsigned int index = 1;
 	std::vector<JsonFile> loadedjsonfiles;
 }
+}
 
-void rest::Initialzierest()
+void pessum::rest::Initialzierest()
 {
 	logloc = logging::AddLogLocation("Pessum/rest/");
 }
 
-void rest::Terminaterest(){
+void pessum::rest::Terminaterest()
+{
 	loadedjsonfiles.clear();
 }
 
-void rest::RunScript(std::vector<std::string> scriptargs)
+void pessum::rest::RunScript(std::vector<std::string> scriptargs)
 {
 	if (scriptargs.size() <= 1) {
-		logging::LogLoc(logging::LOG_ERROR, "Filed to enter url to script arguments", logloc, "RunScript");
+		pessum::logging::LogLoc(logging::LOG_ERROR, "Filed to enter url to script arguments", logloc, "RunScript");
 	}
 	else {
 		if (scriptargs[0] == "") {
@@ -43,12 +47,12 @@ void rest::RunScript(std::vector<std::string> scriptargs)
 			system(scriptlocation.c_str());
 		}
 		else {
-			logging::LogLoc(logging::LOG_ERROR, "Unable to genorate transfer data file for script: " + scriptargs[0], logloc, "RunScript");
+			pessum::logging::LogLoc(logging::LOG_ERROR, "Unable to genorate transfer data file for script: " + scriptargs[0], logloc, "RunScript");
 		}
 	}
 }
 
-void rest::InterpretJson(std::string scriptoutputfiledirectory)
+void pessum::rest::InterpretJson(std::string scriptoutputfiledirectory)
 {
 	index = 1;
 	std::string raw = "";
@@ -69,7 +73,7 @@ void rest::InterpretJson(std::string scriptoutputfiledirectory)
 		load.close();
 	}
 	else {
-		logging::LogLoc(logging::LOG_ERROR, "Unable to open script output directory: " + scriptoutputfiledirectory, logloc, "InterpretJson");
+		pessum::logging::LogLoc(logging::LOG_ERROR, "Unable to open script output directory: " + scriptoutputfiledirectory, logloc, "InterpretJson");
 	}
 	std::string current = "";;
 	JsonFile filejson;
@@ -77,7 +81,7 @@ void rest::InterpretJson(std::string scriptoutputfiledirectory)
 	loadedjsonfiles.push_back(filejson);
 }
 
-rest::Variable rest::InterpretVariable(std::string variablename, std::string rawvariable)
+pessum::rest::Variable pessum::rest::InterpretVariable(std::string variablename, std::string rawvariable)
 {
 	Variable newlevel;
 	newlevel.variablename = variablename;
@@ -160,7 +164,7 @@ rest::Variable rest::InterpretVariable(std::string variablename, std::string raw
 	return (newlevel);
 }
 
-rest::JsonFile rest::GetJsonFile(std::string filename)
+pessum::rest::JsonFile pessum::rest::GetJsonFile(std::string filename)
 {
 	for (unsigned a = 0; a < loadedjsonfiles.size(); a++) {
 		if (loadedjsonfiles[a].filevariables[0].variablename == filename) {
@@ -169,7 +173,7 @@ rest::JsonFile rest::GetJsonFile(std::string filename)
 	}
 }
 
-rest::Variable rest::LocateVariable(std::string variablename, Variable searchvariable)
+pessum::rest::Variable pessum::rest::LocateVariable(std::string variablename, Variable searchvariable)
 {
 	Variable result, check;
 	result.variablename == "NULL";
@@ -186,7 +190,7 @@ rest::Variable rest::LocateVariable(std::string variablename, Variable searchvar
 	return (result);
 }
 
-rest::Variable rest::GetVariable(std::string variablename, std::string jsonfilename)
+pessum::rest::Variable pessum::rest::GetVariable(std::string variablename, std::string jsonfilename)
 {
 	Variable result;
 	JsonFile file = GetJsonFile(jsonfilename);
@@ -202,7 +206,7 @@ rest::Variable rest::GetVariable(std::string variablename, std::string jsonfilen
 	return (result);
 }
 
-int rest::GetIntVariable(std::string variablename, std::string jsonfilename)
+int pessum::rest::GetIntVariable(std::string variablename, std::string jsonfilename)
 {
 	Variable result;
 	JsonFile file = GetJsonFile(jsonfilename);
@@ -218,7 +222,7 @@ int rest::GetIntVariable(std::string variablename, std::string jsonfilename)
 	return (result.intvalue);
 }
 
-double rest::GetDoubleVariable(std::string variablename, std::string jsonfilename)
+double pessum::rest::GetDoubleVariable(std::string variablename, std::string jsonfilename)
 {
 	Variable result;
 	JsonFile file = GetJsonFile(jsonfilename);
@@ -234,7 +238,7 @@ double rest::GetDoubleVariable(std::string variablename, std::string jsonfilenam
 	return (result.doublevalue);
 }
 
-std::string rest::GetStringVariable(std::string variablename, std::string jsonfilename)
+std::string pessum::rest::GetStringVariable(std::string variablename, std::string jsonfilename)
 {
 	Variable result;
 	JsonFile file = GetJsonFile(jsonfilename);

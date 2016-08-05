@@ -2,9 +2,11 @@
 #define _PESSUM_REST_H_
 #include <string>
 #include <vector>
+#include "pessum_core.h"
 //rest namespace allows access to urls and internet
 //api through the use of return json files
-namespace rest {
+namespace pessum {
+	namespace rest {
 	//Struct for variables in json files
 	struct Variable
 	{
@@ -49,5 +51,6 @@ namespace rest {
 	double GetDoubleVariable(std::string variablename, std::string jsonfilename);
 	//Returns string value searched from json file
 	std::string GetStringVariable(std::string variablename, std::string jsonfilename);
+}
 }
 #endif // !_PESSUM_REST_H_

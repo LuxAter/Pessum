@@ -3,9 +3,11 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "pessum_core.h"
 //logging namespace is used to provide debuging assistance to the
 //user. It saves data to a seperate file incase of a crash.
-namespace logging {
+namespace pessum {
+	namespace logging {
 	//Used to define different posible log types
 	enum LogType
 	{
@@ -33,5 +35,5 @@ namespace logging {
 	//Used to clear loglocationbindigns, and close out the outputfile
 	void TerminateLogging();
 }
-
+}
 #endif // !_PESSUM_LOGGING_H_

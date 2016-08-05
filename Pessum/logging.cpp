@@ -2,13 +2,16 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include "pessum_core.h"
 
-namespace logging {
+namespace pessum{
+	namespace logging {
 	std::ofstream logfile;
 	std::vector<std::string> loglocationbindings;
 }
+}
 
-bool logging::InitializeLogging(std::string outputfile)
+bool pessum::logging::InitializeLogging(std::string outputfile)
 {
 	logfile.open(outputfile.c_str(), std::ios::out);
 	if (logfile.is_open()) {
@@ -23,7 +26,7 @@ bool logging::InitializeLogging(std::string outputfile)
 	}
 }
 
-void logging::Log(LogType type, std::string logstring, std::string logfilelocation)
+void pessum::logging::Log(LogType type, std::string logstring, std::string logfilelocation)
 {
 	std::string logline = InterpretType(type) + logstring + ">>" + logfilelocation;
 	if (logfile.is_open()) {
@@ -31,7 +34,7 @@ void logging::Log(LogType type, std::string logstring, std::string logfilelocati
 	}
 }
 
-void logging::LogLoc(LogType type, std::string logstring, int logfilelocation, std::string functionname)
+void pessum::logging::LogLoc(LogType type, std::string logstring, int logfilelocation, std::string functionname)
 {
 	std::string logline = InterpretType(type) + logstring + ">>" + loglocationbindings[logfilelocation] + functionname;
 	if (logfile.is_open()) {
@@ -39,7 +42,7 @@ void logging::LogLoc(LogType type, std::string logstring, int logfilelocation, s
 	}
 }
 
-std::string logging::InterpretType(LogType type)
+std::string pessum::logging::InterpretType(LogType type)
 {
 	std::string logtypeline = "";
 	if (type == LOG_ERROR) {
@@ -63,14 +66,14 @@ std::string logging::InterpretType(LogType type)
 	return(logtypeline);
 }
 
-int logging::AddLogLocation(std::string loglocationstring)
+int pessum::logging::AddLogLocation(std::string loglocationstring)
 {
 	int loglocationindex = loglocationbindings.size();
 	loglocationbindings.push_back(loglocationstring);
 	return loglocationindex;
 }
 
-void logging::TerminateLogging()
+void pessum::logging::TerminateLogging()
 {
 	if (logfile.is_open()) {
 		time_t logclosetime = time(NULL);
