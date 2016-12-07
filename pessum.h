@@ -36,7 +36,6 @@ void LogTimeStamp(bool date = false);
 // Used to clear loglocationbindigns, and close out the outputfile
 void TerminateLogging();
 }
-#endif // !_PESSUM_FILES_LOGGING_H_
 // luxreader namespace provides support for lux files, and reading the data
 // files from lux code to be used in a program.
 namespace luxreader {
