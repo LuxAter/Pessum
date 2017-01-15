@@ -1,8 +1,8 @@
-#include "rest.h"
-#include "logging.h"
-#include "pessum_core.h"
 #include <string>
 #include <vector>
+#include "logging.h"
+#include "pessum_core.h"
+#include "rest.h"
 
 namespace pessum {
 namespace rest {
@@ -20,7 +20,7 @@ void pessum::rest::Terminaterest() { loadedjsonfiles.clear(); }
 
 void pessum::rest::RunScript(std::vector<std::string> scriptargs) {
   if (scriptargs.size() <= 1) {
-    pessum::logging::LogLoc(logging::LOG_ERROR,
+    pessum::logging::LogLoc(logging::ERROR,
                             "Filed to enter url to script arguments", logloc,
                             "RunScript");
   } else {
@@ -42,7 +42,7 @@ void pessum::rest::RunScript(std::vector<std::string> scriptargs) {
       system(scriptlocation.c_str());
     } else {
       pessum::logging::LogLoc(
-          logging::LOG_ERROR,
+          logging::ERROR,
           "Unable to genorate transfer data file for script: " + scriptargs[0],
           logloc, "RunScript");
     }
@@ -68,10 +68,10 @@ void pessum::rest::InterpretJson(std::string scriptoutputfiledirectory) {
     }
     load.close();
   } else {
-    pessum::logging::LogLoc(logging::LOG_ERROR,
-                            "Unable to open script output directory: " +
-                                scriptoutputfiledirectory,
-                            logloc, "InterpretJson");
+    pessum::logging::LogLoc(
+        logging::ERROR,
+        "Unable to open script output directory: " + scriptoutputfiledirectory,
+        logloc, "InterpretJson");
   }
   std::string current = "";
   ;
@@ -81,9 +81,8 @@ void pessum::rest::InterpretJson(std::string scriptoutputfiledirectory) {
   loadedjsonfiles.push_back(filejson);
 }
 
-pessum::rest::Variable
-pessum::rest::InterpretVariable(std::string variablename,
-                                std::string rawvariable) {
+pessum::rest::Variable pessum::rest::InterpretVariable(
+    std::string variablename, std::string rawvariable) {
   Variable newlevel;
   newlevel.variablename = variablename;
   std::string strLineA, strLineB;

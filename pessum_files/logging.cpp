@@ -1,8 +1,8 @@
-#include "logging.h"
-#include "pessum_core.h"
 #include <ctime>
 #include <fstream>
 #include <string>
+#include "logging.h"
+#include "pessum_core.h"
 
 namespace pessum {
 namespace logging {
@@ -17,7 +17,7 @@ bool pessum::logging::InitializeLogging(std::string outputfile) {
     std::string outputline;
     time_t logopentime = time(NULL);
     outputline = "Opened log: " + outputfile;
-    Log(LOG_SUCCESS, outputline, "pessum_files/logging.cpp/InitializeLogging");
+    Log(SUCCESS, outputline, "pessum_files/logging.cpp/InitializeLogging");
     LogTimeStamp(true);
     return (true);
   } else {
@@ -45,17 +45,17 @@ void pessum::logging::LogLoc(LogType type, std::string logstring,
 
 std::string pessum::logging::InterpretType(LogType type) {
   std::string logtypeline = "";
-  if (type == LOG_ERROR) {
+  if (type == ERROR) {
     logtypeline = "ERROR>>";
-  } else if (type == LOG_WARNING) {
+  } else if (type == WARNING) {
     logtypeline = "WARNING>>";
-  } else if (type == LOG_SUCCESS) {
+  } else if (type == SUCCESS) {
     logtypeline = "SUCCESS>>";
-  } else if (type == LOG_DATA) {
+  } else if (type == DATA) {
     logtypeline = "DATA>>";
-  } else if (type == LOG_INFORMATION) {
+  } else if (type == INFORMATION) {
     logtypeline = "INFORMATION>>";
-  } else if (type == LOG_DEVELOPMENT_CHECK) {
+  } else if (type == DEVELOPMENT_CHECK) {
     logtypeline = "DEVCHECK>>";
   } else {
     logtypeline = "LOG TYPE NOT RECOGNIZED";
@@ -83,14 +83,14 @@ void pessum::logging::LogTimeStamp(bool date) {
       newtime = newtime + timestring[a];
     }
   }
-  Log(LOG_INFORMATION, newtime, "TimeStamp");
+  Log(INFORMATION, newtime, "TimeStamp");
 }
 
 void pessum::logging::TerminateLogging() {
   if (logfile.is_open()) {
     time_t logclosetime = time(NULL);
-    Log(LOG_SUCCESS, "Terminated log file",
-        "Pessum/logging.cpp/TerminateLogging");
+    Log(SUCCESS, "Terminated log file",
+        "pessum_files/logging.cpp/TerminateLogging");
     LogTimeStamp(true);
     logfile.close();
   }

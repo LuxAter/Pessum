@@ -5,7 +5,8 @@
 #include <vector>
 namespace pessum {
 // luxreader namespace provides support for lux files, and reading the data
-// files from lux code to be used in a program.
+// files
+// from lux code to be used in a program.
 namespace luxreader {
 // Struct for raw lux code loading
 struct RawLuxCode {
@@ -22,7 +23,7 @@ struct Page {
 };
 struct Hierarchy {
   std::string hierarchyname;
-  std::vector<Page> mierarchypages;
+  std::vector<Page> hierarchypages;
 };
 // Structs for lux data loading
 struct Variable {

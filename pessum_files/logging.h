@@ -10,21 +10,21 @@ namespace pessum {
 namespace logging {
 // Used to define different posible log types
 enum LogType {
-  LOG_ERROR,
-  LOG_WARNING,
-  LOG_SUCCESS,
-  LOG_DATA,
-  LOG_INFORMATION,
-  LOG_DEVELOPMENT_CHECK
+  ERROR,
+  WARNING,
+  SUCCESS,
+  DATA,
+  INFORMATION,
+  DEVELOPMENT_CHECK
 };
 extern std::ofstream logfile;
 extern std::vector<std::string> loglocationbindings;
 // Used to initialize and open logging file for log output
 bool InitializeLogging(std::string outputfile = "log_output.log");
 // Enters the logstring into the output log
-void Log(LogType type = LOG_DEVELOPMENT_CHECK, std::string logstring = "NULL",
+void Log(LogType type = DEVELOPMENT_CHECK, std::string logstring = "NULL",
          std::string logfilelocation = "NULL");
-void LogLoc(LogType type = LOG_DEVELOPMENT_CHECK,
+void LogLoc(LogType type = DEVELOPMENT_CHECK,
             std::string logstring = "NULL", int logfilelocation = 0,
             std::string functionname = "NULL");
 // Used to determin log type and convert into a string

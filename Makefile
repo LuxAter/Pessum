@@ -1,9 +1,10 @@
 CPP_FILES = $(wildcard *.cpp)
 OBJ_FILES = $(notdir $(CPP_FILES:.cpp=.o))
 TOTAL_OBJ_FILES = $(wildcard */*.o) $(wildcard */*/*.o) $(wildcard */*/*/*.o)
-CC = g++
+HEADER_FILES = $(wildcard *.h) $(wildcard */*.h) $(wildcard */*/*.h) $(wildcard */*/*/*.h)
+CC = clang++
 COMPILER_FLAGS = -MMD -std=c++11 -w -c
-LINKER_FLAGS = 
+LINKER_FLAGS =
 PROGRAM_NAME = pessum
 
 all: subsystem top_obj $(PROGRAM_NAME)
@@ -16,16 +17,16 @@ $(PROGRAM_NAME): $(OBJ_FILES) $(wildcard */*.o) $(wildcard */*/*.o) $(wildcard *
 	setterm -default
 
 %.o: %.cpp
-	g++ $(COMPILER_FLAGS) -o $(notdir $*).o $*.cpp
+	$(CC) $(COMPILER_FLAGS) -o $(notdir $*).o $*.cpp
 
 .PHONY : top_obj
 top_obj:$(OBJ_FILES)
 
 .PHONY : subsystem
 subsystem:
-	setterm -background white -foreground black
+	export CC
+	setterm -foreground white
 	cd pessum_files && $(MAKE)
-	setterm -default
 
 .PHONY : clean
 clean:
@@ -49,12 +50,27 @@ tar: clean
 	tar -zcvf $(PROGRAM_NAME).tar.gz ../Pessum
 
 .PHONY : lib
-lib:
+lib: all
 	ar rcs lib$(PROGRAM_NAME).a $(TOTAL_OBJ_FILES)
-	sudo cp lib$(PROGRAM_NAME).a ../../../../usr/local/lib/ -u
+	sudo cp lib$(PROGRAM_NAME).a /usr/local/lib/ -u
+	sudo cp pessum.h /usr/local/include/ -u
+	sudo cp pessum_files/*.h /usr/local/include/pessum_files/ -u
 	clear
 	@echo Compiled lib file, and copied to usr/local/lib
 
 .PHONY : log
 log:
 	less log_output.log
+
+.PHONY : help
+help:
+	@echo make clean
+	@echo make test
+	@echo make tar
+	@echo make lib
+	@echo make log
+	@echo make new
+
+
+.PHONY : new
+new: clean all
