@@ -2,11 +2,8 @@
 #define _PESSUM_FILES_PESSUM_CORE_H_
 // pessum namespace is a compleate namespace for the pessum components
 namespace pessum {
-namespace logging {}
-namespace luxreader {}
-namespace rest {}
 // Runs initialization funcitons for logging, luxreader, and rest
-void InitializePessumComponents();
+void InitializePessumComponents(bool devmode = false);
 // Runs terminatrion functions for rest, and logging
 void TerminatePessumComponents();
 }

@@ -1,23 +1,24 @@
+#include "logging.h"
+#include "pessum_core.h"
 #include <ctime>
 #include <fstream>
 #include <string>
-#include "logging.h"
-#include "pessum_core.h"
 
 namespace pessum {
 namespace logging {
 std::ofstream logfile;
 std::vector<std::string> loglocationbindings;
+bool devmode = 0;
 }
 }
 
-bool pessum::logging::InitializeLogging(std::string outputfile) {
+bool pessum::logging::InitializeLogging(std::string outputfile, bool dev) {
+  devmode = dev;
   logfile.open(outputfile.c_str(), std::ios::out);
   if (logfile.is_open()) {
     std::string outputline;
-    time_t logopentime = time(NULL);
     outputline = "Opened log: " + outputfile;
-    Log(SUCCESS, outputline, "pessum_files/logging.cpp/InitializeLogging");
+    Log(SUCCESS, outputline, "pessum/logging/InitializeLogging");
     LogTimeStamp(true);
     return (true);
   } else {
@@ -29,7 +30,10 @@ void pessum::logging::Log(LogType type, std::string logstring,
                           std::string logfilelocation) {
   std::string logline =
       InterpretType(type) + logstring + ">>" + logfilelocation;
-  if (logfile.is_open()) {
+  if (logfile.is_open() && devmode == false &&
+      (type == ERROR || type == WARNING)) {
+    logfile << logline << std::endl;
+  } else if (logfile.is_open() && devmode == true) {
     logfile << logline << std::endl;
   }
 }
@@ -38,7 +42,10 @@ void pessum::logging::LogLoc(LogType type, std::string logstring,
                              int logfilelocation, std::string functionname) {
   std::string logline = InterpretType(type) + logstring + ">>" +
                         loglocationbindings[logfilelocation] + functionname;
-  if (logfile.is_open()) {
+  if (logfile.is_open() && devmode == false &&
+      (type == ERROR || type == WARNING)) {
+    logfile << logline << std::endl;
+  } else if (logfile.is_open() && devmode == true) {
     logfile << logline << std::endl;
   }
 }
@@ -88,9 +95,7 @@ void pessum::logging::LogTimeStamp(bool date) {
 
 void pessum::logging::TerminateLogging() {
   if (logfile.is_open()) {
-    time_t logclosetime = time(NULL);
-    Log(SUCCESS, "Terminated log file",
-        "pessum_files/logging.cpp/TerminateLogging");
+    Log(SUCCESS, "Terminated log file", "pessum/logging/TerminateLogging");
     LogTimeStamp(true);
     logfile.close();
   }
