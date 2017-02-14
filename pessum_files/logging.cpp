@@ -14,12 +14,16 @@ bool devmode = 0;
 
 bool pessum::logging::InitializeLogging(std::string outputfile, bool dev) {
   devmode = dev;
+  if (devmode == false) {
+    return (true);
+  }
   logfile.open(outputfile.c_str(), std::ios::out);
   if (logfile.is_open()) {
     std::string outputline;
     outputline = "Opened log: " + outputfile;
     Log(SUCCESS, outputline, "pessum/logging/InitializeLogging");
     LogTimeStamp(true);
+    AddLogLocation("NULL");
     return (true);
   } else {
     return (false);
@@ -30,8 +34,9 @@ void pessum::logging::Log(LogType type, std::string logstring,
                           std::string logfilelocation) {
   std::string logline =
       InterpretType(type) + logstring + ">>" + logfilelocation;
-  if (logfile.is_open() && devmode == false &&
-      (type == ERROR || type == WARNING)) {
+  if (logfile.is_open() && (type == ERROR || type == WARNING) &&
+      devmode == false) {
+    InitializeLogging("output.log", true);
     logfile << logline << std::endl;
   } else if (logfile.is_open() && devmode == true) {
     logfile << logline << std::endl;
@@ -40,6 +45,9 @@ void pessum::logging::Log(LogType type, std::string logstring,
 
 void pessum::logging::LogLoc(LogType type, std::string logstring,
                              int logfilelocation, std::string functionname) {
+  if (logfilelocation >= loglocationbindings.size()) {
+    logfilelocation = 0;
+  }
   std::string logline = InterpretType(type) + logstring + ">>" +
                         loglocationbindings[logfilelocation] + functionname;
   if (logfile.is_open() && devmode == false &&

@@ -54,7 +54,7 @@ lib: all
 	ar rcs lib$(PROGRAM_NAME).a $(TOTAL_OBJ_FILES)
 	sudo cp lib$(PROGRAM_NAME).a /usr/local/lib/ -u
 	sudo cp pessum.h /usr/local/include/ -u
-	sudo cp pessum_files/*.h /usr/local/include/pessum_files/ -u
+	sudo find . -name '*.h' -exec cp --parents \{\} /usr/local/include/ \;
 	clear
 	@echo Compiled lib file, and copied to usr/local/lib
 
