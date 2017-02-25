@@ -1,2 +1,1 @@
-pessum_core.o: pessum_core.cpp logging.h pessum_core.h lux_reader.h \
- parser.h rest.h
+pessum_core.o: pessum_core.cpp logging/logging.hpp pessum_core.hpp

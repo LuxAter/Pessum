@@ -1,17 +1,8 @@
-#include "logging.h"
-#include "lux_reader.h"
-#include "parser.h"
-#include "pessum_core.h"
-#include "rest.h"
+#include "logging/logging.hpp"
+#include "pessum_core.hpp"
 
-void pessum::InitializePessumComponents(bool devmode) {
-  logging::InitializeLogging("output.log", devmode);
-  luxreader::InitializeLuxReader();
-  rest::Initialzierest();
-  parser::InitalizeParser();
+void pessum::InitializePessum(bool devmode, bool logtimes) {
+  logging::InitializeLogging("output.log", logtimes, devmode);
 }
 
-void pessum::TerminatePessumComponents() {
-  rest::Terminaterest();
-  logging::TerminateLogging();
-}
+void pessum::TerminatePessum() { logging::TerminateLogging(); }

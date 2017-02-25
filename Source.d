@@ -1,3 +1,2 @@
-Source.o: Source.cpp pessum_files/pessum_headers.h pessum_files/logging.h \
-  pessum_files/pessum_core.h pessum_files/lux_reader.h \
-  pessum_files/parser.h pessum_files/rest.h
+Source.o: Source.cpp pessum_files/pessum_headers.hpp \
+  pessum_files/logging/logging.hpp pessum_files/pessum_core.hpp

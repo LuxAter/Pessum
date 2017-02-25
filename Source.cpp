@@ -1,6 +1,6 @@
-#include "pessum_files/pessum_headers.h"
+#include "pessum_files/pessum_headers.hpp"
 int main(int argc, char *argv[]) {
-  pessum::InitializePessumComponents();
-  pessum::TerminatePessumComponents();
+  pessum::InitializePessum(true, true);
+  pessum::TerminatePessum();
   return (1);
 }

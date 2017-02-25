@@ -5,7 +5,3 @@ all: $(OBJ_FILES) subsystem
 	$(COMPILER) $(COMPILER_FLAGS) -o $(notdir $*).o $*.cpp
 .PHONY : subsystem
 subsystem:
-	@setterm -fore blue
-	@printf "LOGGING\n"
-	@setterm -fore white
-	@cd logging && $(MAKE)
