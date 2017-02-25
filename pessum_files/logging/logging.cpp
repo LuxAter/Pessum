@@ -1,7 +1,6 @@
 #include "logging.hpp"
 #include <ctime>
 #include <fstream>
-#include <iostream>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -36,7 +35,6 @@ void pessum::logging::TerminateLogging() {
 
 int pessum::logging::AddLogLocation(std::string locationstring) {
   std::string newstr;
-  newstr = RemoveCaps(locationstring);
   std::string abbrev = "";
   int counter = 3;
   for (int i = 0; i < newstr.size(); i++) {
@@ -45,6 +43,7 @@ int pessum::logging::AddLogLocation(std::string locationstring) {
       abbrev += newstr[i];
     } else if (newstr[i] == '/' || newstr[i] == '\\') {
       counter = 3;
+      abbrev += '/';
     }
   }
   std::tuple<std::string, int, std::string> location(

@@ -1,6 +1,17 @@
-\contentsline {section}{\numberline {1}Core}{1}
-\contentsline {subsection}{\numberline {1.1}InitializePessum}{1}
-\contentsline {subsection}{\numberline {1.2}TerminatePessum}{1}
-\contentsline {section}{\numberline {2}Logging}{2}
-\contentsline {section}{\numberline {3}Lux Reader}{3}
-\contentsline {section}{\numberline {4}Rest}{4}
+\contentsline {section}{\numberline {1}Functions}{1}
+\contentsline {subsection}{\numberline {1.1}General}{2}
+\contentsline {subsubsection}{\numberline {1.1.1}InitializePessum}{3}
+\contentsline {subsubsection}{\numberline {1.1.2}TerminatePessum}{4}
+\contentsline {subsection}{\numberline {1.2}Logging}{5}
+\contentsline {subsubsection}{\numberline {1.2.1}InitializeLogging}{6}
+\contentsline {subsubsection}{\numberline {1.2.2}TerminateLogging}{7}
+\contentsline {subsubsection}{\numberline {1.2.3}AddLogLocation}{8}
+\contentsline {subsubsection}{\numberline {1.2.4}Log}{9}
+\contentsline {subsubsection}{\numberline {1.2.5}LogTimeStamp}{10}
+\contentsline {subsubsection}{\numberline {1.2.6}GetLocation}{11}
+\contentsline {subsubsection}{\numberline {1.2.7}RemoveCaps}{12}
+\contentsline {subsubsection}{\numberline {1.2.8}GetType}{13}
+\contentsline {subsection}{\numberline {1.3}LuxReader}{14}
+\contentsline {subsubsection}{\numberline {1.3.1}LoadLuxFile}{15}
+\contentsline {subsubsection}{\numberline {1.3.2}FindType}{16}
+\contentsline {subsubsection}{\numberline {1.3.3}MakeCaps}{17}

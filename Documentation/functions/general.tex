@@ -1,0 +1,30 @@
+\documentclass{subfiles}
+
+\begin{document}
+\subsection{General}
+\newpage
+\subsubsection{InitializePessum}
+\begin{lstlisting}
+  void pessum::InitializePessum(bool devmode, bool logtimes);
+\end{lstlisting}
+\begin{enumerate}
+	\item[\emph{devmode}] Sets the log to only output for Fatal, Error, and Warnings.
+	\item[\emph{logtimes}] Sets the log to include the current time in hh:mm:ss to every log entry.
+\end{enumerate}
+Initializes Pessum and any sub-components that need initialization. This function will open the log file. \textbf{Note:} This funciton must called before any other Pessum functions.
+\begin{lstlisting}
+  //Initialize pessum in development mode, and with logging of times
+  pessum::InitializePessum(true, true);
+\end{lstlisting}
+\newpage
+\subsubsection{TerminatePessum}
+\begin{lstlisting}
+  void pessum::TerminatePessum();
+\end{lstlisting}
+Terminates Pessum and any sub-components that need termination. This closes the log file and saves it. \textbf{Note:} This funciton should be the last of pessum functions to be called.
+\begin{lstlisting}
+  //Terminate pessum and all sub namespaces
+  pessum::TerminatePessum();
+\end{lstlisting}
+\newpage
+\end{document}

@@ -1,7 +1,40 @@
 \documentclass{article}
 
-\usepackage[head=12pt, margin=1in]{geometry}
+\usepackage[head=12pt, margin=1.5in]{geometry}
+\usepackage{subfiles}
 \usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	commentstyle=\color{mygreen},
+	deletekeywords={...},
+	escapeinside={\%*}{*)},
+	extendedchars=true,
+	frame=single,
+	keepspaces=true,
+	keywordstyle=\color{blue},
+	language=C++,
+	numbers=left,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stepnumber=1,
+	stringstyle=\color{mymauve},
+	tabsize=2,
+	title=\lstname
+}
+
 
 \title{Pessum Documentation}
 \date{24/02/2017}
@@ -18,14 +51,7 @@
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
-\section{Core}
-\subsection{InitializePessum}
-\subsection{TerminatePessum}
-\newpage
-\section{Logging}
-\newpage
-\section{Lux Reader}
-\newpage
-\section{Rest}
-\newpage
+\subfile{functions/functions}
+
+
 \end{document}

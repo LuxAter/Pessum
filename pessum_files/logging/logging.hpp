@@ -1,5 +1,5 @@
-#ifndef PESSUM_LOGGING_HPP
-#define PESSUM_LOGGING_HPP
+#ifndef PESSUM_LOGGING_LOGGING_HPP
+#define PESSUM_LOGGING_LOGGING_HPP
 #include <fstream>
 #include <string>
 #include <tuple>
