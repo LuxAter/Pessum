@@ -5,7 +5,6 @@
 namespace pessum {
 namespace luxreader {
 struct Item {
-  std::string name = "";
   int typeindex = 0;
   bool b = false;
   int i = 0;
@@ -16,9 +15,9 @@ struct Item {
   std::vector<double> vd;
   std::vector<std::string> vs;
 };
-std::vector<Item> LoadLuxFile(std::string filepath);
 int FindType(std::string str);
-std::string MakeCaps(std::string str);
+std::vector<Item> LoadLuxFile(std::string filepath);
+void SaveLuxFile(std::string filepath, std::vector<Item> contents);
 }
 }
 #endif

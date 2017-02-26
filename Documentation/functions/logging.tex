@@ -3,31 +3,6 @@
 \begin{document}
 \subsection{Logging}
 \newpage
-\subsubsection{InitializeLogging}
-\begin{lstlisting}
-  void pessum::logging::InitializeLogging(std::string outputfile, bool recordtime, bool dev);
-\end{lstlisting}
-\begin{enumerate}
-	\item[\emph{outputfile}] File name to save output log to.
-	\item[\emph{recordtime}] Determines if the time in hh:mm:ss is recored with each log entry.
-	\item[\emph{dev}] Determines if the log is to run in development mode.
-\end{enumerate}
-This funciton creates a logfile of the name \emph{outputfile}, which will be used for all logging output. If \emph{recordtime} is \emph{true} the time is included in the log entry. If \emph{recordtime} is \emph{false} then the time is not included. If \emph{dev} is \emph{true} then all log entries are recored to the file. If \emph{dev} is \emph{false} then only FATAL, ERROR, and WARNING log entries are recored to the file. \textbf{Note:} This function must be called before any other logging funcitons to work.
-\begin{lstlisting}
-  //Create a log file with the name "log_output.log", that will include times of each entry, and runs in development mode
-  pessum::logging::InitializeLogging("log_output.log", true, true);
-\end{lstlisting}
-\newpage
-\subsubsection{TerminateLogging}
-\begin{lstlisting}
-  void pessum::logging::TerminateLogging();
-\end{lstlisting}
-This funcition closes and saves the log file. \textbf{Note:} After this funciton is called no other logging funciton will work until InitializeLogging is called again.
-\begin{lstlisting}
-  //Terminate logging, and save the log file
-  pessum::logging::TerminateLogging();
-\end{lstlisting}
-\newpage
 \subsubsection{AddLogLocation}
 \begin{lstlisting}
   int pessum::logging::AddLogLocation(std::string locationstring);
@@ -43,11 +18,57 @@ This function adds a file location into memory for later use in logging, permiti
   //locationindex can be used in log calls to reference this locaiton, or the abbreviation "fol/Fil" can be used
 \end{lstlisting}
 \newpage
+\subsubsection{GetLocation}
+\begin{lstlisting}
+  std::string pessum::logging::GetLocation(int index);
+  std::stirng pessum::logging::GetLocation(std::string str);
+\end{lstlisting}
+\begin{enumerate}
+	\item[\emph{index}] Index that is assosiated with the desired location.
+	\item[\emph{str}] String that is either an abbreviation, or is the desired location.
+\end{enumerate}
+Searches through the saved log locations, either by index value, or by abbreviation. \\
+\textbf{Returns:} The string saved for specified location, and empty string if the specified location does not exist.
+\begin{lstlisting}
+  //A location must be added first
+  int locationindex = pessum::logging::AddLogLocation("folder/subfolder/file");
+  std::string location = pessum::logging::GetLocation(locationindex);
+  location = pessum::logging::GetLocation("fol/sub/fil");
+  //Both GetLocation calls will return "folder/subfolder/file"
+\end{lstlisting}
+\newpage
+\subsubsection{GetType}
+\begin{lstlisting}
+  std::string pessum::logging::GetType(std::string str);
+\end{lstlisting}
+\begin{enumerate}
+	\item[\emph{str}] Log type string.
+\end{enumerate}
+Takes a log type string, and converts to a standardized log type. Also expands abbreviations of default log types such as F to FATAL, or E to ERROR, ect.\\
+\textbf{Returns:} A string representation of the log type.
+\begin{lstlisting}
+  pessum::logging::GetType("F")
+  //Will return "FATAL"
+\end{lstlisting}
+\newpage
+\subsubsection{InitializeLogging}
+\begin{lstlisting}
+  void pessum::logging::InitializeLogging(std::string outputfile, bool recordtime, bool dev);
+\end{lstlisting}
+\begin{enumerate}
+	\item[\emph{outputfile}] File name to save output log to.
+	\item[\emph{recordtime}] Determines if the time in hh:mm:ss is recored with each log entry.
+	\item[\emph{dev}] Determines if the log is to run in development mode.
+\end{enumerate}
+This funciton creates a logfile of the name \emph{outputfile}, which will be used for all logging output. If \emph{recordtime} is \emph{true} the time is included in the log entry. If \emph{recordtime} is \emph{false} then the time is not included. If \emph{dev} is \emph{true} then all log entries are recored to the file. If \emph{dev} is \emph{false} then only FATAL, ERROR, and WARNING log entries are recored to the file. \textbf{Note:} This function must be called before any other logging funcitons to work.
+\begin{lstlisting}
+  //Create a log file with the name "log_output.log", that will include times of each entry, and runs in development mode
+  pessum::logging::InitializeLogging("log_output.log", true, true);
+\end{lstlisting}
+\newpage
 \subsubsection{Log}
 \begin{lstlisting}
-  void pessum::logging::Log(std::string str);
-  void pessum::logging::Log(std::string typestr, std::string logstr, std::string locationstring);
-  void pessum::logging::Log(std::string typestr, std::string logstr, std::string locationstr, std::string funcitonstr);
+
 \end{lstlisting}
 \begin{enumerate}
 	\item
@@ -61,22 +82,13 @@ This function adds a file location into memory for later use in logging, permiti
   void pessum::logging::LogTimeStamp(bool date);
 \end{lstlisting}
 \begin{enumerate}
-	\item
+	\item[\emph{date}] Determines if the data is included in the time stamp.
 \end{enumerate}
+Logs a special time log, which includes the date and time in the format of www mmm dd hh:mm:ss yyyy. Where w is the day of the week, m is the month, d is the day, h is the hour, m is the minute, s is the second, and y is the year. If \emph{date} is true, the the date is included, if \emph{date} is false, then the data is removed from the log.
 \begin{lstlisting}
-
-\end{lstlisting}
-\newpage
-\subsubsection{GetLocation}
-\begin{lstlisting}
-  std::string pessum::logging::GetLocation(int index);
-  std::stirng pessum::logging::GetLocation(std::string str);
-\end{lstlisting}
-\begin{enumerate}
-	\item
-\end{enumerate}
-\begin{lstlisting}
-
+  //Log the current time including the date
+  pessum::logging::LogTimeStamp(true);
+  //example result will be a log containing "Mon Jan 01 01:12:15 2017"
 \end{lstlisting}
 \newpage
 \subsubsection{RemoveCaps}
@@ -84,22 +96,23 @@ This function adds a file location into memory for later use in logging, permiti
   std::string pessum::logging::RemoveCaps(std::string str);
 \end{lstlisting}
 \begin{enumerate}
-	\item
+	\item[\emph{str}] String to be converted.
 \end{enumerate}
+Converts all capital letters from \emph{str} into lower case letters.\\
+\textbf{Returns:} \emph{str} will all capital letters converted to lowercase.
 \begin{lstlisting}
-
+  pessum::logging::RemoveCaps("Hello World")
+  //Will return "hello world"
 \end{lstlisting}
 \newpage
-\subsubsection{GetType}
+\subsubsection{TerminateLogging}
 \begin{lstlisting}
-  std::string pessum::logging::GetType(std::string str);
+  void pessum::logging::TerminateLogging();
 \end{lstlisting}
-\begin{enumerate}
-	\item
-\end{enumerate}
+This funcition closes and saves the log file. \textbf{Note:} After this funciton is called no other logging funciton will work until InitializeLogging is called again.
 \begin{lstlisting}
-
+  //Terminate logging, and save the log file
+  pessum::logging::TerminateLogging();
 \end{lstlisting}
 \newpage
-
 \end{document}
