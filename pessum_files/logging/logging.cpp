@@ -78,51 +78,99 @@ std::string pessum::logging::GetType(std::string str) {
   return (str);
 }
 
+void pessum::logging::Log(std::string str) {
+  std::string typestr, logstr, locationstr, functionstr;
+  for (int i = 0; i < str.size(); i++) {
+    if (str[i] == ';') {
+      typestr = std::string(str.begin(), str.begin() + i);
+      str.erase(str.begin(), str.begin() + i + 1);
+      break;
+    }
+  }
+  for (int i = 0; i < str.size(); i++) {
+    if (str[i] == ';') {
+      logstr = std::string(str.begin(), str.begin() + i);
+      str.erase(str.begin(), str.begin() + i + 1);
+      break;
+    }
+  }
+  for (int i = str.size() - 1; i >= 0; i--) {
+    if (str[i] == '/' || str[i] == '\\' || str[i] == ';') {
+      functionstr = std::string(str.begin() + i + 1, str.end());
+      str.erase(str.begin() + i, str.end());
+      break;
+    }
+  }
+  locationstr = str;
+  Log(typestr, logstr, locationstr, functionstr);
+}
+
+void pessum::logging::Log(std::string typelogstr, std::string locationstr) {
+  std::string logstr = "";
+  for (int i = 0; i < typelogstr.size(); i++) {
+    if (typelogstr[i] == ';') {
+      logstr = std::string(typelogstr.begin() + i + 1, typelogstr.end());
+      typelogstr.erase(typelogstr.begin() + i, typelogstr.end());
+      break;
+    }
+  }
+  std::string functionstr = "";
+  for (int i = locationstr.size() - 1; i >= 0; i--) {
+    if (locationstr[i] == '/' || locationstr[i] == '\\' ||
+        locationstr[i] == ';') {
+      functionstr = std::string(locationstr.begin() + i + 1, locationstr.end());
+      locationstr.erase(locationstr.begin() + i, locationstr.end());
+      break;
+    }
+  }
+  Log(typelogstr, logstr, locationstr, functionstr);
+}
+
+void pessum::logging::Log(std::string typelogstr, int locationindex,
+                          std::string funcitonstr) {
+  std::string logstr = "";
+  for (int i = 0; i < typelogstr.size(); i++) {
+    if (typelogstr[i] == ';') {
+      logstr = std::string(typelogstr.begin() + i + 1, typelogstr.end());
+      typelogstr.erase(typelogstr.begin() + i, typelogstr.end());
+      break;
+    }
+  }
+  Log(typelogstr, logstr, locationindex, funcitonstr);
+}
+
+void pessum::logging::Log(std::string typestr, std::string logstr,
+                          std::string locationstr) {
+  std::string functionstr = "";
+  for (int i = locationstr.size() - 1; i >= 0; i--) {
+    if (locationstr[i] == '/' || locationstr[i] == '\\' ||
+        locationstr[i] == ';') {
+      functionstr = std::string(locationstr.begin() + i + 1, locationstr.end());
+      locationstr.erase(locationstr.begin() + i, locationstr.end());
+      break;
+    }
+  }
+  Log(typestr, logstr, locationstr, functionstr);
+}
+
+void pessum::logging::Log(std::string typestr, std::string logstr,
+                          int locationindex, std::string functionstr) {
+  Log(typestr, logstr, GetLocation(locationindex), functionstr);
+}
+
 void pessum::logging::Log(std::string typestr, std::string logstr,
                           std::string locationstr, std::string functionstr) {
-  if (logstr.size() == 0) {
-    for (int i = 0; i < typestr.size(); i++) {
-      if (typestr[i] == ';') {
-        logstr = std::string(typestr.begin() + i + 1, typestr.end());
-        typestr.erase(typestr.begin() + i, typestr.end());
-        break;
-      }
-    }
-  }
-  if (locationstr.size() == 0) {
-    for (int i = 0; i < logstr.size(); i++) {
-      if (logstr[i] == ';') {
-        locationstr = std::string(logstr.begin() + i + 1, logstr.end());
-        logstr.erase(logstr.begin() + i, logstr.end());
-        break;
-      }
-    }
-  }
-  if (functionstr.size() == 0) {
-    for (int i = locationstr.size() - 1; i >= 0; i--) {
-      if (locationstr[i] == '/' || locationstr[i] == '\\' ||
-          locationstr[i] == ';') {
-        functionstr =
-            std::string(locationstr.begin() + i + 1, locationstr.end());
-        locationstr.erase(locationstr.begin() + i, locationstr.end());
-        break;
-      }
-    }
-  }
-  std::string logfileline = "";
+  typestr = GetType(typestr);
+  std::string logfileline = "<" + typestr + ">{" + GetLocation(locationstr) +
+                            "}{" + functionstr + "}" + logstr;
   if (logtimes == true) {
     time_t currenttime;
     time(&currenttime);
-    logfileline = ctime(&currenttime);
-    logfileline.erase(logfileline.begin(), logfileline.begin() + 11);
-    logfileline.erase(logfileline.end() - 6, logfileline.end());
-    logfileline = "[" + logfileline + "]";
+    std::string logtime = ctime(&currenttime);
+    logtime.erase(logtime.begin(), logtime.begin() + 11);
+    logtime.erase(logtime.end() - 6, logtime.end());
+    logfileline = "[" + logtime + "]" + logfileline;
   }
-  typestr = GetType(typestr);
-  logfileline += "<" + typestr + ">";
-  logfileline += "{" + GetLocation(locationstr) + "}";
-  logfileline += "{" + functionstr + "}";
-  logfileline += logstr;
   if (logoutputfile.is_open()) {
     if (devmode == true ||
         (typestr == "FATAL" || typestr == "ERROR" || typestr == "WARNING")) {
@@ -166,7 +214,7 @@ std::string pessum::logging::RemoveCaps(std::string str) {
 
 void pessum::logging::TerminateLogging() {
   if (logoutputfile.is_open()) {
-    Log("info;Terminated Log File;pessum/logging/TerminatedLogging");
+    Log("info", "Terminated Log File", "pessum/logging/TerminatedLogging");
     LogTimeStamp(true);
     logoutputfile.close();
   }

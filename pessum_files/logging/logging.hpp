@@ -15,8 +15,16 @@ std::string GetLocation(int index);
 std::string GetLocation(std::string str);
 std::string GetType(std::string str);
 void InitializeLogging(std::string outputfile, bool recordtime, bool dev);
-void Log(std::string typestr = "", std::string logstr = "",
-         std::string locationstr = "", std::string functionstr = "");
+
+void Log(std::string str);
+void Log(std::string typelogstr, std::string locationstr);
+void Log(std::string typelogstr, int locationindex, std::string funcitonstr);
+void Log(std::string typestr, std::string logstr, std::string locationstr);
+void Log(std::string typestr, std::string logstr, int locationindex,
+         std::string functionstr);
+void Log(std::string typestr, std::string logstr, std::string locationstr,
+         std::string functionstr);
+
 void LogTimeStamp(bool date);
 std::string RemoveCaps(std::string str);
 void TerminateLogging();

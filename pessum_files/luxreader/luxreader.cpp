@@ -5,6 +5,117 @@
 #include <string>
 #include <vector>
 
+pessum::luxreader::Item pessum::luxreader::CreateItem(bool val) {
+  Item newitem;
+  newitem.typeindex = 0;
+  newitem.b = val;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(int val) {
+  Item newitem;
+  newitem.typeindex = 1;
+  newitem.i = val;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(double val) {
+  Item newitem;
+  newitem.typeindex = 2;
+  newitem.d = val;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(std::string val) {
+  Item newitem;
+  newitem.typeindex = 3;
+  newitem.s = val;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(std::vector<bool> vec) {
+  Item newitem;
+  newitem.typeindex = 4;
+  newitem.vb = vec;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(std::vector<int> vec) {
+  Item newitem;
+  newitem.typeindex = 5;
+  newitem.vi = vec;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItem(std::vector<double> vec) {
+  Item newitem;
+  newitem.typeindex = 6;
+  newitem.vd = vec;
+  return (newitem);
+}
+
+pessum::luxreader::Item
+pessum::luxreader::CreateItem(std::vector<std::string> vec) {
+  Item newitem;
+  newitem.typeindex = 7;
+  newitem.vs = vec;
+  return (newitem);
+}
+
+pessum::luxreader::Item pessum::luxreader::CreateItemStr(std::string str) {
+  Item newitem;
+  newitem.typeindex = FindType(str);
+  if (newitem.typeindex == 0) {
+    if (str == "false") {
+      newitem.b = false;
+    } else if (str == "true") {
+      newitem.b = true;
+    }
+  } else if (newitem.typeindex == 1) {
+    newitem.i = stoi(str);
+  } else if (newitem.typeindex == 2) {
+    newitem.d = stod(str);
+  } else if (newitem.typeindex == 3) {
+    newitem.s = str;
+  } else if (newitem.typeindex >= 4) {
+    std::string substring = "";
+    for (int j = 1; j < str.size() - 1; j++) {
+      if (str[j] == ',' && str[j + 1] == ' ') {
+        if (newitem.typeindex == 4) {
+          if (substring == "false") {
+            newitem.vb.push_back(false);
+          } else if (substring == "true") {
+            newitem.vb.push_back(true);
+          }
+        } else if (newitem.typeindex == 5) {
+          newitem.vi.push_back(stoi(substring));
+        } else if (newitem.typeindex == 6) {
+          newitem.vd.push_back(stod(substring));
+        } else if (newitem.typeindex == 7) {
+          newitem.vs.push_back(substring);
+        }
+        substring = "";
+      } else {
+        substring += str[j];
+      }
+    }
+    if (newitem.typeindex == 4) {
+      if (substring == "false") {
+        newitem.vb.push_back(false);
+      } else if (substring == "true") {
+        newitem.vb.push_back(true);
+      }
+    } else if (newitem.typeindex == 5) {
+      newitem.vi.push_back(stoi(substring));
+    } else if (newitem.typeindex == 6) {
+      newitem.vd.push_back(stod(substring));
+    } else if (newitem.typeindex == 7) {
+      newitem.vs.push_back(substring);
+    }
+  }
+  return (newitem);
+}
+
 int pessum::luxreader::FindType(std::string str) {
   int type = 0;
   bool list = false;
@@ -64,69 +175,73 @@ pessum::luxreader::LoadLuxFile(std::string filepath) {
                  ";pessum/luxreader/LoadLuxFile");
   }
   for (int i = 0; i < rawstrings.size(); i++) {
-    Item newitem;
-    newitem.typeindex = FindType(rawstrings[i]);
-    if (newitem.typeindex == 0) {
-      if (rawstrings[i] == "false") {
-        newitem.b = false;
-      } else if (rawstrings[i] == "true") {
-        newitem.b = true;
-      }
-    } else if (newitem.typeindex == 1) {
-      newitem.i = stoi(rawstrings[i]);
-    } else if (newitem.typeindex == 2) {
-      newitem.d = stod(rawstrings[i]);
-    } else if (newitem.typeindex == 3) {
-      newitem.s = rawstrings[i];
-    } else if (newitem.typeindex == 4) {
-      std::string substring = "";
-      for (int j = 1; j < rawstrings[i].size() - 1; j++) {
-        if (rawstrings[i][j] == ',' && rawstrings[i][j + 1] == ' ') {
-          if (substring == "false") {
-            newitem.vb.push_back(false);
-          } else if (substring == "true") {
-            newitem.vb.push_back(true);
-          }
-          substring = "";
-        } else {
-          substring += rawstrings[i][j];
-        }
-      }
-    } else if (newitem.typeindex == 5) {
-      std::string substring = "";
-      for (int j = 1; j < rawstrings[i].size() - 1; j++) {
-        if (rawstrings[i][j] == ',' && rawstrings[i][j + 1] == ' ') {
-          newitem.vi.push_back(stoi(substring));
-          substring = "";
-        } else {
-          substring += rawstrings[i][j];
-        }
-      }
-    } else if (newitem.typeindex == 6) {
-      std::string substring = "";
-      for (int j = 1; j < rawstrings[i].size() - 1; j++) {
-        if (rawstrings[i][j] == ',' && rawstrings[i][j + 1] == ' ') {
-          newitem.vd.push_back(stod(substring));
-          substring = "";
-        } else {
-          substring += rawstrings[i][j];
-        }
-      }
-    } else if (newitem.typeindex == 7) {
-      std::string substring = "";
-      for (int j = 1; j < rawstrings[i].size() - 1; j++) {
-        if (rawstrings[i][j] == ',' && rawstrings[i][j + 1] == ' ') {
-          newitem.vs.push_back(substring);
-          substring = "";
-        } else {
-          substring += rawstrings[i][j];
-        }
-      }
-    }
-    filecontents.push_back(newitem);
+    filecontents.push_back(CreateItemStr(rawstrings[i]));
   }
   return (filecontents);
 }
 
 void pessum::luxreader::SaveLuxFile(std::string filepath,
-                                    std::vector<Item> contents) {}
+                                    std::vector<Item> contents) {
+  std::ofstream luxfile(filepath.c_str());
+  if (luxfile.is_open()) {
+    for (int i = 0; i < contents.size(); i++) {
+      if (contents[i].typeindex == 0) {
+        if (contents[i].b == false) {
+          luxfile << "false";
+        } else if (contents[i].b == true) {
+          luxfile << "true";
+        }
+      } else if (contents[i].typeindex == 1) {
+        luxfile << contents[i].i;
+      } else if (contents[i].typeindex == 2) {
+        luxfile << contents[i].d;
+      } else if (contents[i].typeindex == 3) {
+        luxfile << contents[i].s;
+      } else if (contents[i].typeindex == 4) {
+        luxfile << "{";
+        for (int j = 0; j < contents[i].vb.size(); j++) {
+          if (contents[i].vb[j] == false) {
+            luxfile << "false";
+          } else if (contents[i].vb[j] == true) {
+            luxfile << "true";
+          }
+          if (j != contents[i].vb.size() - 1) {
+            luxfile << ", ";
+          }
+        }
+        luxfile << "}";
+      } else if (contents[i].typeindex == 5) {
+        luxfile << "{";
+        for (int j = 0; j < contents[i].vi.size(); j++) {
+          luxfile << contents[i].vi[j];
+          if (j != contents[i].vi.size() - 1) {
+            luxfile << ", ";
+          }
+        }
+        luxfile << "}";
+      } else if (contents[i].typeindex == 6) {
+        luxfile << "{";
+        for (int j = 0; j < contents[i].vd.size(); j++) {
+          luxfile << contents[i].vd[j];
+          if (j != contents[i].vd.size() - 1) {
+            luxfile << ", ";
+          }
+        }
+        luxfile << "}";
+      } else if (contents[i].typeindex == 7) {
+        luxfile << "{";
+        for (int j = 0; j < contents[i].vs.size(); j++) {
+          luxfile << contents[i].vs[j];
+          if (j != contents[i].vs.size() - 1) {
+            luxfile << ", ";
+          }
+        }
+        luxfile << "}";
+      }
+      luxfile << "\n";
+    }
+  } else {
+    logging::Log("w;Failed to open " + filepath +
+                 ";pessum/luxreader/SaveLuxFile");
+  }
+}

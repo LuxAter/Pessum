@@ -15,6 +15,15 @@ struct Item {
   std::vector<double> vd;
   std::vector<std::string> vs;
 };
+Item CreateItem(bool val);
+Item CreateItem(int val);
+Item CreateItem(double val);
+Item CreateItem(std::string val);
+Item CreateItem(std::vector<bool> vec);
+Item CreateItem(std::vector<int> vec);
+Item CreateItem(std::vector<double> vec);
+Item CreateItem(std::vector<std::string> vec);
+Item CreateItemStr(std::string str);
 int FindType(std::string str);
 std::vector<Item> LoadLuxFile(std::string filepath);
 void SaveLuxFile(std::string filepath, std::vector<Item> contents);
