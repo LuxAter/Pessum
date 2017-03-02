@@ -1,6 +1,7 @@
 #include "logging.hpp"
 #include <ctime>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -16,11 +17,11 @@ int pessum::logging::AddLogLocation(std::string locationstring) {
   std::string newstr;
   std::string abbrev = "";
   int counter = 3;
-  for (int i = 0; i < newstr.size(); i++) {
-    if (newstr[i] != '/' && newstr[i] != '\\' && counter > 0) {
+  for (int i = 0; i < locationstring.size(); i++) {
+    if (locationstring[i] != '/' && locationstring[i] != '\\' && counter > 0) {
       counter--;
-      abbrev += newstr[i];
-    } else if (newstr[i] == '/' || newstr[i] == '\\') {
+      abbrev += locationstring[i];
+    } else if (locationstring[i] == '/' || locationstring[i] == '\\') {
       counter = 3;
       abbrev += '/';
     }
