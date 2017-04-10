@@ -90,9 +90,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4d349f207308b877a48bb4907e15dc69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepessum.html#a4d349f207308b877a48bb4907e15dc69">Log</a> (int type, std::string msg, std::string func)</td></tr>
-<tr class="memdesc:a4d349f207308b877a48bb4907e15dc69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log output member.  <a href="#a4d349f207308b877a48bb4907e15dc69">More...</a><br /></td></tr>
-<tr class="separator:a4d349f207308b877a48bb4907e15dc69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c31460fcd571df95b03ff82c890e4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepessum.html#ae1c31460fcd571df95b03ff82c890e4b">Log</a> (int type, std::string msg, std::string func,...)</td></tr>
+<tr class="memdesc:ae1c31460fcd571df95b03ff82c890e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log output member.  <a href="#ae1c31460fcd571df95b03ff82c890e4b">More...</a><br /></td></tr>
+<tr class="separator:ae1c31460fcd571df95b03ff82c890e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7c3a2695cc96dc4f826e252d5dd4398"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepessum.html#ae7c3a2695cc96dc4f826e252d5dd4398">FGetLog</a> (int type)</td></tr>
 <tr class="memdesc:ae7c3a2695cc96dc4f826e252d5dd4398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get log entry; full.  <a href="#ae7c3a2695cc96dc4f826e252d5dd4398">More...</a><br /></td></tr>
 <tr class="separator:ae7c3a2695cc96dc4f826e252d5dd4398"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -312,8 +312,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d349f207308b877a48bb4907e15dc69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d349f207308b877a48bb4907e15dc69">&#9670;&nbsp;</a></span>Log()</h2>
+<a id="ae1c31460fcd571df95b03ff82c890e4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1c31460fcd571df95b03ff82c890e4b">&#9670;&nbsp;</a></span>Log()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +334,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>func</em>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -350,6 +356,7 @@ Variables</h2></td></tr>
     <tr><td class="paramname">type</td><td>The type of log entry </td></tr>
     <tr><td class="paramname">msg</td><td>Format string of log entry </td></tr>
     <tr><td class="paramname">func</td><td>The name of the function creating the log entry </td></tr>
+    <tr><td class="paramname">...</td><td>Additional formating args </td></tr>
   </table>
   </dd>
 </dl>

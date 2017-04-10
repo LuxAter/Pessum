@@ -23,7 +23,7 @@ enum \hyperlink{namespacepessum_a0e205f64abc046e94dd38be906430664}{Log\+Type} \{
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{namespacepessum_a4d349f207308b877a48bb4907e15dc69}{Log} (int type, std\+::string msg, std\+::string func)
+void \hyperlink{namespacepessum_ae1c31460fcd571df95b03ff82c890e4b}{Log} (int type, std\+::string msg, std\+::string func,...)
 \begin{DoxyCompactList}\small\item\em Log output member. \end{DoxyCompactList}\item 
 std\+::pair$<$ int, std\+::string $>$ \hyperlink{namespacepessum_ae7c3a2695cc96dc4f826e252d5dd4398}{F\+Get\+Log} (int type)
 \begin{DoxyCompactList}\small\item\em Get log entry; full. \end{DoxyCompactList}\item 
@@ -212,11 +212,11 @@ Formated string of log entry
 \begin{DoxySeeAlso}{See also}
 \hyperlink{namespacepessum_a92df65a763df879d6902d5c5c600f1d4}{I\+F\+Get\+Log()} 
 \end{DoxySeeAlso}
-\mbox{\Hypertarget{namespacepessum_a4d349f207308b877a48bb4907e15dc69}\label{namespacepessum_a4d349f207308b877a48bb4907e15dc69}} 
+\mbox{\Hypertarget{namespacepessum_ae1c31460fcd571df95b03ff82c890e4b}\label{namespacepessum_ae1c31460fcd571df95b03ff82c890e4b}} 
 \index{pessum@{pessum}!Log@{Log}}
 \index{Log@{Log}!pessum@{pessum}}
 \subsubsection{\texorpdfstring{Log()}{Log()}}
-{\footnotesize\ttfamily void pessum\+::\+Log (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{std\+::string}]{msg,  }\item[{std\+::string}]{func }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void pessum\+::\+Log (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{std\+::string}]{msg,  }\item[{std\+::string}]{func,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
 
@@ -229,6 +229,8 @@ Function for all logging output. Log entry is saved to global\+\_\+logs.
 {\em msg} & Format string of log entry \\
 \hline
 {\em func} & The name of the function creating the log entry \\
+\hline
+{\em ...} & Additional formating args \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}

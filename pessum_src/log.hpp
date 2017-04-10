@@ -32,9 +32,10 @@ namespace pessum {
     \param type The type of log entry
     \param msg Format string of log entry
     \param func The name of the function creating the log entry
+    \param ... Additional formating args
     \sa global_logs, GetLog()
   */
-  void Log(int type, std::string msg, std::string func);
+  void Log(int type, std::string msg, std::string func, ...);
 
   //! Get log entry; full
   /*! Gets last log entry of specified type with full information.

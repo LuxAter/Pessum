@@ -12,8 +12,17 @@ namespace pessum {
   void (*log_handle)(std::string) = NULL;
 }
 
-void pessum::Log(int type, std::string msg, std::string func) {
-  std::string str = msg;
+void pessum::Log(int type, std::string msg, std::string func, ...) {
+  std::string str;
+  va_list args, buff_args;
+  va_start(args, func);
+  va_start(buff_args, func);
+  ssize_t buff_size = vsnprintf(NULL, 0, msg.c_str(), buff_args);
+  char* formated_string = new char[buff_size];
+  vsprintf(formated_string, msg.c_str(), args);
+  va_end(buff_args);
+  va_end(args);
+  str = std::string(formated_string);
   str = "[" + GetTypeStr(type) + "] " + str;
   str = str + " [" + func + "]";
   global_logs.push_back(std::make_pair(type, str));
