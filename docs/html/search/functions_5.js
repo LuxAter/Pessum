@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vfgetlog',['VFGetLog',['../namespacepessum_1_1log.html#a65630db6abcfb529e61e5df0a492ebf4',1,'pessum::log']]],
-  ['vgetlog',['VGetLog',['../namespacepessum_1_1log.html#a566d939fa6ead9aa60de41bc071ab710',1,'pessum::log']]]
+  ['vfgetlog',['VFGetLog',['../namespacepessum.html#a32367e906bdf84c0942a5e4a3588b255',1,'pessum']]],
+  ['vgetlog',['VGetLog',['../namespacepessum.html#a82047101ac6c52e881b2817c487038ff',1,'pessum']]]
 ];

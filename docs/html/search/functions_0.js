@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fgetlog',['FGetLog',['../namespacepessum_1_1log.html#af90cce6e7194fdefd3c665aba4195830',1,'pessum::log']]]
+  ['fgetlog',['FGetLog',['../namespacepessum.html#ae7c3a2695cc96dc4f826e252d5dd4398',1,'pessum']]]
 ];

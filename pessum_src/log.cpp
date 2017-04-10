@@ -7,14 +7,12 @@
 #include "log.hpp"
 
 namespace pessum {
-  namespace log {
-    std::vector<std::pair<int, std::string>> global_logs;
-    void (*log_handle_full)(std::pair<int, std::string>) = NULL;
-    void (*log_handle)(std::string) = NULL;
-  }
+  std::vector<std::pair<int, std::string>> global_logs;
+  void (*log_handle_full)(std::pair<int, std::string>) = NULL;
+  void (*log_handle)(std::string) = NULL;
 }
 
-void pessum::log::Log(int type, std::string msg, std::string func) {
+void pessum::Log(int type, std::string msg, std::string func) {
   std::string str = msg;
   str = "[" + GetTypeStr(type) + "] " + str;
   str = str + " [" + func + "]";
@@ -26,7 +24,7 @@ void pessum::log::Log(int type, std::string msg, std::string func) {
   }
 }
 
-std::pair<int, std::string> pessum::log::FGetLog(int type) {
+std::pair<int, std::string> pessum::FGetLog(int type) {
   std::pair<int, std::string> entry;
   bool search = true;
   if (type == NONE && global_logs.size() > 0) {
@@ -42,7 +40,7 @@ std::pair<int, std::string> pessum::log::FGetLog(int type) {
   return (entry);
 }
 
-std::string pessum::log::GetLog(int type) {
+std::string pessum::GetLog(int type) {
   std::string entry;
   if (type == NONE && global_logs.size() > 0) {
     entry = global_logs[global_logs.size() - 1].second;
@@ -55,7 +53,7 @@ std::string pessum::log::GetLog(int type) {
   return (entry);
 }
 
-std::pair<int, std::string> pessum::log::IFGetLog(int index) {
+std::pair<int, std::string> pessum::IFGetLog(int index) {
   std::pair<int, std::string> entry;
   if (index >= 0 && index < global_logs.size()) {
     entry = global_logs[index];
@@ -63,7 +61,7 @@ std::pair<int, std::string> pessum::log::IFGetLog(int index) {
   return (entry);
 }
 
-std::string pessum::log::IGetLog(int index) {
+std::string pessum::IGetLog(int index) {
   std::string entry;
   if (index >= 0 && index < global_logs.size()) {
     entry = global_logs[index].second;
@@ -71,8 +69,7 @@ std::string pessum::log::IGetLog(int index) {
   return (entry);
 }
 
-std::vector<std::pair<int, std::string>> pessum::log::VFGetLog(int start,
-                                                               int end) {
+std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
   std::vector<std::pair<int, std::string>> entries;
   for (int i = start; i < end && i >= 0 && i < global_logs.size(); i++) {
     entries.push_back(global_logs[i]);
@@ -80,7 +77,7 @@ std::vector<std::pair<int, std::string>> pessum::log::VFGetLog(int start,
   return (entries);
 }
 
-std::vector<std::string> pessum::log::VGetLog(int start, int end) {
+std::vector<std::string> pessum::VGetLog(int start, int end) {
   std::vector<std::string> entries;
   for (int i = start; i < end && i >= 0 && i < global_logs.size(); i++) {
     entries.push_back(global_logs[i].second);
@@ -88,15 +85,13 @@ std::vector<std::string> pessum::log::VGetLog(int start, int end) {
   return (entries);
 }
 
-void pessum::log::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
+void pessum::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
   log_handle_full = handle;
 }
 
-void pessum::log::SetLogHandle(void (*handle)(std::string)) {
-  log_handle = handle;
-}
+void pessum::SetLogHandle(void (*handle)(std::string)) { log_handle = handle; }
 
-std::string pessum::log::GetTypeStr(int type) {
+std::string pessum::GetTypeStr(int type) {
   std::string str;
   if (type == ERROR) {
     str = "ERROR";
@@ -116,7 +111,7 @@ std::string pessum::log::GetTypeStr(int type) {
   return (str);
 }
 
-void pessum::log::SaveLog(std::string file) {
+void pessum::SaveLog(std::string file) {
   std::ofstream output(file.c_str(), std::ios::out);
   if (output.is_open()) {
     for (int i = 0; i < global_logs.size(); i++) {

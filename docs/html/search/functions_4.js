@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['savelog',['SaveLog',['../namespacepessum_1_1log.html#a0a9fc4d6d3bc08921c38bf3b9c8615d6',1,'pessum::log']]],
-  ['setloghandle',['SetLogHandle',['../namespacepessum_1_1log.html#a3dad780e9e79cf9184fcaaed11b30745',1,'pessum::log::SetLogHandle(void(*handle)(std::pair&lt; int, std::string &gt;))'],['../namespacepessum_1_1log.html#a4a1f2b59bfce86460538cee3b29d1d1f',1,'pessum::log::SetLogHandle(void(*handle)(std::string))']]]
+  ['savelog',['SaveLog',['../namespacepessum.html#a73443b520f83c0a1898a1e8566f03e91',1,'pessum']]],
+  ['setloghandle',['SetLogHandle',['../namespacepessum.html#a587b50496dee1a27cbfe99025bc15656',1,'pessum::SetLogHandle(void(*handle)(std::pair&lt; int, std::string &gt;))'],['../namespacepessum.html#ab20026ac5dd6e6014097f8792679a2df',1,'pessum::SetLogHandle(void(*handle)(std::string))']]]
 ];

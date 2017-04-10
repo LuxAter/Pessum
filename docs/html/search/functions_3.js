@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log',['Log',['../namespacepessum_1_1log.html#a78616d558dafb843a51b858ab96281e1',1,'pessum::log']]]
+  ['log',['Log',['../namespacepessum.html#a4d349f207308b877a48bb4907e15dc69',1,'pessum']]]
 ];
