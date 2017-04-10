@@ -1,0 +1,66 @@
+\begin{theindex}
+
+  \item {F\+Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{5}
+
+  \indexspace
+
+  \item {Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{5}
+  \item {Get\+Type\+Str}
+    \subitem {pessum\+::log}, \hyperpage{6}
+  \item {global\+\_\+logs}
+    \subitem {pessum\+::log}, \hyperpage{10}
+
+  \indexspace
+
+  \item {I\+F\+Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{6}
+  \item {I\+Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Log}
+    \subitem {pessum\+::log}, \hyperpage{7}
+  \item {log\+\_\+handle}
+    \subitem {pessum\+::log}, \hyperpage{10}
+  \item {log\+\_\+handle\+\_\+full}
+    \subitem {pessum\+::log}, \hyperpage{10}
+  \item {Log\+Type}
+    \subitem {pessum\+::log}, \hyperpage{4}
+
+  \indexspace
+
+  \item {pessum}, \hyperpage{3}
+  \item {pessum\+::log}, \hyperpage{3}
+    \subitem {F\+Get\+Log}, \hyperpage{5}
+    \subitem {Get\+Log}, \hyperpage{5}
+    \subitem {Get\+Type\+Str}, \hyperpage{6}
+    \subitem {global\+\_\+logs}, \hyperpage{10}
+    \subitem {I\+F\+Get\+Log}, \hyperpage{6}
+    \subitem {I\+Get\+Log}, \hyperpage{7}
+    \subitem {Log}, \hyperpage{7}
+    \subitem {log\+\_\+handle}, \hyperpage{10}
+    \subitem {log\+\_\+handle\+\_\+full}, \hyperpage{10}
+    \subitem {Log\+Type}, \hyperpage{4}
+    \subitem {Save\+Log}, \hyperpage{8}
+    \subitem {Set\+Log\+Handle}, \hyperpage{8}
+    \subitem {V\+F\+Get\+Log}, \hyperpage{9}
+    \subitem {V\+Get\+Log}, \hyperpage{9}
+
+  \indexspace
+
+  \item {Save\+Log}
+    \subitem {pessum\+::log}, \hyperpage{8}
+  \item {Set\+Log\+Handle}
+    \subitem {pessum\+::log}, \hyperpage{8}
+
+  \indexspace
+
+  \item {V\+F\+Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{9}
+  \item {V\+Get\+Log}
+    \subitem {pessum\+::log}, \hyperpage{9}
+
+\end{theindex}
