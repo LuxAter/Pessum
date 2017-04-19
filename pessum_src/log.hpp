@@ -35,8 +35,7 @@ namespace pessum {
     \param ... Additional formating args
     \sa global_logs, GetLog()
   */
-  void Log(int type, std::string msg, std::string func, ...);
-
+  void Log(int type = TRACE, std::string msg = "", std::string func = "", ...);
   //! Get log entry; full
   /*! Gets last log entry of specified type with full information.
     \param type The type of log entry to find
