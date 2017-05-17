@@ -1,5 +1,5 @@
-#ifndef PESSUM_LOGGING_HPP
-#define PESSUM_LOGGING_HPP
+#ifndef PESSUM_LOG_HPP
+#define PESSUM_LOG_HPP
 #include <string>
 #include <vector>
 //! Core namespace for all pessum methods
