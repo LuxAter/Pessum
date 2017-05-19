@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data &mdash; Pessum 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pessum 2.0 documentation" href="index.html"/>
+        <link rel="next" title="Data Point" href="datapoint.html"/>
+        <link rel="prev" title="Pessum documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pessum
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save">Save</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datapoint.html">Data Point</a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html">Logging</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pessum</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
+<p>The data handling aspect of Pessum is primarily used to save data that is
+changed must be maintained external to the program, and when the program ends,
+the data can be saved to a different file.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="load">
+<h3>Load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="_CPPv2N6pessum4LoadENSt6stringE">
+<span id="pessum::Load__ss"></span>std::vector&lt;<a class="reference internal" href="datapoint.html#_CPPv2N6pessum9DataPointE" title="pessum::DataPoint">DataPoint</a>&gt; <code class="descclassname"></code><code class="descname">Load</code><span class="sig-paren">(</span>std::string <em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum4LoadENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">file</span></code></td>
+<td>Path to file to read data from</td>
+</tr>
+</tbody>
+</table>
+<p>Reads data from a specified file, and returns a vector of the data in
+<a class="reference internal" href="datapoint.html#_CPPv2N6pessum9DataPointE" title="pessum::DataPoint"><code class="xref cpp cpp-class docutils literal"><span class="pre">DataPoint</span></code></a>. The data will be converted into any basic types that it
+can be converted to (<code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">double</span></code>, <code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">std::string</span></code>).</p>
+<p><strong>Return:</strong> Vector of <a class="reference internal" href="datapoint.html#_CPPv2N6pessum9DataPointE" title="pessum::DataPoint"><code class="xref cpp cpp-class docutils literal"><span class="pre">DataPoint</span></code></a> containing information read
+from <code class="docutils literal"><span class="pre">file</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="save">
+<h3>Save<a class="headerlink" href="#save" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="_CPPv2N6pessum4SaveENSt6stringENSt6vectorI9DataPointEE">
+<span id="pessum::Save__ss.std::vector:DataPoint:"></span>void <code class="descclassname"></code><code class="descname">Save</code><span class="sig-paren">(</span>std::string <em>file</em>, std::vector&lt;<a class="reference internal" href="datapoint.html#_CPPv2N6pessum9DataPointE" title="pessum::DataPoint">DataPoint</a>&gt; <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum4SaveENSt6stringENSt6vectorI9DataPointEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">file</span></code></td>
+<td>Path to file to save data to</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">data</span></code></td>
+<td>Data to save to file</td>
+</tr>
+</tbody>
+</table>
+<p>Saves information from <code class="docutils literal"><span class="pre">data</span></code> to <code class="docutils literal"><span class="pre">file</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="datapoint.html" class="btn btn-neutral float-right" title="Data Point" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Pessum documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Arden Rasmussen.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

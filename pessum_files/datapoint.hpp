@@ -1,24 +1,26 @@
 #ifndef PESSUM_DATAPOINT_HPP
 #define PESSUM_DATAPOINT_HPP
 #include <string>
-namespace pessum{
-  enum PessumDataType{
+namespace pessum {
+  enum PessumDataType {
     PESSUM_NONE,
     PESSUM_INT,
     PESSUM_DOUBLE,
     PESSUM_STR,
     PESSUM_BOOL
   };
-  struct DataPoint{
-    DataPoint();  
-    DataPoint(int v);
-      DataPoint(double v);
-      DataPoint(std::string v);
-      DataPoint(bool v);
-      int i, type;
-      double d;
-      std::string s;
-      bool b;
+  class DataPoint {
+   public:
+    DataPoint();
+    DataPoint(int value);
+    DataPoint(double value);
+    DataPoint(std::string value);
+    DataPoint(bool value);
+
+    int int_value, type;
+    double double_value;
+    std::string string_value;
+    bool bool_value;
   };
   DataPoint Make_DataPoint(std::string str);
 }

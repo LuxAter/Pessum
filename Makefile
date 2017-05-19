@@ -1,6 +1,6 @@
-# ifndef .VERBOSE
-#   .SILENT:
-# endif
+ifndef .VERBOSE
+  # .SILENT:
+endif
 export COMPILER = clang++
 export FLAGS = -MMD -std=c++11 -w -c
 CPP_FILES = $(wildcard *.cpp)
@@ -53,14 +53,24 @@ log:
 
 .PHONY : lib
 lib: all
-	printf "Compiling lib$(NAME).a...\n"
+	@printf "Compiling lib$(NAME).a...\n"
 	ar rcs lib$(NAME).a $(OBJ_LIB)
-	printf "Copying lib$(NAME).a to /usr/local/lib/...\n"
+	@printf "Copying lib$(NAME).a to /usr/local/lib/...\n"
 	sudo cp lib$(NAME).a /usr/local/lib/ -u
-	printf "Copying $(NAME).h to /usr/local/include/...\n"
+	@printf "Copying $(NAME).h to /usr/local/include/...\n"
 	sudo cp *.h /usr/local/include/
-	printf "Copying project headers to /usr/local/include/...\n"
+	@printf "Copying project headers to /usr/local/include/...\n"
 	sudo find . -name '*.hpp' -exec cp --parents \{\} /usr/local/include/ \;
-	setterm -fore green
-	printf "==========>>>>>>>>>>Compiled Installed Lib<<<<<<<<<<==========\n"
-	setterm -fore white
+	@setterm -fore green
+	@printf "==========>>>>>>>>>>Compiled Installed Lib<<<<<<<<<<==========\n"
+	@setterm -fore white
+
+.PHONY : doc-html
+doc-html:
+	@printf "Compiling HTML Documentation...\n"
+	@cd docs && $(MAKE) html
+
+.PHONY : doc-latex
+doc-latex:
+	@printf "Compiling Latex/PDF Documentation...\n"
+	@cd docs && $(MAKE) latexpdf
