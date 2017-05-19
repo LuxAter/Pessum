@@ -1,0 +1,26 @@
+\begin{sphinxtheindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter P
+  \item pessum::DataPoint (C++ class), \hyperpage{5}
+  \item pessum::DataPoint::DataPoint (C++ function), \hyperpage{6}
+  \item pessum::FGetLog (C++ function), \hyperpage{10}
+  \item pessum::GetLog (C++ function), \hyperpage{10}
+  \item pessum::GetTypeStr (C++ function), \hyperpage{11}
+  \item pessum::global\_logs (C++ member), \hyperpage{12}
+  \item pessum::IFGetLog (C++ function), \hyperpage{10}
+  \item pessum::IGetLog (C++ function), \hyperpage{10}
+  \item pessum::Load (C++ function), \hyperpage{3}
+  \item pessum::Log (C++ function), \hyperpage{9}
+  \item pessum::log\_handle (C++ member), \hyperpage{12}
+  \item pessum::log\_handle\_full (C++ member), \hyperpage{12}
+  \item pessum::LogType (C++ enum), \hyperpage{9}
+  \item pessum::Make\_DataPoint (C++ function), \hyperpage{7}
+  \item pessum::PessumDataType (C++ enum), \hyperpage{5}
+  \item pessum::Save (C++ function), \hyperpage{3}
+  \item pessum::SaveLog (C++ function), \hyperpage{12}
+  \item pessum::SetLogHandle (C++ function), \hyperpage{11}
+  \item pessum::VFGetLog (C++ function), \hyperpage{11}
+  \item pessum::VGetLog (C++ function), \hyperpage{11}
+
+\end{sphinxtheindex}

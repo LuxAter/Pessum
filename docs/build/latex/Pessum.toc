@@ -1,0 +1,45 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Data}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Functions}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Load}{3}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Save}{3}{subsection.1.1.2}
+\contentsline {chapter}{\numberline {2}Data Point}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Enumerators}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}PessumDataType}{5}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Classes}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}DataPoint}{5}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Constructors}{6}{subsection.2.2.2}
+\contentsline {subsubsection}{DataPoint::DataPoint{[}1/5{]}}{6}{subsubsection*.7}
+\contentsline {subsubsection}{DataPoint::DataPoint{[}2/5{]}}{6}{subsubsection*.9}
+\contentsline {subsubsection}{DataPoint::DataPoint{[}3/5{]}}{6}{subsubsection*.11}
+\contentsline {subsubsection}{DataPoint::DataPoint{[}4/5{]}}{6}{subsubsection*.13}
+\contentsline {subsubsection}{DataPoint::DataPoint{[}5/5{]}}{6}{subsubsection*.15}
+\contentsline {section}{\numberline {2.3}Functions}{7}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Make\_DataPoint}{7}{subsection.2.3.1}
+\contentsline {chapter}{\numberline {3}Logging}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Enumerators}{9}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}LogType}{9}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Functions}{9}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Log}{9}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}GetLog}{10}{subsection.3.2.2}
+\contentsline {subsubsection}{GetLog}{10}{subsubsection*.20}
+\contentsline {subsubsection}{FGetLog}{10}{subsubsection*.22}
+\contentsline {subsubsection}{IGetLog}{10}{subsubsection*.24}
+\contentsline {subsubsection}{IFGetLog}{10}{subsubsection*.26}
+\contentsline {subsubsection}{VGetLog}{11}{subsubsection*.28}
+\contentsline {subsubsection}{VFGetLog}{11}{subsubsection*.30}
+\contentsline {subsection}{\numberline {3.2.3}SetLogHandle}{11}{subsection.3.2.3}
+\contentsline {subsubsection}{SetLogHandle{[}1/2{]}}{11}{subsubsection*.32}
+\contentsline {subsubsection}{SetLogHandle{[}2/2{]}}{11}{subsubsection*.34}
+\contentsline {subsection}{\numberline {3.2.4}GetTypeStr}{11}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}SaveLog}{12}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}Variables}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}global\_logs}{12}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}log\_handle\_full}{12}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}log\_handle}{12}{subsection.3.3.3}
+\contentsline {chapter}{\numberline {4}Downloads}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Documentation}{13}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}PDF}{13}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Project}{13}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}ZIP}{13}{subsection.4.2.1}
+\contentsline {chapter}{Index}{15}{section*.41}

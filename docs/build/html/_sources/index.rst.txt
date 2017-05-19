@@ -18,3 +18,4 @@ loading basic variables from a external file (:doc:`data`).
    data
    datapoint
    log
+   downloads
