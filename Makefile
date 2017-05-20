@@ -1,5 +1,5 @@
 ifndef .VERBOSE
-  # .SILENT:
+  .SILENT:
 endif
 export COMPILER = clang++
 export FLAGS = -MMD -std=c++11 -w -c
