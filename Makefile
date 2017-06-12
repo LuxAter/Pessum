@@ -1,76 +1,122 @@
 ifndef .VERBOSE
   .SILENT:
 endif
-export COMPILER = clang++
-export FLAGS = -MMD -std=c++11 -w -c
-CPP_FILES = $(wildcard *.cpp)
-TOP_DIR = $(CPP_FILES:.cpp=.o)
-OBJ_FILES := $(shell find -name '*.o')
-OBJ_LIB := $(filter-out ./$(TOP_DIR),$(OBJ_FILES))
-LINK =
-NAME = pessum
 
-all: $(TOP_DIR) subsystem $(NAME)
-	@setterm -fore green
-	@printf "==========>>>>>>>>>>Compiled $(NAME)<<<<<<<<<<==========\n"
-	@setterm -fore white
+SHELL =               /bin/zsh
+export WHITE =        \033[0;37m
+export GREEN =        \033[0;32m
+export RED =          \033[0;31m
+export YELLOW =       \033[0;33m
+export NO =           \033[m
+export PAD_LENGTH :=  $(shell \
+                      maxlength=0; \
+                      for file in `find -type f -name '*.cpp' -exec basename {} \;`; do \
+                      len=$${\#file}; \
+                      if [ $$len -gt $$maxlength ]; then \
+                      maxlength=$$len; \
+                      fi; \
+                      done; \
+                      maxlength=$$((maxlength + 13)); \
+                      echo $$maxlength )
+export PAD :=         $(shell printf '%0.1s' "."{1..$(PAD_LENGTH)})
+
+define checkmark =
+  printf "%b\n" "$(GREEN)\xE2\x9C\x94 $(NO)"  
+endef
+
+define crossmark =
+  printf "%b\n" "$(RED)\xE2\x9D\x8C $(NO)"
+endef
+
+export checkmark
+export crossmark
+export COMPILER = clang++
+export FLAGS =    -MMD -std=c++11 -w -c
+CPP_FILES =       $(wildcard *.cpp)
+TOP_DIR =         $(CPP_FILES:.cpp=.o)
+OBJ_FILES :=      $(shell find -name '*.o')
+OBJ_LIB :=        $(filter-out ./$(TOP_DIR),$(OBJ_FILES))
+LINK =            -std=c++11
+NAME =            pessum
+
+all: start $(TOP_DIR) subsystem $(NAME)
 
 $(NAME): $(TOP_DIR) $(OBJ_FILES)
-	@setterm -fore red
-	@printf ">>>>>>>>>>----------Core Compile----------<<<<<<<<<<\n"
-	@setterm -fore white
-	$(COMPILER) $(OBJ_FILES) -o $(NAME) $(LINK)
+	@str="Compiling $(NAME) source"; \
+	  printf '%b%s%*.*s%b' "$(WHITE)" $$str 0 $$(($(PAD_LENGTH) - $${#str})) "$(PAD)" "$(NO)"
+	$(COMPILER) $(OBJ_FILES) -o $(NAME) $(LINK) 2> $@.log; \
+	  RESULT=$$?; \
+	  if [ $$RESULT -ne 0 ]; then \
+	    $(crossmark); \
+	  else \
+	    $(checkmark); \
+	  fi; \
+	  cat $@.log; \
+	  rm -f $@.log
 
 %.o: %.cpp
-	@printf "Compiling $*.cpp...\n"
-	@$(COMPILER) $(FLAGS) -o $(notdir $*).o $*.cpp
+	@str="Compiling $*.cpp"; \
+	  printf '%s%*.*s' $$str 0 $$(($(PAD_LENGTH) - $${#str})) "$(PAD)"
+	@$(COMPILER) $(FLAGS) -o $(notdir $*).o $*.cpp 2> $@.log; \
+	  RESULT=$$?; \
+	  if [ $$RESULT -ne 0 ]; then \
+	    $(crossmark); \
+	  else \
+	    $(checkmark); \
+	  fi; \
+	  cat $@.log; \
+	  rm -f $@.log
+	    
+.PHONY : start
+start:
+	@printf "%b" "$(WHITE)Compiling $(NAME)$(NO)\n"
 
 .PHONY : subsystem
 subsystem:
-	@setterm -fore cyan; printf "$(shell pwd)/pessum_files:\n"; setterm -fore white
-	@cd pessum_files && $(MAKE)
+	@setterm -fore cyan; printf "$(shell pwd)/$(NAME)_files:\n"; setterm -default
+	cd $(NAME)_files && $(MAKE)
 
 .PHONY : clean
 clean:
-	@setterm -fore red
-	@printf "Removing *.o files\n"
-	@find . -name "*.o" -type f -delete
-	@printf "Removing *.d files\n"
-	@find . -name "*.d" -type f -delete
-	@printf "Removed all *.o and *.d files\n"
-	@setterm -fore white
+	@printf "%b" "$(WHITE)Cleaning build...$(NO)"
+	find . -name "*.o" -type f -delete
+	find . -name "*.d" -type f -delete
+	$(checkmark)
 
 .PHONY : new
 new: clean all
 
 .PHONY : install
 install: clean all
+	@printf "Installing $(NAME)..."
 	cp $(NAME) ~/bin/
+	$(checkmark)
 
 .PHONY : log
 log:
-	less output.log
+	log
 
 .PHONY : lib
 lib: all
-	@printf "Compiling lib$(NAME).a...\n"
-	ar rcs lib$(NAME).a $(OBJ_LIB)
-	@printf "Copying lib$(NAME).a to /usr/local/lib/...\n"
+	@if [[ $$UID != 0 ]]; then printf "$(RED)Must run with sudo permision\n$(NO)"; exit 1; fi
+	@printf "$(WHITE)Compiling and installing $(NAME)\n$(NO)"
+	@printf "Compiling lib$(NAME).a..."
+	sudo ar rcs lib$(NAME).a $(OBJ_LIB)
+	$(checkmark)
+	@printf "Copying lib$(NAME).a to /usr/local/lib/..."
 	sudo cp lib$(NAME).a /usr/local/lib/ -u
-	@printf "Copying $(NAME).h to /usr/local/include/...\n"
+	$(checkmark)
+	@printf "Copying $(NAME).h to /usr/local/include/..."
 	sudo cp *.h /usr/local/include/
-	@printf "Copying project headers to /usr/local/include/...\n"
+	$(checkmark)
+	@printf "Copying project headers to /usr/local/include/..."
 	sudo find . -name '*.hpp' -exec cp --parents \{\} /usr/local/include/ \;
-	@setterm -fore green
-	@printf "==========>>>>>>>>>>Compiled Installed Lib<<<<<<<<<<==========\n"
-	@setterm -fore white
+	$(checkmark)
 
 .PHONY : doc-html
 doc-html:
-	@printf "Compiling HTML Documentation...\n"
-	@cd docs && $(MAKE) html
+	cd docs && $(MAKE) html
 
 .PHONY : doc-latex
 doc-latex:
-	@printf "Compiling Latex/PDF Documentation...\n"
-	@cd docs && $(MAKE) latexpdf
+	cd docs && $(MAKE) latexpdf
