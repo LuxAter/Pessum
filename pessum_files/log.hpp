@@ -2,8 +2,11 @@
 #define PESSUM_LOG_HPP
 #include <string>
 #include <vector>
+#include <array>
 namespace pessum {
+  enum LogOptions {TIME_STAMP, DATE_STAMP};
   enum LogType { ERROR, WARNING, TRACE, DEBUG, SUCCESS, INFO, DATA, NONE };
+  extern std::array<int, 2> options;
   extern std::vector<std::pair<int, std::string>> global_logs;
   extern void (*log_handle_full)(std::pair<int, std::string>);
   extern void (*log_handle)(std::string);
@@ -16,6 +19,7 @@ namespace pessum {
   std::vector<std::pair<int, std::string>> VFGetLog(int start, int end);
   void SetLogHandle(void (*handle)(std::pair<int, std::string>));
   void SetLogHandle(void (*handle)(std::string));
+  void SetLogOption(int option, int setting);
   std::string GetTypeStr(int type);
   void SaveLog(std::string file);
 }

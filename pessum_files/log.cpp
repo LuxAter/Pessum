@@ -1,12 +1,15 @@
 #include <stdarg.h>
+#include <time.h>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <array>
 #include "log.hpp"
 
 namespace pessum {
+  std::array<int, 2> options = {0, 0};
   std::vector<std::pair<int, std::string>> global_logs;
   void (*log_handle_full)(std::pair<int, std::string>) = NULL;
   void (*log_handle)(std::string) = NULL;
@@ -23,8 +26,19 @@ void pessum::Log(int type, std::string msg, std::string func, ...) {
   va_end(buff_args);
   va_end(args);
   str = std::string(formated_string);
-  str = "[" + GetTypeStr(type) + "] " + str;
-  str = str + " [" + func + "]";
+  if(options[0] == true || options[1] == true){
+    time_t current = time(NULL);
+    std::string time_stamp = ctime(&current);
+    if(options[0] == false){
+      time_stamp.erase(time_stamp.begin() + 10, time_stamp.begin() + 18);
+    }else if(options[1] == false){
+      time_stamp.erase(time_stamp.begin(), time_stamp.begin() + 11);
+      time_stamp.erase(time_stamp.end() - 6, time_stamp.end());
+    }
+    str = "[" + time_stamp + "]" + str;
+  }
+  str = "[" + GetTypeStr(type) + "]" + str;
+  str = str + "[" + func + "]";
   global_logs.push_back(std::make_pair(type, str));
   if (log_handle_full != NULL) {
     log_handle_full(std::make_pair(type, str));
@@ -99,6 +113,14 @@ void pessum::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
 }
 
 void pessum::SetLogHandle(void (*handle)(std::string)) { log_handle = handle; }
+
+void pessum::SetLogOption(int option, int setting){
+  if(option == TIME_STAMP){
+    options[0] = setting;
+  }else if(option == DATE_STAMP){
+    options[1] = setting;
+  }
+}
 
 std::string pessum::GetTypeStr(int type) {
   std::string str;
