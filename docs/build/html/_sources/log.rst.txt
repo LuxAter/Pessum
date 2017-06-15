@@ -17,7 +17,7 @@ Enumerators
 ===========
 
 LogType
----------------
+-------
 
 .. enum:: LogType
 
@@ -33,6 +33,18 @@ LogType
    DATA     6
    NONE     7
    =======  =
+
+LogOptions
+----------
+
+.. enum:: LogOptions
+  
+   Used to specify a logging option to set using :func:`SetLogOption`.
+
+   ==========  =
+   TIME_STAMP  0
+   DATE_STAMP  1
+   ==========  =
 
 Functions
 =========
@@ -138,8 +150,8 @@ VFGetLog
 
    **Return:** Vector of pairs of log type and formated stirng of log entry.
 
-SetLogHandle
-------------
+Set Log Options
+---------------
 
 SetLogHandle[1/2]
 ~~~~~~~~~~~~~~~~~
@@ -160,6 +172,20 @@ SetLogHandle[2/2]
    ==========  ============================================================
    ``handle``  Pointer to function with return of void and args of a string
    ==========  ============================================================
+
+   Sets :var:`log_handle` to given pointer.
+
+SetLogOption
+~~~~~~~~~~~~
+
+.. function:: void SetLogOption(int option, int setting)
+
+   ===========  ========================================
+   ``option``   Value for option from :enum:`LogOptions`
+   ``setting``  Value to set for ``option``
+   ===========  ========================================
+
+   Sets ``option`` of :var:`options` to ``setting``.
 
 GetTypeStr
 ----------
@@ -188,13 +214,20 @@ SaveLog
 Variables
 =========
 
+options
+-------
+
+.. var:: extern std::array<int, 2> options
+
+   Array storing values for the different log options set in :func:`SetLogOption`.
+
 global_logs
 -----------
 
 .. var:: extern std::vector\<std::pair\<int, std::string>> global_logs
 
    All log calls are saved to this vector, and can be retrieved later with any
-   form of the :function:`GetLog` functions.
+   form of the :func:`GetLog` functions.
 
 log_handle_full
 ---------------
@@ -202,7 +235,7 @@ log_handle_full
 .. var:: extern void (*log_handle_full)(std::pair\<int,std::string>)
 
    Pointer to function for handling log calls with full log information.
-   This function is called with every log entry added through :function:`Log`.
+   This function is called with every log entry added through :func:`Log`.
 
 log_handle
 ----------
@@ -210,4 +243,4 @@ log_handle
 .. var:: extern void (*log_handle)(std::string)
 
    Pointer to function for handling logs with only formated string
-   This funtion is called with every log entry added through :function:`Log`.
+   This funtion is called with every log entry added through :func:`Log`.
