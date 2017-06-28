@@ -1,122 +1,102 @@
+SHELL = /bin/bash
+
+export SOURCE_DIR = source
+export TEST_DIR = 
+export BUILD_DIR = build
+
+export COMPILER = clang++
+export CPPFLAGS = -MMD -std=c++11 -w -c
+export LINK = 
+export NAME = pessum
+
+export RED = \033[0;31m
+export GREEN = \033[0;32m
+export YELLOW = \033[0;33m
+export BLUE = \033[0;34m
+export MAGENTA = \033[0;35m
+export CYAN = \033[0;36m
+export WHITE = \033[0;37m
+export NO_COLOR = \033[m
+
+export BUILD_COLOR = $(BLUE)
+export DIR_COLOR = $(MAGENTA)
+export ERR_COLOR = $(RED)
+export OK_COLOR = $(GREEN)
+export CLEAN_COLOR = $(YELLOW)
+
+export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 13)))
+export BASE_PATH=$(shell pwd)
+
 ifndef .VERBOSE
   .SILENT:
 endif
 
-SHELL =               /bin/zsh
-export WHITE =        \033[0;37m
-export GREEN =        \033[0;32m
-export RED =          \033[0;31m
-export YELLOW =       \033[0;33m
-export NO =           \033[m
-export PAD_LENGTH :=  $(shell \
-                      maxlength=0; \
-                      for file in `find -type f -name '*.cpp' -exec basename {} \;`; do \
-                      len=$${\#file}; \
-                      if [ $$len -gt $$maxlength ]; then \
-                      maxlength=$$len; \
-                      fi; \
-                      done; \
-                      maxlength=$$((maxlength + 13)); \
-                      echo $$maxlength )
-export PAD :=         $(shell printf '%0.1s' "."{1..$(PAD_LENGTH)})
-
-define checkmark =
-  printf "%b\n" "$(GREEN)\xE2\x9C\x94 $(NO)"  
+define FindLongestFile
+$(shell \
+  max=0; \
+  for file in `find $(1) -type f -exec basename {} \;`; do \
+    len=$${#file}; \
+    if [ $$len -gt $$max ]; then \
+      max=$$len; \
+    fi; \
+  done; \
+  echo $$max
+)
 endef
 
-define crossmark =
-  printf "%b\n" "$(RED)\xE2\x9D\x8C $(NO)"
+define Line = 
+$(shell printf '%0.1s' "$(2)"{1..$(1)})
 endef
 
-export checkmark
-export crossmark
-export COMPILER = clang++
-export FLAGS =    -MMD -std=c++11 -w -c
-CPP_FILES =       $(wildcard *.cpp)
-TOP_DIR =         $(CPP_FILES:.cpp=.o)
-OBJ_FILES :=      $(shell find -name '*.o')
-OBJ_LIB :=        $(filter-out ./$(TOP_DIR),$(OBJ_FILES))
-LINK =            -std=c++11
-NAME =            pessum
-
-all: start $(TOP_DIR) subsystem $(NAME)
-
-$(NAME): $(TOP_DIR) $(OBJ_FILES)
-	@str="Compiling $(NAME) source"; \
-	  printf '%b%s%*.*s%b' "$(WHITE)" $$str 0 $$(($(PAD_LENGTH) - $${#str})) "$(PAD)" "$(NO)"
-	$(COMPILER) $(OBJ_FILES) -o $(NAME) $(LINK) 2> $@.log; \
-	  RESULT=$$?; \
-	  if [ $$RESULT -ne 0 ]; then \
-	    $(crossmark); \
-	  else \
-	    $(checkmark); \
-	  fi; \
-	  cat $@.log; \
-	  rm -f $@.log
-
-%.o: %.cpp
-	@str="Compiling $*.cpp"; \
-	  printf '%s%*.*s' $$str 0 $$(($(PAD_LENGTH) - $${#str})) "$(PAD)"
-	@$(COMPILER) $(FLAGS) -o $(notdir $*).o $*.cpp 2> $@.log; \
-	  RESULT=$$?; \
-	  if [ $$RESULT -ne 0 ]; then \
-	    $(crossmark); \
-	  else \
-	    $(checkmark); \
-	  fi; \
-	  cat $@.log; \
-	  rm -f $@.log
-	    
-.PHONY : start
-start:
-	@printf "%b" "$(WHITE)Compiling $(NAME)$(NO)\n"
-
-.PHONY : subsystem
-subsystem:
-	@setterm -fore cyan; printf "$(shell pwd)/$(NAME)_files:\n"; setterm -default
-	cd $(NAME)_files && $(MAKE)
+all: start source-make test-make 
+	printf "%b%s%b\n" "$(WHITE)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+	printf "%b\n" "$(WHITE)Compleated Compiling $(NAME)$(NO_COLOR)"
 
 .PHONY : clean
-clean:
-	@printf "%b" "$(WHITE)Cleaning build...$(NO)"
-	find . -name "*.o" -type f -delete
-	find . -name "*.d" -type f -delete
-	$(checkmark)
+clean: start-clean source-clean test-clean
+	printf "%b%s%b\n" "$(CLEAN_COLOR)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+	printf "%b\n" "$(CLEAN_COLOR)Compleated Cleaning$(NO_COLOR)"
 
 .PHONY : new
 new: clean all
 
-.PHONY : install
-install: clean all
-	@printf "Installing $(NAME)..."
-	cp $(NAME) ~/bin/
-	$(checkmark)
+.PHONY : docs
+docs: docs-html docs-latex
 
-.PHONY : log
-log:
-	log
-
-.PHONY : lib
-lib: all
-	@if [[ $$UID != 0 ]]; then printf "$(RED)Must run with sudo permision\n$(NO)"; exit 1; fi
-	@printf "$(WHITE)Compiling and installing $(NAME)\n$(NO)"
-	@printf "Compiling lib$(NAME).a..."
-	sudo ar rcs lib$(NAME).a $(OBJ_LIB)
-	$(checkmark)
-	@printf "Copying lib$(NAME).a to /usr/local/lib/..."
-	sudo cp lib$(NAME).a /usr/local/lib/ -u
-	$(checkmark)
-	@printf "Copying $(NAME).h to /usr/local/include/..."
-	sudo cp *.h /usr/local/include/
-	$(checkmark)
-	@printf "Copying project headers to /usr/local/include/..."
-	sudo find . -name '*.hpp' -exec cp --parents \{\} /usr/local/include/ \;
-	$(checkmark)
-
-.PHONY : doc-html
-doc-html:
+.PHONY : docs-html
+docs-html:
 	cd docs && $(MAKE) html
 
-.PHONY : doc-latex
-doc-latex:
+.PHONY : docs-latex
+docs-latex:
 	cd docs && $(MAKE) latexpdf
+
+.PHONY : start
+start:
+	printf "%b\n" "$(WHITE)Compiling $(NAME)$(NO_COLOR)"
+	printf "%b%s%b\n" "$(WHITE)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+
+.PHONY : start-clean
+start-clean:
+	printf "%b\n" "$(CLEAN_COLOR)Cleaning $(NAME)$(NO_COLOR)"
+	printf "%b%s%b\n" "$(CLEAN_COLOR)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+
+.PHONY : source-make
+source-make:
+	printf "%b\n" "$(BUILD_COLOR)SOURCE$(NO_COLOR)"
+	cd $(SOURCE_DIR) && $(MAKE)
+
+.PHONY : source-clean
+source-clean:
+	printf "%b\n" "$(CLEAN_COLOR)SOURCE$(NO_COLOR)"
+	cd $(SOURCE_DIR) && $(MAKE) clean
+
+.PHONY : test-make
+test-make:
+	if [[ "$(TEST_DIR)" -ne "" ]]; then printf "%b\n" "$(BUILD_COLORS)TEST$(NO_COLOR)"; cd $(TEST_DIR) && $(MAKE); fi
+
+.PHONY : test-clean
+test-clean:
+	if [[ "$(TEST_DIR)" -ne "" ]]; then printf "%b\n" "$(CLEAN_COLOR)TEST$(NO_COLOR)"; cd $(TEST_DIR) && $(MAKE) clean; fi
+
+

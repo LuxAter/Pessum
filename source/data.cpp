@@ -1,9 +1,9 @@
-#include <fstream>
-#include <string>
-#include <vector>
 #include "data.hpp"
 #include "datapoint.hpp"
 #include "log.hpp"
+#include <fstream>
+#include <string>
+#include <vector>
 
 std::vector<pessum::DataPoint> pessum::Load(std::string file) {
   std::vector<DataPoint> data;

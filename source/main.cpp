@@ -1,9 +1,9 @@
-#include <iostream>
 #include "pessum.h"
+#include <iostream>
 
 void handle(std::string str) { std::cout << str << "\n"; }
 
-int main(int argc, char const* argv[]) {
+int main(int argc, char const *argv[]) {
   pessum::SetLogHandle(handle);
   pessum::SetLogOption(pessum::TIME_STAMP, true);
   pessum::Log(pessum::ERROR, "ERROR 1", "main");

@@ -1,0 +1,20 @@
+# Fdb version 3
+["pdflatex"] 1498324184 "Pessum.tex" "Pessum.pdf" "Pessum" 1498324184
+  "/etc/texmf/web2c/texmf.cnf" 1497230110 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty" 1454284088 5619 b1e63522e111972696a4db609d2b915f ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu" 1454284088 2006 ed35f065eb949f203d1b6acd2bc1dcb8 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu" 1454284088 3183 76313d3584eba6cfdb7421aa6c69c2dd ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/report.cls" 1454284088 23767 af7a57d94b487b22fe88f921af1af1a4 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1454284088 9179 4cd3c5f593e63512893b8ac0123f1bd7 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu" 1454284088 10900 d4e94223e6330199a3b8e8abe87fe6e1 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def" 1454284088 7786 ea3c60942da10fcdcdb0bcbd1671de4e ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1497230166 718487 f6f9a82ed8c54a43ae841003834c9c8c ""
+  "Pessum.aux" 1498324184 8 a94a2480d3289e625eea47cd1b285758 ""
+  "Pessum.tex" 1498324183 27786 c27c5b03d29c6bf19ff7c1cc1e265fbb ""
+  "cmap.sty" 0 -1 0 ""
+  "sphinxmanual.cls" 1498278754 3589 0b0aac49c6f36925cf5f9d524a75a978 ""
+  (generated)
+  "Pessum.pdf"
+  "Pessum.log"

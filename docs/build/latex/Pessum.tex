@@ -39,7 +39,7 @@
 
 
 \title{Pessum Documentation}
-\date{Jun 11, 2017}
+\date{Jun 24, 2017}
 \release{2.0}
 \author{Arden Rasmussen}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -483,6 +483,40 @@ NONE
 
 
 
+\subsection{LogOptions}
+\label{\detokenize{log:logoptions}}\index{pessum::LogOptions (C++ enum)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum10LogOptionsE}}%
+\pysigstartmultiline
+\pysigline{\sphinxstrong{enum }\sphinxcode{}\sphinxbfcode{LogOptions}}%
+\pysigstopmultiline
+Used to specify a logging option to set using {\hyperref[\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}]{\sphinxcrossref{\sphinxcode{SetLogOption()}}}}.
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+TIME\_STAMP
+&
+0
+\\
+\hline
+DATE\_STAMP
+&
+1
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\end{fulllineitems}
+
+
+
 \section{Functions}
 \label{\detokenize{log:functions}}
 
@@ -733,8 +767,8 @@ with log type and formated string.
 
 
 
-\subsection{SetLogHandle}
-\label{\detokenize{log:setloghandle}}
+\subsection{Set Log Options}
+\label{\detokenize{log:set-log-options}}
 
 \subsubsection{SetLogHandle{[}1/2{]}}
 \label{\detokenize{log:setloghandle-1-2}}\index{pessum::SetLogHandle (C++ function)}
@@ -787,6 +821,42 @@ Pointer to function with return of void and args of a string
 \end{tabulary}
 \par
 \sphinxattableend\end{savenotes}
+
+Sets {\hyperref[\detokenize{log:_CPPv2N6pessum10log_handleE}]{\sphinxcrossref{\sphinxcode{log\_handle}}}} to given pointer.
+
+\end{fulllineitems}
+
+
+
+\subsubsection{SetLogOption}
+\label{\detokenize{log:setlogoption}}\index{pessum::SetLogOption (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}}%
+\pysigstartmultiline
+\pysiglinewithargsret{void \sphinxcode{}\sphinxbfcode{SetLogOption}}{int \sphinxstyleemphasis{option}, int \sphinxstyleemphasis{setting}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{option}
+&
+Value for option from {\hyperref[\detokenize{log:_CPPv2N6pessum10LogOptionsE}]{\sphinxcrossref{\sphinxcode{LogOptions}}}}
+\\
+\hline
+\sphinxcode{setting}
+&
+Value to set for \sphinxcode{option}
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Sets \sphinxcode{option} of {\hyperref[\detokenize{log:_CPPv2N6pessum7optionsE}]{\sphinxcrossref{\sphinxcode{options}}}} to \sphinxcode{setting}.
 
 \end{fulllineitems}
 
@@ -855,6 +925,20 @@ Saves the log entries from {\hyperref[\detokenize{log:_CPPv2N6pessum11global_log
 \section{Variables}
 \label{\detokenize{log:variables}}
 
+\subsection{options}
+\label{\detokenize{log:options}}\index{pessum::options (C++ member)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum7optionsE}}%
+\pysigstartmultiline
+\pysigline{\sphinxstrong{extern} std::array\textless{}int, 2\textgreater{} \sphinxcode{}\sphinxbfcode{options}}%
+\pysigstopmultiline
+Array storing values for the different log options set in {\hyperref[\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}]{\sphinxcrossref{\sphinxcode{SetLogOption()}}}}.
+
+\end{fulllineitems}
+
+
+
 \subsection{global\_logs}
 \label{\detokenize{log:global-logs}}\index{pessum::global\_logs (C++ member)}
 
@@ -864,7 +948,7 @@ Saves the log entries from {\hyperref[\detokenize{log:_CPPv2N6pessum11global_log
 \pysigline{\sphinxstrong{extern} std::vector\textless{}std::pair\textless{}int, std::string\textgreater{}\textgreater{} \sphinxcode{}\sphinxbfcode{global\_logs}}%
 \pysigstopmultiline
 All log calls are saved to this vector, and can be retrieved later with any
-form of the {\color{red}\bfseries{}:function:{}`GetLog{}`} functions.
+form of the {\hyperref[\detokenize{log:_CPPv2N6pessum6GetLogEi}]{\sphinxcrossref{\sphinxcode{GetLog()}}}} functions.
 
 \end{fulllineitems}
 
@@ -879,7 +963,7 @@ form of the {\color{red}\bfseries{}:function:{}`GetLog{}`} functions.
 \pysiglinewithargsret{\sphinxstrong{extern} void (*\sphinxcode{}\sphinxbfcode{log\_handle\_full})}{std::pair\textless{}int, std::string\textgreater{}}{}%
 \pysigstopmultiline
 Pointer to function for handling log calls with full log information.
-This function is called with every log entry added through {\color{red}\bfseries{}:function:{}`Log{}`}.
+This function is called with every log entry added through {\hyperref[\detokenize{log:_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz}]{\sphinxcrossref{\sphinxcode{Log()}}}}.
 
 \end{fulllineitems}
 
@@ -894,7 +978,7 @@ This function is called with every log entry added through {\color{red}\bfseries
 \pysiglinewithargsret{\sphinxstrong{extern} void (*\sphinxcode{}\sphinxbfcode{log\_handle})}{std::string}{}%
 \pysigstopmultiline
 Pointer to function for handling logs with only formated string
-This funtion is called with every log entry added through {\color{red}\bfseries{}:function:{}`Log{}`}.
+This funtion is called with every log entry added through {\hyperref[\detokenize{log:_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz}]{\sphinxcrossref{\sphinxcode{Log()}}}}.
 
 \end{fulllineitems}
 
