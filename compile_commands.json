@@ -1,0 +1,54 @@
+[
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-o", 
+            "/home/arden/Programming/libs/general/pessum/build/source/./main.o", 
+            "main.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libs/general/pessum/source", 
+        "file": "main.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-o", 
+            "/home/arden/Programming/libs/general/pessum/build/source/./data.o", 
+            "data.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libs/general/pessum/source", 
+        "file": "data.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-o", 
+            "/home/arden/Programming/libs/general/pessum/build/source/./datapoint.o", 
+            "datapoint.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libs/general/pessum/source", 
+        "file": "datapoint.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-o", 
+            "/home/arden/Programming/libs/general/pessum/build/source/./log.o", 
+            "log.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libs/general/pessum/source", 
+        "file": "log.cpp"
+    }
+]

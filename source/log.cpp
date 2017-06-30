@@ -1,18 +1,18 @@
-#include <stdarg.h>
-#include <time.h>
+#include "log.hpp"
+#include <array>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <stdarg.h>
 #include <string>
+#include <time.h>
 #include <vector>
-#include <array>
-#include "log.hpp"
 
 namespace pessum {
-  std::array<int, 2> options = {0, 0};
-  std::vector<std::pair<int, std::string>> global_logs;
-  void (*log_handle_full)(std::pair<int, std::string>) = NULL;
-  void (*log_handle)(std::string) = NULL;
+std::array<int, 2> options = {{0, 0}};
+std::vector<std::pair<int, std::string>> global_logs;
+void (*log_handle_full)(std::pair<int, std::string>) = NULL;
+void (*log_handle)(std::string) = NULL;
 }
 
 void pessum::Log(int type, std::string msg, std::string func, ...) {
@@ -21,17 +21,17 @@ void pessum::Log(int type, std::string msg, std::string func, ...) {
   va_start(args, func);
   va_start(buff_args, func);
   ssize_t buff_size = vsnprintf(NULL, 0, msg.c_str(), buff_args);
-  char* formated_string = new char[buff_size];
+  char *formated_string = new char[buff_size];
   vsprintf(formated_string, msg.c_str(), args);
   va_end(buff_args);
   va_end(args);
   str = std::string(formated_string);
-  if(options[0] == true || options[1] == true){
+  if (options[0] == true || options[1] == true) {
     time_t current = time(NULL);
     std::string time_stamp = ctime(&current);
-    if(options[0] == false){
+    if (options[0] == false) {
       time_stamp.erase(time_stamp.begin() + 10, time_stamp.begin() + 18);
-    }else if(options[1] == false){
+    } else if (options[1] == false) {
       time_stamp.erase(time_stamp.begin(), time_stamp.begin() + 11);
       time_stamp.erase(time_stamp.end() - 6, time_stamp.end());
     }
@@ -114,10 +114,10 @@ void pessum::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
 
 void pessum::SetLogHandle(void (*handle)(std::string)) { log_handle = handle; }
 
-void pessum::SetLogOption(int option, int setting){
-  if(option == TIME_STAMP){
+void pessum::SetLogOption(int option, int setting) {
+  if (option == TIME_STAMP) {
     options[0] = setting;
-  }else if(option == DATE_STAMP){
+  } else if (option == DATE_STAMP) {
     options[1] = setting;
   }
 }

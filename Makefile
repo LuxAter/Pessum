@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 export SOURCE_DIR = source
-export TEST_DIR = 
+export TEST_DIR = test 
 export BUILD_DIR = build
 
 export COMPILER = clang++
@@ -24,7 +24,7 @@ export ERR_COLOR = $(RED)
 export OK_COLOR = $(GREEN)
 export CLEAN_COLOR = $(YELLOW)
 
-export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 13)))
+export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 14)))
 export BASE_PATH=$(shell pwd)
 
 ifndef .VERBOSE
@@ -93,10 +93,12 @@ source-clean:
 
 .PHONY : test-make
 test-make:
-	if [[ "$(TEST_DIR)" -ne "" ]]; then printf "%b\n" "$(BUILD_COLORS)TEST$(NO_COLOR)"; cd $(TEST_DIR) && $(MAKE); fi
+	printf "%b\n" "$(BUILD_COLOR)TEST$(NO_COLOR)"
+	cd $(TEST_DIR) && $(MAKE)
 
 .PHONY : test-clean
 test-clean:
-	if [[ "$(TEST_DIR)" -ne "" ]]; then printf "%b\n" "$(CLEAN_COLOR)TEST$(NO_COLOR)"; cd $(TEST_DIR) && $(MAKE) clean; fi
+	printf "%b\n" "$(CLEAN_COLOR)TEST$(NO_COLOR)"
+	cd $(TEST_DIR) && $(MAKE) clean
 
 
