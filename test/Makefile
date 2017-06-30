@@ -51,7 +51,7 @@ TEST_FILES = $(shell find -name "*.cpp")
 SOURCE_OBJ = $(filter-out $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/main.o, $(shell find $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/*.o))
 OBJ_FILES = $(TEST_FILES:%.cpp=$(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o)
 
-EXE = $(BASE_PATH)/$(NAME)
+EXE = $(BASE_PATH)/$(NAME)-test
 
 all: $(OBJ_FILES) $(EXE)
 
@@ -61,7 +61,7 @@ $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
 	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) $< -o $@,Compiling)
 
 $(EXE): $(OBJ_FILES)
-	$(call Compile,$(COMPILER) $(LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE)-test $(GTEST) ,Linking) 
+	$(call Compile,$(COMPILER) $(LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
 
 .PHONY : clean
 clean:
@@ -71,7 +71,7 @@ clean:
 	$(call Print,Cleaning $(DIR)/*.d,$(WIDTH))
 	find $(BASE_PATH)/$(BUILD_DIR)/$(DIR) -name "*.d" -type f -delete
 	$(call check)
-	$(call Print,Cleaning $(DIR)/$(NAME),$(WIDTH))
+	$(call Print,Cleaning $(DIR)/$(NAME)-test,$(WIDTH))
 	rm -f $(EXE)
 	$(call check)
 
