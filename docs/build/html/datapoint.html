@@ -99,13 +99,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#datapoint">DataPoint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#datapoint-datapoint-1-5">DataPoint::DataPoint[1/5]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#datapoint-datapoint-2-5">DataPoint::DataPoint[2/5]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#datapoint-datapoint-3-5">DataPoint::DataPoint[3/5]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#datapoint-datapoint-4-5">DataPoint::DataPoint[4/5]</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#datapoint-datapoint-5-5">DataPoint::DataPoint[5/5]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datapoint">DataPoint</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructors">Constructors</a></li>
 </ul>
 </li>
 </ul>
@@ -236,7 +231,19 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
   <span class="n">DataPoint</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
   <span class="n">DataPoint</span><span class="p">(</span><span class="kt">double</span> <span class="n">value</span><span class="p">);</span>
   <span class="n">DataPoint</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">);</span>
+  <span class="n">DataPoint</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">value</span><span class="p">);</span>
   <span class="n">DataPoint</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">);</span>
+
+  <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">double</span> <span class="n">value</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">value</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">);</span>
+
+  <span class="k">operator</span> <span class="nf">int</span><span class="p">();</span>
+  <span class="k">operator</span> <span class="nf">double</span><span class="p">();</span>
+  <span class="k">operator</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">();</span>
+  <span class="k">operator</span> <span class="nf">bool</span><span class="p">();</span>
 
   <span class="kt">int</span> <span class="n">int_value</span><span class="p">,</span> <span class="n">type</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">double_value</span><span class="p">;</span>
@@ -247,11 +254,10 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 </div>
 </dd></dl>
 
-</div>
 <div class="section" id="constructors">
-<h3>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="datapoint-datapoint-1-5">
-<h4>DataPoint::DataPoint[1/5]<a class="headerlink" href="#datapoint-datapoint-1-5" title="Permalink to this headline">¶</a></h4>
+<h4>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="datapoint-datapoint-1-6">
+<h5>DataPoint::DataPoint[1/6]<a class="headerlink" href="#datapoint-datapoint-1-6" title="Permalink to this headline">¶</a></h5>
 <dl class="function">
 <dt id="_CPPv2N6pessum9DataPoint9DataPointEv">
 <span id="pessum::DataPoint::DataPoint"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEv" title="Permalink to this definition">¶</a><br /></dt>
@@ -260,11 +266,11 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 </dd></dl>
 
 </div>
-<div class="section" id="datapoint-datapoint-2-5">
-<h4>DataPoint::DataPoint[2/5]<a class="headerlink" href="#datapoint-datapoint-2-5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="datapoint-datapoint-2-6">
+<h5>DataPoint::DataPoint[2/6]<a class="headerlink" href="#datapoint-datapoint-2-6" title="Permalink to this headline">¶</a></h5>
 <dl class="function">
 <dt id="_CPPv2N6pessum9DataPoint9DataPointEi">
-<span id="pessum::DataPoint::DataPoint__i"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>int <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEi" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::DataPoint::DataPoint__i"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>int <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -281,11 +287,11 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 </dd></dl>
 
 </div>
-<div class="section" id="datapoint-datapoint-3-5">
-<h4>DataPoint::DataPoint[3/5]<a class="headerlink" href="#datapoint-datapoint-3-5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="datapoint-datapoint-3-6">
+<h5>DataPoint::DataPoint[3/6]<a class="headerlink" href="#datapoint-datapoint-3-6" title="Permalink to this headline">¶</a></h5>
 <dl class="function">
 <dt id="_CPPv2N6pessum9DataPoint9DataPointEd">
-<span id="pessum::DataPoint::DataPoint__double"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>double <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEd" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::DataPoint::DataPoint__double"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>double <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -302,11 +308,11 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 </dd></dl>
 
 </div>
-<div class="section" id="datapoint-datapoint-4-5">
-<h4>DataPoint::DataPoint[4/5]<a class="headerlink" href="#datapoint-datapoint-4-5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="datapoint-datapoint-4-6">
+<h5>DataPoint::DataPoint[4/6]<a class="headerlink" href="#datapoint-datapoint-4-6" title="Permalink to this headline">¶</a></h5>
 <dl class="function">
 <dt id="_CPPv2N6pessum9DataPoint9DataPointENSt6stringE">
-<span id="pessum::DataPoint::DataPoint__ss"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>std::string <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::DataPoint::DataPoint__ss"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>std::string <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -323,11 +329,32 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 </dd></dl>
 
 </div>
-<div class="section" id="datapoint-datapoint-5-5">
-<h4>DataPoint::DataPoint[5/5]<a class="headerlink" href="#datapoint-datapoint-5-5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="datapoint-datapoint-5-6">
+<h5>DataPoint::DataPoint[5/6]<a class="headerlink" href="#datapoint-datapoint-5-6" title="Permalink to this headline">¶</a></h5>
+<dl class="function">
+<dt id="_CPPv2N6pessum9DataPoint9DataPointEPKc">
+<span id="pessum::DataPoint::DataPoint__cCP"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span><em class="property">const</em> char *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">value</span></code></td>
+<td>String value to use as set value</td>
+</tr>
+</tbody>
+</table>
+<p>Constructor that sets the <code class="xref cpp cpp-member docutils literal"><span class="pre">type</span></code> to <code class="docutils literal"><span class="pre">PESSUM_STR</span></code>, and sets
+<code class="xref cpp cpp-member docutils literal"><span class="pre">string_value</span></code> to <code class="docutils literal"><span class="pre">value</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="datapoint-datapoint-6-6">
+<h5>DataPoint::DataPoint[6/6]<a class="headerlink" href="#datapoint-datapoint-6-6" title="Permalink to this headline">¶</a></h5>
 <dl class="function">
 <dt id="_CPPv2N6pessum9DataPoint9DataPointEb">
-<span id="pessum::DataPoint::DataPoint__b"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>bool <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEb" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::DataPoint::DataPoint__b"></span><code class="descclassname">DataPoint::</code><code class="descname">DataPoint</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9DataPoint9DataPointEb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -343,6 +370,7 @@ data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title=
 <code class="xref cpp cpp-member docutils literal"><span class="pre">bool_value</span></code> to <code class="docutils literal"><span class="pre">value</span></code>.</p>
 </dd></dl>
 
+</div>
 </div>
 </div>
 </div>

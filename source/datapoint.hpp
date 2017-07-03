@@ -11,16 +11,28 @@ namespace pessum {
   };
   class DataPoint {
    public:
-    DataPoint();
-    DataPoint(int value);
-    DataPoint(double value);
-    DataPoint(std::string value);
-    DataPoint(bool value);
+    explicit DataPoint();
+    explicit DataPoint(int value);
+    explicit DataPoint(double value);
+    explicit DataPoint(std::string value);
+    explicit DataPoint(const char* value);
+    explicit DataPoint(bool value);
 
-    int int_value, type;
-    double double_value;
-    std::string string_value;
-    bool bool_value;
+    void operator=(int value);
+    void operator=(double value);
+    void operator=(std::string value);
+    void operator=(const char* value);
+    void operator=(bool value);
+
+    operator int();
+    operator double();
+    operator std::string();
+    operator bool();
+
+    int int_value = int(), type = PESSUM_NONE;
+    double double_value = double();
+    std::string string_value = std::string();
+    bool bool_value = bool();
   };
   DataPoint Make_DataPoint(std::string str);
 }

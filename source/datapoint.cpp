@@ -1,5 +1,5 @@
-#include <string>
 #include "datapoint.hpp"
+#include <string>
 
 pessum::DataPoint::DataPoint() { type = PESSUM_NONE; }
 
@@ -18,10 +18,48 @@ pessum::DataPoint::DataPoint(std::string value) {
   type = PESSUM_STR;
 }
 
+pessum::DataPoint::DataPoint(const char* value) {
+  string_value = std::string(value);
+  type = PESSUM_STR;
+}
+
 pessum::DataPoint::DataPoint(bool value) {
   bool_value = value;
   type = PESSUM_BOOL;
 }
+
+void pessum::DataPoint::operator=(int value) {
+  int_value = value;
+  type = PESSUM_INT;
+}
+
+void pessum::DataPoint::operator=(double value) {
+  double_value = value;
+  type = PESSUM_DOUBLE;
+}
+
+void pessum::DataPoint::operator=(std::string value) {
+  string_value = value;
+  type = PESSUM_STR;
+}
+
+void pessum::DataPoint::operator=(const char* value) {
+  string_value = std::string(value);
+  type = PESSUM_STR;
+}
+
+void pessum::DataPoint::operator=(bool value) {
+  bool_value = value;
+  type = PESSUM_BOOL;
+}
+
+pessum::DataPoint::operator int() { return int_value; }
+
+pessum::DataPoint::operator bool() { return bool_value; }
+
+pessum::DataPoint::operator double() { return double_value; }
+
+pessum::DataPoint::operator std::string() { return string_value; }
 
 pessum::DataPoint pessum::Make_DataPoint(std::string str) {
   DataPoint return_data;

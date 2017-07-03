@@ -102,6 +102,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#log">Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getlogsize">GetLogSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clearlogs">ClearLogs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getlog">GetLog</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">GetLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fgetlog">FGetLog</a></li>
@@ -297,6 +299,25 @@ after program termination.</p>
 <p>Core function for all logging output, <code class="docutils literal"><span class="pre">msg</span></code> is a format string with
 additional arguments as needed from <code class="docutils literal"><span class="pre">...</span></code>. Formated string and log type
 are saved to <a class="reference internal" href="#_CPPv2N6pessum11global_logsE" title="pessum::global_logs"><code class="xref cpp cpp-var docutils literal"><span class="pre">global_logs</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getlogsize">
+<h3>GetLogSize<a class="headerlink" href="#getlogsize" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="_CPPv2N6pessum10GetLogSizeEv">
+<span id="pessum::GetLogSize"></span>int <code class="descclassname"></code><code class="descname">GetLogSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum10GetLogSizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the length of the <a class="reference internal" href="#_CPPv2N6pessum11global_logsE" title="pessum::global_logs"><code class="xref cpp cpp-var docutils literal"><span class="pre">global_logs</span></code></a>.</p>
+<p><strong>Return:</strong> Length of <a class="reference internal" href="#_CPPv2N6pessum11global_logsE" title="pessum::global_logs"><code class="xref cpp cpp-var docutils literal"><span class="pre">global_logs</span></code></a> as an integer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="clearlogs">
+<h3>ClearLogs<a class="headerlink" href="#clearlogs" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="_CPPv2N6pessum9ClearLogsEv">
+<span id="pessum::ClearLogs"></span>void <code class="descclassname"></code><code class="descname">ClearLogs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum9ClearLogsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears all log entries from <a class="reference internal" href="#_CPPv2N6pessum11global_logsE" title="pessum::global_logs"><code class="xref cpp cpp-var docutils literal"><span class="pre">global_logs</span></code></a>.</p>
 </dd></dl>
 
 </div>
@@ -551,8 +572,9 @@ void <code class="descclassname"></code><code class="descname">SetLogHandle</cod
 <h3>options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <dl class="var">
 <dt id="_CPPv2N6pessum7optionsE">
-<span id="pessum::options__std::array:i.2:"></span><em class="property">extern</em> std::array&lt;int, 2&gt; <code class="descclassname"></code><code class="descname">options</code><a class="headerlink" href="#_CPPv2N6pessum7optionsE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::options__std::array:i.2:"></span>std::array&lt;int, 2&gt; <code class="descclassname"></code><code class="descname">options</code><a class="headerlink" href="#_CPPv2N6pessum7optionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Array storing values for the different log options set in <a class="reference internal" href="#_CPPv2N6pessum12SetLogOptionEii" title="pessum::SetLogOption"><code class="xref cpp cpp-func docutils literal"><span class="pre">SetLogOption()</span></code></a>.</p>
+<p><strong>Note:</strong> Variable is private.</p>
 </dd></dl>
 
 </div>
@@ -560,9 +582,10 @@ void <code class="descclassname"></code><code class="descname">SetLogHandle</cod
 <h3>global_logs<a class="headerlink" href="#global-logs" title="Permalink to this headline">¶</a></h3>
 <dl class="var">
 <dt id="_CPPv2N6pessum11global_logsE">
-<span id="pessum::global_logs__std::vector:std::pair:i.ss::"></span><em class="property">extern</em> std::vector&lt;std::pair&lt;int, std::string&gt;&gt; <code class="descclassname"></code><code class="descname">global_logs</code><a class="headerlink" href="#_CPPv2N6pessum11global_logsE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="pessum::global_logs__std::vector:std::pair:i.ss::"></span>std::vector&lt;std::pair&lt;int, std::string&gt;&gt; <code class="descclassname"></code><code class="descname">global_logs</code><a class="headerlink" href="#_CPPv2N6pessum11global_logsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>All log calls are saved to this vector, and can be retrieved later with any
 form of the <a class="reference internal" href="#_CPPv2N6pessum6GetLogEi" title="pessum::GetLog"><code class="xref cpp cpp-func docutils literal"><span class="pre">GetLog()</span></code></a> functions.</p>
+<p><strong>Note:</strong> Variable is private.</p>
 </dd></dl>
 
 </div>
@@ -570,9 +593,10 @@ form of the <a class="reference internal" href="#_CPPv2N6pessum6GetLogEi" title=
 <h3>log_handle_full<a class="headerlink" href="#log-handle-full" title="Permalink to this headline">¶</a></h3>
 <dl class="var">
 <dt id="_CPPv2N6pessum15log_handle_fullE">
-<em class="property">extern</em> void (*<code class="descclassname"></code><code class="descname">log_handle_full</code>)<span class="sig-paren">(</span>std::pair&lt;int, std::string&gt;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum15log_handle_fullE" title="Permalink to this definition">¶</a><br /></dt>
+void (*<code class="descclassname"></code><code class="descname">log_handle_full</code>)<span class="sig-paren">(</span>std::pair&lt;int, std::string&gt;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum15log_handle_fullE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to function for handling log calls with full log information.
 This function is called with every log entry added through <a class="reference internal" href="#_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz" title="pessum::Log"><code class="xref cpp cpp-func docutils literal"><span class="pre">Log()</span></code></a>.</p>
+<p><strong>Note:</strong> Variable is private.</p>
 </dd></dl>
 
 </div>
@@ -580,9 +604,10 @@ This function is called with every log entry added through <a class="reference i
 <h3>log_handle<a class="headerlink" href="#log-handle" title="Permalink to this headline">¶</a></h3>
 <dl class="var">
 <dt id="_CPPv2N6pessum10log_handleE">
-<em class="property">extern</em> void (*<code class="descclassname"></code><code class="descname">log_handle</code>)<span class="sig-paren">(</span>std::string<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum10log_handleE" title="Permalink to this definition">¶</a><br /></dt>
+void (*<code class="descclassname"></code><code class="descname">log_handle</code>)<span class="sig-paren">(</span>std::string<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6pessum10log_handleE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to function for handling logs with only formated string
 This funtion is called with every log entry added through <a class="reference internal" href="#_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz" title="pessum::Log"><code class="xref cpp cpp-func docutils literal"><span class="pre">Log()</span></code></a>.</p>
+<p><strong>Note:</strong> Variable is private.</p>
 </dd></dl>
 
 </div>

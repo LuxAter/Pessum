@@ -1,4 +1,5 @@
 #include "log.hpp"
+
 #include <stdarg.h>
 #include <time.h>
 #include <array>

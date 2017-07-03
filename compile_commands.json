@@ -6,11 +6,11 @@
             "-std=c++11", 
             "-w", 
             "-o", 
-            "/home/arden/Programming/libraries/pessum/build/source/./log.o", 
-            "log.cpp"
+            "/home/arden/Programming/libraries/pessum/build/source/./datapoint.o", 
+            "datapoint.cpp"
         ], 
         "directory": "/home/arden/Programming/libraries/pessum/source", 
-        "file": "log.cpp"
+        "file": "datapoint.cpp"
     }, 
     {
         "arguments": [
@@ -33,11 +33,11 @@
             "-std=c++11", 
             "-w", 
             "-o", 
-            "/home/arden/Programming/libraries/pessum/build/source/./datapoint.o", 
-            "datapoint.cpp"
+            "/home/arden/Programming/libraries/pessum/build/source/./log.o", 
+            "log.cpp"
         ], 
         "directory": "/home/arden/Programming/libraries/pessum/source", 
-        "file": "datapoint.cpp"
+        "file": "log.cpp"
     }, 
     {
         "arguments": [

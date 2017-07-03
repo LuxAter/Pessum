@@ -65,6 +65,22 @@ Log
    additional arguments as needed from ``...``. Formated string and log type
    are saved to :var:`global_logs`.
 
+GetLogSize
+----------
+
+.. function:: int GetLogSize()
+
+   Gets the length of the :var:`global_logs`.
+
+   **Return:** Length of :var:`global_logs` as an integer.
+
+ClearLogs
+---------
+
+.. function:: void ClearLogs()
+
+   Clears all log entries from :var:`global_logs`.
+   
 GetLog
 ------
 
@@ -217,30 +233,39 @@ Variables
 options
 -------
 
-.. var:: extern std::array<int, 2> options
+.. var:: std::array<int, 2> options
 
    Array storing values for the different log options set in :func:`SetLogOption`.
+
+   **Note:** Variable is private.
 
 global_logs
 -----------
 
-.. var:: extern std::vector\<std::pair\<int, std::string>> global_logs
+.. var:: std::vector\<std::pair\<int, std::string>> global_logs
 
    All log calls are saved to this vector, and can be retrieved later with any
    form of the :func:`GetLog` functions.
 
+   **Note:** Variable is private.
+
 log_handle_full
 ---------------
 
-.. var:: extern void (*log_handle_full)(std::pair\<int,std::string>)
+.. var:: void (*log_handle_full)(std::pair\<int,std::string>)
 
    Pointer to function for handling log calls with full log information.
    This function is called with every log entry added through :func:`Log`.
 
+   **Note:** Variable is private.
+
 log_handle
 ----------
 
-.. var:: extern void (*log_handle)(std::string)
+.. var:: void (*log_handle)(std::string)
 
    Pointer to function for handling logs with only formated string
    This funtion is called with every log entry added through :func:`Log`.
+
+   **Note:** Variable is private.
+
