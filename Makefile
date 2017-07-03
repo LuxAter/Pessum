@@ -28,7 +28,7 @@ export OK_COLOR = $(GREEN)
 export CLEAN_COLOR = $(YELLOW)
 export INSTALL_COLOR = $(MAGENTA)
 
-export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 14)))
+export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 19)))
 export BASE_PATH=$(shell pwd)
 
 ifndef .VERBOSE
@@ -72,8 +72,8 @@ all: start source-make test-make
 
 .PHONY : clean
 clean: start-clean source-clean test-clean
-	if [[ -e compile_commands.json ]]; then rm compile_commands.json; fi
-	if [[ -e $(BUILD_DIR)/lib$(NAME).a ]]; then rm $(BUILD_DIR)/lib$(NAME).a; fi
+	#if [[ -e compile_commands.json ]]; then rm compile_commands.json; fi
+	#if [[ -e $(BUILD_DIR)/lib$(NAME).a ]]; then rm $(BUILD_DIR)/lib$(NAME).a; fi
 	printf "%b%s%b\n" "$(CLEAN_COLOR)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
 	printf "%b\n" "$(CLEAN_COLOR)Compleated Cleaning$(NO_COLOR)"
 

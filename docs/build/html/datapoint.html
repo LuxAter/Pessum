@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <p class="caption"><span class="caption-text">Contents:</span></p>
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Point</a><ul>
@@ -124,8 +130,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Pessum</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pessum</a>
+        
       </nav>
 
 
@@ -134,21 +142,38 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Data Point</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Data Point</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -205,7 +230,7 @@ the use of <code class="xref cpp cpp-member docutils literal"><span class="pre">
 <dd><p>Class structure to contain data of one of several different base types. The
 data in a <a class="reference internal" href="#_CPPv2N6pessum9DataPointE" title="pessum::DataPoint"><code class="xref cpp cpp-class docutils literal"><span class="pre">DataPoint</span></code></a> class can be <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">double</span></code>,
 <code class="docutils literal"><span class="pre">std::string</span></code>, or <code class="docutils literal"><span class="pre">bool</span></code>.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DataPoint</span><span class="p">{</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataPoint</span><span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="n">DataPoint</span><span class="p">();</span>
   <span class="n">DataPoint</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
@@ -351,15 +376,18 @@ Then everything is saved into a <a class="reference internal" href="#_CPPv2N6pes
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="log.html" class="btn btn-neutral float-right" title="Logging" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="log.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="data.html" class="btn btn-neutral" title="Data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="data.html" class="btn btn-neutral" title="Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -392,7 +420,8 @@ Then everything is saved into a <a class="reference internal" href="#_CPPv2N6pes
             VERSION:'2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

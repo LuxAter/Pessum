@@ -1,18 +1,18 @@
 #include "log.hpp"
+#include <stdarg.h>
+#include <time.h>
 #include <array>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
-#include <stdarg.h>
 #include <string>
-#include <time.h>
 #include <vector>
 
 namespace pessum {
-std::array<int, 2> options = {{0, 0}};
-std::vector<std::pair<int, std::string>> global_logs;
-void (*log_handle_full)(std::pair<int, std::string>) = NULL;
-void (*log_handle)(std::string) = NULL;
+  std::array<int, 2> options = {{0, 0}};
+  std::vector<std::pair<int, std::string>> global_logs;
+  void (*log_handle_full)(std::pair<int, std::string>) = NULL;
+  void (*log_handle)(std::string) = NULL;
 }
 
 void pessum::Log(int type, std::string msg, std::string func, ...) {
@@ -21,7 +21,7 @@ void pessum::Log(int type, std::string msg, std::string func, ...) {
   va_start(args, func);
   va_start(buff_args, func);
   ssize_t buff_size = vsnprintf(NULL, 0, msg.c_str(), buff_args);
-  char *formated_string = new char[buff_size];
+  char* formated_string = new char[buff_size];
   vsprintf(formated_string, msg.c_str(), args);
   va_end(buff_args);
   va_end(args);
@@ -46,6 +46,10 @@ void pessum::Log(int type, std::string msg, std::string func, ...) {
     log_handle(str);
   }
 }
+
+int pessum::GetLogSize() { return global_logs.size(); }
+
+void pessum::ClearLogs() { global_logs.clear(); }
 
 std::pair<int, std::string> pessum::FGetLog(int type) {
   std::pair<int, std::string> entry;
@@ -94,7 +98,7 @@ std::string pessum::IGetLog(int index) {
 
 std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
   std::vector<std::pair<int, std::string>> entries;
-  for (int i = start; i < end && i >= 0 && i < global_logs.size(); i++) {
+  for (int i = start; i <= end && i >= 0 && i < global_logs.size(); i++) {
     entries.push_back(global_logs[i]);
   }
   return (entries);
@@ -102,7 +106,7 @@ std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
 
 std::vector<std::string> pessum::VGetLog(int start, int end) {
   std::vector<std::string> entries;
-  for (int i = start; i < end && i >= 0 && i < global_logs.size(); i++) {
+  for (int i = start; i <= end && i >= 0 && i < global_logs.size(); i++) {
     entries.push_back(global_logs[i].second);
   }
   return (entries);
