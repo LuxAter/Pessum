@@ -98,7 +98,7 @@ docs-latex:
 .PHONY : gh-pages
 gh-pages:
 	git checkout gh-pages
-	rm -rf build source _static
+	rm * -r
 	git checkout master $(GH_PAGES_SOURCE)
 	git reset HEAD
 	mv $(GH_PAGES_SOURCE) .
