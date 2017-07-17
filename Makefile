@@ -102,6 +102,7 @@ gh-pages:
 	rm -rf build source _static
 	git checkout master $(GH_PAGES_SOURCES)
 	git reset HEAD
+	mv docs/* .
 	make latex
 	make html
 	mv -fv build/html/* ./
