@@ -5,7 +5,6 @@ export TEST_DIR = test
 export BUILD_DIR = build
 export GH_PAGES_SOURCE = docs/source docs/Makefile
 
-
 export COMPILER = clang++
 export CPPFLAGS = -MMD -std=c++11 -w -c
 export LINK = 
@@ -100,9 +99,9 @@ docs-latex:
 gh-pages:
 	git checkout gh-pages
 	rm -rf build source _static
-	git checkout master $(GH_PAGES_SOURCES)
+	git checkout master $(GH_PAGES_SOURCE)
 	git reset HEAD
-	mv docs/* .
+	mv $(GH_PAGES_SOURCE) .
 	make latex
 	make html
 	mv -fv build/html/* ./
