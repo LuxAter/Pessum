@@ -96,8 +96,8 @@
 <li class="toctree-l1"><a class="reference internal" href="datapoint.html">Data Point</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#enumerators">Enumerators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#logtype">LogType</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logoptions">LogOptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logtype">LogType</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
@@ -204,6 +204,29 @@ entire list of log entries can also be saved to an external file for review
 after program termination.</p>
 <div class="section" id="enumerators">
 <h2>Enumerators<a class="headerlink" href="#enumerators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="logoptions">
+<h3>LogOptions<a class="headerlink" href="#logoptions" title="Permalink to this headline">¶</a></h3>
+<dl class="enum">
+<dt id="_CPPv2N6pessum10LogOptionsE">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">LogOptions</code><a class="headerlink" href="#_CPPv2N6pessum10LogOptionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Used to specify a logging option to set using <a class="reference internal" href="#_CPPv2N6pessum12SetLogOptionEii" title="pessum::SetLogOption"><code class="xref cpp cpp-func docutils literal"><span class="pre">SetLogOption()</span></code></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="91%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>TIME_STAMP</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>DATE_STAMP</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 <div class="section" id="logtype">
 <h3>LogType<a class="headerlink" href="#logtype" title="Permalink to this headline">¶</a></h3>
 <dl class="enum">
@@ -239,29 +262,6 @@ after program termination.</p>
 </tr>
 <tr class="row-even"><td>NONE</td>
 <td>7</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="logoptions">
-<h3>LogOptions<a class="headerlink" href="#logoptions" title="Permalink to this headline">¶</a></h3>
-<dl class="enum">
-<dt id="_CPPv2N6pessum10LogOptionsE">
-<em class="property">enum </em><code class="descclassname"></code><code class="descname">LogOptions</code><a class="headerlink" href="#_CPPv2N6pessum10LogOptionsE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Used to specify a logging option to set using <a class="reference internal" href="#_CPPv2N6pessum12SetLogOptionEii" title="pessum::SetLogOption"><code class="xref cpp cpp-func docutils literal"><span class="pre">SetLogOption()</span></code></a>.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="91%" />
-<col width="9%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>TIME_STAMP</td>
-<td>0</td>
-</tr>
-<tr class="row-even"><td>DATE_STAMP</td>
-<td>1</td>
 </tr>
 </tbody>
 </table>

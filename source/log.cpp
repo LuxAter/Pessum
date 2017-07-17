@@ -65,7 +65,7 @@ std::pair<int, std::string> pessum::FGetLog(int type) {
       search = false;
     }
   }
-  return (entry);
+  return entry;
 }
 
 std::string pessum::GetLog(int type) {
@@ -78,7 +78,7 @@ std::string pessum::GetLog(int type) {
       entry = global_logs[i].second;
     }
   }
-  return (entry);
+  return entry;
 }
 
 std::pair<int, std::string> pessum::IFGetLog(int index) {
@@ -86,7 +86,7 @@ std::pair<int, std::string> pessum::IFGetLog(int index) {
   if (index >= 0 && index < global_logs.size()) {
     entry = global_logs[index];
   }
-  return (entry);
+  return entry;
 }
 
 std::string pessum::IGetLog(int index) {
@@ -94,15 +94,16 @@ std::string pessum::IGetLog(int index) {
   if (index >= 0 && index < global_logs.size()) {
     entry = global_logs[index].second;
   }
-  return (entry);
+  return entry;
 }
 
 std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
   std::vector<std::pair<int, std::string>> entries;
-  for (int i = start; i <= end && i >= 0 && i < global_logs.size(); i++) {
-    entries.push_back(global_logs[i]);
+  if (start >= 0 && end < global_logs.size()) {
+    entries = std::vector<std::pair<int, std::string>>(
+        global_logs.begin() + start, global_logs.end() + end);
   }
-  return (entries);
+  return entries;
 }
 
 std::vector<std::string> pessum::VGetLog(int start, int end) {
@@ -110,7 +111,7 @@ std::vector<std::string> pessum::VGetLog(int start, int end) {
   for (int i = start; i <= end && i >= 0 && i < global_logs.size(); i++) {
     entries.push_back(global_logs[i].second);
   }
-  return (entries);
+  return entries;
 }
 
 void pessum::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
@@ -144,7 +145,7 @@ std::string pessum::GetTypeStr(int type) {
   } else if (type == DATA) {
     str = "DATA";
   }
-  return (str);
+  return str;
 }
 
 void pessum::SaveLog(std::string file) {

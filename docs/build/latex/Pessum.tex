@@ -39,7 +39,7 @@
 
 
 \title{Pessum Documentation}
-\date{Jun 30, 2017}
+\date{Jul 17, 2017}
 \release{2.0}
 \author{Arden Rasmussen}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -215,11 +215,23 @@ data in a {\hyperref[\detokenize{datapoint:_CPPv2N6pessum9DataPointE}]{\sphinxcr
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{class} \PYG{n+nc}{DataPoint}\PYG{p}{\PYGZob{}}
  \PYG{k}{public}\PYG{o}{:}
-  \PYG{n}{DataPoint}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
-  \PYG{n}{DataPoint}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
-  \PYG{n}{DataPoint}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
-  \PYG{n}{DataPoint}\PYG{p}{(}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
-  \PYG{n}{DataPoint}\PYG{p}{(}\PYG{k+kt}{bool} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n}{DataPoint}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n+nf}{DataPoint}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n+nf}{DataPoint}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n+nf}{DataPoint}\PYG{p}{(}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n+nf}{DataPoint}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{explicit} \PYG{n+nf}{DataPoint}\PYG{p}{(}\PYG{k+kt}{bool} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+
+  \PYG{k+kt}{void} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{void} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{void} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{void} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k+kt}{void} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k+kt}{bool} \PYG{n}{value}\PYG{p}{)}\PYG{p}{;}
+
+  \PYG{k}{operator} \PYG{n+nf}{int}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{operator} \PYG{n+nf}{double}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{operator} \PYG{n}{std}\PYG{o}{:}\PYG{o}{:}\PYG{n}{string}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+  \PYG{k}{operator} \PYG{n+nf}{bool}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
 
   \PYG{k+kt}{int} \PYG{n}{int\PYGZus{}value}\PYG{p}{,} \PYG{n}{type}\PYG{p}{;}
   \PYG{k+kt}{double} \PYG{n}{double\PYGZus{}value}\PYG{p}{;}
@@ -232,11 +244,11 @@ data in a {\hyperref[\detokenize{datapoint:_CPPv2N6pessum9DataPointE}]{\sphinxcr
 
 
 
-\subsection{Constructors}
+\subsubsection{Constructors}
 \label{\detokenize{datapoint:constructors}}
 
-\subsubsection{DataPoint::DataPoint{[}1/5{]}}
-\label{\detokenize{datapoint:datapoint-datapoint-1-5}}\index{pessum::DataPoint::DataPoint (C++ function)}
+\paragraph{DataPoint(void)}
+\label{\detokenize{datapoint:datapoint-void}}\index{pessum::DataPoint::DataPoint (C++ function)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointEv}}%
@@ -250,13 +262,13 @@ Default constructor, sets all values to default, and \sphinxcode{type} to
 
 
 
-\subsubsection{DataPoint::DataPoint{[}2/5{]}}
-\label{\detokenize{datapoint:datapoint-datapoint-2-5}}\index{pessum::DataPoint::DataPoint (C++ function)}
+\paragraph{DataPoint(int)}
+\label{\detokenize{datapoint:datapoint-int}}\index{pessum::DataPoint::DataPoint (C++ function)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointEi}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{int \sphinxstyleemphasis{v}}{}%
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{int \sphinxstyleemphasis{value}}{}%
 \pysigstopmultiline~
 
 \begin{savenotes}\sphinxattablestart
@@ -280,13 +292,13 @@ Constructor that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_INT}, and set
 
 
 
-\subsubsection{DataPoint::DataPoint{[}3/5{]}}
-\label{\detokenize{datapoint:datapoint-datapoint-3-5}}\index{pessum::DataPoint::DataPoint (C++ function)}
+\paragraph{DataPoint(double)}
+\label{\detokenize{datapoint:datapoint-double}}\index{pessum::DataPoint::DataPoint (C++ function)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointEd}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{double \sphinxstyleemphasis{v}}{}%
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{double \sphinxstyleemphasis{value}}{}%
 \pysigstopmultiline~
 
 \begin{savenotes}\sphinxattablestart
@@ -310,13 +322,13 @@ Constructor that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_DOUBLE}, and 
 
 
 
-\subsubsection{DataPoint::DataPoint{[}4/5{]}}
-\label{\detokenize{datapoint:datapoint-datapoint-4-5}}\index{pessum::DataPoint::DataPoint (C++ function)}
+\paragraph{DataPoint(std::string)}
+\label{\detokenize{datapoint:datapoint-std-string}}\index{pessum::DataPoint::DataPoint (C++ function)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointENSt6stringE}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{std::string \sphinxstyleemphasis{v}}{}%
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{std::string \sphinxstyleemphasis{value}}{}%
 \pysigstopmultiline~
 
 \begin{savenotes}\sphinxattablestart
@@ -340,13 +352,43 @@ Constructor that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_STR}, and set
 
 
 
-\subsubsection{DataPoint::DataPoint{[}5/5{]}}
-\label{\detokenize{datapoint:datapoint-datapoint-5-5}}\index{pessum::DataPoint::DataPoint (C++ function)}
+\paragraph{DataPoint(const char*)}
+\label{\detokenize{datapoint:datapoint-const-char}}\index{pessum::DataPoint::DataPoint (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointEPKc}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{\sphinxstrong{const} char *\sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+String value to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Constructor that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_STR}, and sets
+\sphinxcode{string\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{DataPoint(bool)}
+\label{\detokenize{datapoint:datapoint-bool}}\index{pessum::DataPoint::DataPoint (C++ function)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPoint9DataPointEb}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{bool \sphinxstyleemphasis{v}}{}%
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{DataPoint}}{bool \sphinxstyleemphasis{value}}{}%
 \pysigstopmultiline~
 
 \begin{savenotes}\sphinxattablestart
@@ -365,6 +407,215 @@ Boolian value to use as set value
 
 Constructor that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_BOOL}, and sets
 \sphinxcode{bool\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\subsubsection{Operators}
+\label{\detokenize{datapoint:operators}}
+
+\paragraph{operator=(int)}
+\label{\detokenize{datapoint:operator-int}}\index{pessum::DataPoint::operator= (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointaSEi}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator=}}{int \sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+Double vlue to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Operator that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_INT}, and sets
+\sphinxcode{int\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator=(double)}
+\label{\detokenize{datapoint:operator-double}}\index{pessum::DataPoint::operator= (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointaSEd}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator=}}{double \sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+Double vlue to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Operator that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_DOUBLE}, and sets
+\sphinxcode{double\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator=(std::string)}
+\label{\detokenize{datapoint:operator-std-string}}\index{pessum::DataPoint::operator= (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointaSENSt6stringE}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator=}}{std::string \sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+Double vlue to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Operator that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_STR}, and sets
+\sphinxcode{string\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator=(const char*)}
+\label{\detokenize{datapoint:operator-const-char}}\index{pessum::DataPoint::operator= (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointaSEPKc}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator=}}{\sphinxstrong{const} char *\sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+Double vlue to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Operator that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_STR}, and sets
+\sphinxcode{string\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator=(bool)}
+\label{\detokenize{datapoint:operator-bool}}\index{pessum::DataPoint::operator= (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointaSEb}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator=}}{bool \sphinxstyleemphasis{value}}{}%
+\pysigstopmultiline~
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+\sphinxcode{value}
+&
+Double vlue to use as set value
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+Operator that sets the \sphinxcode{type} to \sphinxcode{PESSUM\_BOOL}, and sets
+\sphinxcode{bool\_value} to \sphinxcode{value}.
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator int()}
+\label{\detokenize{datapoint:id1}}\index{pessum::DataPoint::operator int (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointcviEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator~int}}{}{}%
+\pysigstopmultiline
+\sphinxstylestrong{Return:} \sphinxcode{int\_value}
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator double()}
+\label{\detokenize{datapoint:id2}}\index{pessum::DataPoint::operator double (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointcvdEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator~double}}{}{}%
+\pysigstopmultiline
+\sphinxstylestrong{Return:} \sphinxcode{double\_value}
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator std::string()}
+\label{\detokenize{datapoint:id3}}\index{pessum::DataPoint::operator std::string (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointcvNSt6stringEEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator~std::string}}{}{}%
+\pysigstopmultiline
+\sphinxstylestrong{Return:} \sphinxcode{string\_value}
+
+\end{fulllineitems}
+
+
+
+\paragraph{operator bool()}
+\label{\detokenize{datapoint:id4}}\index{pessum::DataPoint::operator bool (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datapoint:_CPPv2N6pessum9DataPointcvbEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{\sphinxcode{DataPoint::}\sphinxbfcode{operator~bool}}{}{}%
+\pysigstopmultiline
+\sphinxstylestrong{Return:} \sphinxcode{bool\_value}
 
 \end{fulllineitems}
 
@@ -418,6 +669,40 @@ after program termination.
 
 \section{Enumerators}
 \label{\detokenize{log:enumerators}}
+
+\subsection{LogOptions}
+\label{\detokenize{log:logoptions}}\index{pessum::LogOptions (C++ enum)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum10LogOptionsE}}%
+\pysigstartmultiline
+\pysigline{\sphinxstrong{enum }\sphinxcode{}\sphinxbfcode{LogOptions}}%
+\pysigstopmultiline
+Used to specify a logging option to set using {\hyperref[\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}]{\sphinxcrossref{\sphinxcode{SetLogOption()}}}}.
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+
+TIME\_STAMP
+&
+0
+\\
+\hline
+DATE\_STAMP
+&
+1
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\end{fulllineitems}
+
+
 
 \subsection{LogType}
 \label{\detokenize{log:logtype}}\index{pessum::LogType (C++ enum)}
@@ -483,40 +768,6 @@ NONE
 
 
 
-\subsection{LogOptions}
-\label{\detokenize{log:logoptions}}\index{pessum::LogOptions (C++ enum)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{log:_CPPv2N6pessum10LogOptionsE}}%
-\pysigstartmultiline
-\pysigline{\sphinxstrong{enum }\sphinxcode{}\sphinxbfcode{LogOptions}}%
-\pysigstopmultiline
-Used to specify a logging option to set using {\hyperref[\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}]{\sphinxcrossref{\sphinxcode{SetLogOption()}}}}.
-
-
-\begin{savenotes}\sphinxattablestart
-\centering
-\begin{tabulary}{\linewidth}[t]{|T|T|}
-\hline
-
-TIME\_STAMP
-&
-0
-\\
-\hline
-DATE\_STAMP
-&
-1
-\\
-\hline
-\end{tabulary}
-\par
-\sphinxattableend\end{savenotes}
-
-\end{fulllineitems}
-
-
-
 \section{Functions}
 \label{\detokenize{log:functions}}
 
@@ -561,6 +812,36 @@ Additional formating args for \sphinxcode{msg}
 Core function for all logging output, \sphinxcode{msg} is a format string with
 additional arguments as needed from \sphinxcode{...}. Formated string and log type
 are saved to {\hyperref[\detokenize{log:_CPPv2N6pessum11global_logsE}]{\sphinxcrossref{\sphinxcode{global\_logs}}}}.
+
+\end{fulllineitems}
+
+
+
+\subsection{GetLogSize}
+\label{\detokenize{log:getlogsize}}\index{pessum::GetLogSize (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum10GetLogSizeEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{int \sphinxcode{}\sphinxbfcode{GetLogSize}}{}{}%
+\pysigstopmultiline
+Gets the length of the {\hyperref[\detokenize{log:_CPPv2N6pessum11global_logsE}]{\sphinxcrossref{\sphinxcode{global\_logs}}}}.
+
+\sphinxstylestrong{Return:} Length of {\hyperref[\detokenize{log:_CPPv2N6pessum11global_logsE}]{\sphinxcrossref{\sphinxcode{global\_logs}}}} as an integer.
+
+\end{fulllineitems}
+
+
+
+\subsection{ClearLogs}
+\label{\detokenize{log:clearlogs}}\index{pessum::ClearLogs (C++ function)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{log:_CPPv2N6pessum9ClearLogsEv}}%
+\pysigstartmultiline
+\pysiglinewithargsret{void \sphinxcode{}\sphinxbfcode{ClearLogs}}{}{}%
+\pysigstopmultiline
+Clears all log entries from {\hyperref[\detokenize{log:_CPPv2N6pessum11global_logsE}]{\sphinxcrossref{\sphinxcode{global\_logs}}}}.
 
 \end{fulllineitems}
 
@@ -931,9 +1212,11 @@ Saves the log entries from {\hyperref[\detokenize{log:_CPPv2N6pessum11global_log
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{log:_CPPv2N6pessum7optionsE}}%
 \pysigstartmultiline
-\pysigline{\sphinxstrong{extern} std::array\textless{}int, 2\textgreater{} \sphinxcode{}\sphinxbfcode{options}}%
+\pysigline{std::array\textless{}int, 2\textgreater{} \sphinxcode{}\sphinxbfcode{options}}%
 \pysigstopmultiline
 Array storing values for the different log options set in {\hyperref[\detokenize{log:_CPPv2N6pessum12SetLogOptionEii}]{\sphinxcrossref{\sphinxcode{SetLogOption()}}}}.
+
+\sphinxstylestrong{Note:} Variable is private.
 
 \end{fulllineitems}
 
@@ -945,10 +1228,12 @@ Array storing values for the different log options set in {\hyperref[\detokenize
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{log:_CPPv2N6pessum11global_logsE}}%
 \pysigstartmultiline
-\pysigline{\sphinxstrong{extern} std::vector\textless{}std::pair\textless{}int, std::string\textgreater{}\textgreater{} \sphinxcode{}\sphinxbfcode{global\_logs}}%
+\pysigline{std::vector\textless{}std::pair\textless{}int, std::string\textgreater{}\textgreater{} \sphinxcode{}\sphinxbfcode{global\_logs}}%
 \pysigstopmultiline
 All log calls are saved to this vector, and can be retrieved later with any
 form of the {\hyperref[\detokenize{log:_CPPv2N6pessum6GetLogEi}]{\sphinxcrossref{\sphinxcode{GetLog()}}}} functions.
+
+\sphinxstylestrong{Note:} Variable is private.
 
 \end{fulllineitems}
 
@@ -960,10 +1245,12 @@ form of the {\hyperref[\detokenize{log:_CPPv2N6pessum6GetLogEi}]{\sphinxcrossref
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{log:_CPPv2N6pessum15log_handle_fullE}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxstrong{extern} void (*\sphinxcode{}\sphinxbfcode{log\_handle\_full})}{std::pair\textless{}int, std::string\textgreater{}}{}%
+\pysiglinewithargsret{void (*\sphinxcode{}\sphinxbfcode{log\_handle\_full})}{std::pair\textless{}int, std::string\textgreater{}}{}%
 \pysigstopmultiline
 Pointer to function for handling log calls with full log information.
 This function is called with every log entry added through {\hyperref[\detokenize{log:_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz}]{\sphinxcrossref{\sphinxcode{Log()}}}}.
+
+\sphinxstylestrong{Note:} Variable is private.
 
 \end{fulllineitems}
 
@@ -975,10 +1262,12 @@ This function is called with every log entry added through {\hyperref[\detokeniz
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{log:_CPPv2N6pessum10log_handleE}}%
 \pysigstartmultiline
-\pysiglinewithargsret{\sphinxstrong{extern} void (*\sphinxcode{}\sphinxbfcode{log\_handle})}{std::string}{}%
+\pysiglinewithargsret{void (*\sphinxcode{}\sphinxbfcode{log\_handle})}{std::string}{}%
 \pysigstopmultiline
 Pointer to function for handling logs with only formated string
 This funtion is called with every log entry added through {\hyperref[\detokenize{log:_CPPv2N6pessum3LogEiNSt6stringENSt6stringEz}]{\sphinxcrossref{\sphinxcode{Log()}}}}.
+
+\sphinxstylestrong{Note:} Variable is private.
 
 \end{fulllineitems}
 

@@ -15,7 +15,7 @@ Enumerators
 ===========
 
 PessumDataType
-----------------------
+--------------
 
 .. enum:: PessumDataType
 
@@ -45,12 +45,12 @@ DataPoint
 
     class DataPoint{
      public:
-      DataPoint();
-      DataPoint(int value);
-      DataPoint(double value);
-      DataPoint(std::string value);
-      DataPoint(const char* value);
-      DataPoint(bool value);
+      explicit DataPoint();
+      explicit DataPoint(int value);
+      explicit DataPoint(double value);
+      explicit DataPoint(std::string value);
+      explicit DataPoint(const char* value);
+      explicit DataPoint(bool value);
 
       void operator=(int value);
       void operator=(double value);
@@ -72,16 +72,16 @@ DataPoint
 Constructors
 ~~~~~~~~~~~~
 
-DataPoint::DataPoint[1/6]
-+++++++++++++++++++++++++
+DataPoint(void)
++++++++++++++++
 
 .. function:: DataPoint::DataPoint()
 
    Default constructor, sets all values to default, and :member:`type` to
    ``PESSUM_NONE``.
 
-DataPoint::DataPoint[2/6]
-+++++++++++++++++++++++++
+DataPoint(int)
+++++++++++++++
 
 .. function:: DataPoint::DataPoint(int value)
 
@@ -92,8 +92,8 @@ DataPoint::DataPoint[2/6]
    Constructor that sets the :member:`type` to ``PESSUM_INT``, and sets
    :member:`int_value` to ``value``.
 
-DataPoint::DataPoint[3/6]
-+++++++++++++++++++++++++
+DataPoint(double)
++++++++++++++++++
 
 .. function:: DataPoint::DataPoint(double value)
 
@@ -104,8 +104,8 @@ DataPoint::DataPoint[3/6]
    Constructor that sets the :member:`type` to ``PESSUM_DOUBLE``, and sets
    :member:`double_value` to ``value``.
 
-DataPoint::DataPoint[4/6]
-+++++++++++++++++++++++++
+DataPoint(std::string)
+++++++++++++++++++++++
 
 .. function:: DataPoint::DataPoint(std::string value)
 
@@ -116,8 +116,8 @@ DataPoint::DataPoint[4/6]
    Constructor that sets the :member:`type` to ``PESSUM_STR``, and sets
    :member:`string_value` to ``value``.
 
-DataPoint::DataPoint[5/6]
-+++++++++++++++++++++++++
+DataPoint(const char*)
+++++++++++++++++++++++
 
 .. function:: DataPoint::DataPoint(const char* value)
 
@@ -128,8 +128,8 @@ DataPoint::DataPoint[5/6]
    Constructor that sets the :member:`type` to ``PESSUM_STR``, and sets
    :member:`string_value` to ``value``.
 
-DataPoint::DataPoint[6/6]
-+++++++++++++++++++++++++
+DataPoint(bool)
++++++++++++++++
 
 .. function:: DataPoint::DataPoint(bool value)
 
@@ -139,6 +139,97 @@ DataPoint::DataPoint[6/6]
 
    Constructor that sets the :member:`type` to ``PESSUM_BOOL``, and sets
    :member:`bool_value` to ``value``.
+
+Operators
+~~~~~~~~~
+
+operator=(int)
+++++++++++++++
+
+.. function:: DataPoint::operator=(int value)
+
+   =========  ===============================
+   ``value``  Double vlue to use as set value
+   =========  ===============================
+
+   Operator that sets the :member:`type` to ``PESSUM_INT``, and sets
+   :member:`int_value` to ``value``.
+
+operator=(double)
++++++++++++++++++
+
+.. function:: DataPoint::operator=(double value)
+
+   =========  ===============================
+   ``value``  Double vlue to use as set value
+   =========  ===============================
+
+   Operator that sets the :member:`type` to ``PESSUM_DOUBLE``, and sets
+   :member:`double_value` to ``value``.
+
+operator=(std::string)
+++++++++++++++++++++++
+
+.. function:: DataPoint::operator=(std::string value)
+
+   =========  ===============================
+   ``value``  Double vlue to use as set value
+   =========  ===============================
+
+   Operator that sets the :member:`type` to ``PESSUM_STR``, and sets
+   :member:`string_value` to ``value``.
+
+operator=(const char*)
+++++++++++++++++++++++
+
+.. function:: DataPoint::operator=(const char* value)
+
+   =========  ===============================
+   ``value``  Double vlue to use as set value
+   =========  ===============================
+
+   Operator that sets the :member:`type` to ``PESSUM_STR``, and sets
+   :member:`string_value` to ``value``.
+
+operator=(bool)
++++++++++++++++
+
+.. function:: DataPoint::operator=(bool value)
+
+   =========  ===============================
+   ``value``  Double vlue to use as set value
+   =========  ===============================
+
+   Operator that sets the :member:`type` to ``PESSUM_BOOL``, and sets
+   :member:`bool_value` to ``value``.
+
+operator int()
++++++++++++++++++++++++++
+
+.. function:: DataPoint::operator int()
+
+   **Return:** :member:`int_value`
+
+operator double()
+++++++++++++++++++++++++++++
+
+.. function:: DataPoint::operator double()
+
+   **Return:** :member:`double_value`
+
+operator std::string()
++++++++++++++++++++++++++++++++++
+
+.. function:: DataPoint::operator std::string()
+
+   **Return:** :member:`string_value`
+
+operator bool()
+++++++++++++++++++++++++++
+
+.. function:: DataPoint::operator bool()
+
+   **Return:** :member:`bool_value`
 
 Functions
 =========

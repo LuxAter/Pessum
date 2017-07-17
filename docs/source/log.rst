@@ -16,6 +16,18 @@ after program termination.
 Enumerators
 ===========
 
+LogOptions
+----------
+
+.. enum:: LogOptions
+  
+   Used to specify a logging option to set using :func:`SetLogOption`.
+
+   ==========  =
+   TIME_STAMP  0
+   DATE_STAMP  1
+   ==========  =
+
 LogType
 -------
 
@@ -33,18 +45,6 @@ LogType
    DATA     6
    NONE     7
    =======  =
-
-LogOptions
-----------
-
-.. enum:: LogOptions
-  
-   Used to specify a logging option to set using :func:`SetLogOption`.
-
-   ==========  =
-   TIME_STAMP  0
-   DATE_STAMP  1
-   ==========  =
 
 Functions
 =========
