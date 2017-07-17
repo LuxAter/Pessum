@@ -3,6 +3,8 @@ SHELL = /bin/bash
 export SOURCE_DIR = source
 export TEST_DIR = test 
 export BUILD_DIR = build
+export GH_PAGES_SOURCE = docs/source docs/Makefile
+
 
 export COMPILER = clang++
 export CPPFLAGS = -MMD -std=c++11 -w -c
@@ -93,6 +95,16 @@ docs-html:
 .PHONY : docs-latex
 docs-latex:
 	cd docs && $(MAKE) latexpdf
+
+.PHONY : gh-pages
+gh-pages:
+	git checkout gh-pages
+	rm -rf build source _static
+	git checkout master $(GH_PAGES_SOURCES)
+	git reset HEAD
+	make latex
+	make html
+	mv -fv build/html/* ./
 
 .PHONY : install
 ifeq ($(TYPE),lib)
