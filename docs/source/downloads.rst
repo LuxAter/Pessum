@@ -8,7 +8,9 @@ Documentation
 PDF
 ---
 
-:download:`Pessum Documentation <./build/latex/Pessum.pdf>`
+.. only:: builder_html
+
+   :download:`Pessum Documentation <./_static/Pessum.pdf>`
 
 Project
 =======

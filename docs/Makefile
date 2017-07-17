@@ -15,7 +15,7 @@ help:
 # Create Github pages
 gh-pages:
 	git checkout gh-pages
-	rm -rf build _sources _static
+	rm -rf build sources _static
 	git checkout master $(GH_PAGES_SOURCES)
 	git reset HEAD
 	make latex
