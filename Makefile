@@ -3,6 +3,7 @@ SHELL = /bin/bash
 export SOURCE_DIR = source
 export TEST_DIR = test 
 export BUILD_DIR = build
+export GTEST_DIR = googletest/googletest
 export GH_PAGES_SOURCE = docs/source docs/Makefile
 
 export COMPILER = clang++
@@ -59,6 +60,32 @@ var="$(1)"; \
     printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(call Line,$(2),.)"
 endef
 
+
+define PrintCpp
+var="$(1)"; \
+    var=$${var%.*}.cpp; \
+    width="$(2)";\
+    printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(call Line,$(2),.)"
+endef
+
+define Compile
+mkdir -p $(@D)
+if [[ $(2) == Linking ]]; then \
+  $(call Print,$(2) $(@F),$(WIDTH)); \
+else \
+  $(call PrintCpp,$(2) $(@F),$(WIDTH)); \
+fi
+$(1) 2> $@.log; \
+  RESULT=$$?; \
+  if [ $$RESULT -ne 0 ]; then \
+    $(cross); \
+  else \
+    $(check); \
+  fi; \
+  cat $@.log; \
+  rm -f $@.log
+endef
+
 define check =
   printf "%b\n" "$(OK_COLOR)\xE2\x9C\x94 $(NO_COLOR)"
 endef
@@ -67,14 +94,14 @@ define cross =
   printf "%b\n" "$(ERR_COLOR)\xE2\x9D\x8C $(NO_COLOR)"
 endef
 
-all: start source-make test-make 
+all: start googletest-make source-make test-make 
 	printf "%b%s%b\n" "$(WHITE)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
 	printf "%b\n" "$(WHITE)Compleated Compiling $(NAME)$(NO_COLOR)"
 
 .PHONY : clean
-clean: start-clean source-clean test-clean
+clean: start-clean googletest-clean source-clean test-clean
 	#if [[ -e compile_commands.json ]]; then rm compile_commands.json; fi
-	#if [[ -e $(BUILD_DIR)/lib$(NAME).a ]]; then rm $(BUILD_DIR)/lib$(NAME).a; fi
+	if [[ -e $(BUILD_DIR)/lib$(NAME).a ]]; then rm $(BUILD_DIR)/lib$(NAME).a; fi
 	printf "%b%s%b\n" "$(CLEAN_COLOR)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
 	printf "%b\n" "$(CLEAN_COLOR)Compleated Cleaning$(NO_COLOR)"
 
@@ -193,6 +220,26 @@ start-clean:
 	printf "%b\n" "$(CLEAN_COLOR)Cleaning $(NAME)$(NO_COLOR)"
 	printf "%b%s%b\n" "$(CLEAN_COLOR)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
 
+.PHONY : start-gtest
+start-gtest:
+	printf "%b\n" "$(BUILD_COLOR)GOOGLE TEST$(NO_COLOR)"
+
+.PHONY : googletest-make
+googletest-make: start-gtest $(BASE_PATH)/$(BUILD_DIR)/gtest/gtest-all.o $(BASE_PATH)/$(BUILD_DIR)/gtest/gtest_main.o
+	@ar -rc $(BUILD_DIR)/libgtest.a $(BUILD_DIR)/gtest/gtest-all.o
+	@ar -rc $(BUILD_DIR)/libgtest_main.a $(BUILD_DIR)/gtest/gtest_main.o
+
+.PHONY : googletest-clean
+googletest-clean:
+	printf "%b\n" "$(CLEAN_COLOR)GOOGLE TEST$(NO_COLOR)"
+	$(call Print,Cleaning gtest/*.o,$(WIDTH))
+	if [ -d "$(BUILD_DIR)/gtest" ]; then find $(BASE_PATH)/$(BUILD_DIR)/gtest -name "*.o" -type f -delete; fi
+	$(call check)
+	$(call Print,Cleaning lib*.a,$(WIDTH))
+	if [ -e "$(BUILD_DIR)/libgtest.a" ]; then rm $(BUILD_DIR)/libgtest.a; fi
+	if [ -e "$(BUILD_DIR)/libgtest_main.a" ]; then rm $(BUILD_DIR)/libgtest_main.a; fi
+	$(call check)
+
 .PHONY : source-make
 source-make:
 	printf "%b\n" "$(BUILD_COLOR)SOURCE$(NO_COLOR)"
@@ -213,4 +260,8 @@ test-clean:
 	printf "%b\n" "$(CLEAN_COLOR)TEST$(NO_COLOR)"
 	cd $(TEST_DIR) && $(MAKE) clean
 
+$(BASE_PATH)/$(BUILD_DIR)/gtest/gtest-all.o:
+	$(call Compile,$(COMPILER) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o $(BUILD_DIR)/gtest/gtest-all.o,Compiling)
 
+$(BASE_PATH)/$(BUILD_DIR)/gtest/gtest_main.o:
+	$(call Compile,$(COMPILER) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest_main.cc -o $(BUILD_DIR)/gtest/gtest_main.o,Compiling)

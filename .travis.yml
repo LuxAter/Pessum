@@ -1,0 +1,14 @@
+sudo: true
+
+language:
+  - c++
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
+script:
+  - make
+  - ./unit-test
+

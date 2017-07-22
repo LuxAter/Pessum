@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 DIR = test
 
-GTEST = -I/usr/local/include/gtest -lgtest -lgtest_main -lpthread
+GTEST = -I$(BASE_PATH)/$(GTEST_DIR)/include $(BASE_PATH)/$(BUILD_DIR)/libgtest.a $(BASE_PATH)/$(BUILD_DIR)/libgtest_main.a -lpthread
 
 define Line = 
 $(shell printf '%0.1s' "$(2)"{1..$(1)})
@@ -51,7 +51,7 @@ TEST_FILES = $(shell find -name "*.cpp")
 SOURCE_OBJ = $(filter-out $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/main.o, $(shell find $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/*.o))
 OBJ_FILES = $(TEST_FILES:%.cpp=$(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o)
 
-EXE = $(BASE_PATH)/$(NAME)-test
+EXE = $(BASE_PATH)/unit-test
 
 all: $(OBJ_FILES) $(EXE)
 
@@ -71,7 +71,7 @@ clean:
 	$(call Print,Cleaning $(DIR)/*.d,$(WIDTH))
 	find $(BASE_PATH)/$(BUILD_DIR)/$(DIR) -name "*.d" -type f -delete
 	$(call check)
-	$(call Print,Cleaning $(DIR)/$(NAME)-test,$(WIDTH))
+	$(call Print,Cleaning $(DIR)/unit-test,$(WIDTH))
 	rm -f $(EXE)
 	$(call check)
 
