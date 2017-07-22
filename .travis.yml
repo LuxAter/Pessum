@@ -8,6 +8,7 @@ compiler:
   - gcc
 
 before_install:
+  - pip install --user cpp-coveralls
   # g++4.8.1
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
 
@@ -31,3 +32,6 @@ script:
   - cmake ..
   - make
   - ./unit-test
+
+after_success:
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
