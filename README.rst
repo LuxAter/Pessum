@@ -4,6 +4,10 @@ Pessum
 .. image:: https://travis-ci.org/LuxAtrumStudio/Pessum.svg?branch=cmake
     :target: https://travis-ci.org/LuxAtrumStudio/Pessum
 
+.. image:: https://coveralls.io/repos/github/LuxAtrumStudio/Pessum/badge.svg?branch=cmake
+    :target: https://coveralls.io/github/LuxAtrumStudio/Pessum?branch=cmake
+
+
 Pessum is a C++ library to implement a few simple utilities to projects. These
 utilities include a logging system, and Data Loading system.
 
