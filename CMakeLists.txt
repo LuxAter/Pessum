@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
 
 project(pessum)
 
 enable_language(C)
 enable_language(CXX)
+
+set(CMAKE_CXX_STANDARD 11)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
   set(CMAKE_CXX_FLAGS "")
