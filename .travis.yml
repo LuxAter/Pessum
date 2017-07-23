@@ -25,4 +25,7 @@ script:
   - ./unit-test
 
 after_success:
-  - coveralls --exclude lib --exclude test --gcov-options '\-lp'
+  - coveralls -E ".*external.*" -E ".*test/.*.cpp.*"
+
+notifications:
+  email: false

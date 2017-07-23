@@ -1,6 +1,15 @@
 Pessum
 ======
 
+.. image:: https://travis-ci.org/LuxAtrumStudio/Pessum.svg?branch=master
+    :target: https://travis-ci.org/LuxAtrumStudio/Pessum
+
+.. image:: https://coveralls.io/repos/github/LuxAtrumStudio/Pessum/badge.svg?branch=master
+    :target: https://coveralls.io/github/LuxAtrumStudio/Pessum?branch=master
+
+.. image:: https://api.codacy.com/project/badge/Grade/76f87d72988a4c7b9816f04a48b102bb
+    :target: https://www.codacy.com/app/LuxAtrumStudio/Pessum?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LuxAtrumStudio/Pessum&amp;utm_campaign=Badge_Grade
+
 Pessum is a C++ library to implement a few simple utilities to projects. These
 utilities include a logging system, and Data Loading system.
 
