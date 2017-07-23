@@ -15,7 +15,7 @@ export TYPE = lib
 export LIB_PATH = /usr/local/
 export EXE_PATH = ~/bin/
 
-export GCOV_LINK = -fprofile-arcs
+export GCOV_LINK = -lgcov --coverage
 export GCOV_FLAG = -fprofile-arcs -ftest-coverage
 
 export RED = \033[0;31m
