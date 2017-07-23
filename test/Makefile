@@ -24,16 +24,21 @@ endef
 define Compile
 mkdir -p $(@D)
 if [[ $(2) == Linking ]]; then \
-  $(call Print,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  width="$(WIDTH)";\
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 else \
-  $(call PrintCpp,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  var=$${var%.*}.cpp;\
+  width="$(WIDTH)";\
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 fi
 $(1) 2> $@.log; \
   RESULT=$$?; \
   if [ $$RESULT -ne 0 ]; then \
-    $(cross); \
+    printf "%b\n" "$(ERR_COLOR)\xE2\x9D\x8C $(NO_COLOR)"; \
   else \
-    $(check); \
+    printf "%b\n" "$(OK_COLOR)\xE2\x9C\x94 $(NO_COLOR)"; \
   fi; \
   cat $@.log; \
   rm -f $@.log
@@ -58,10 +63,10 @@ all: $(OBJ_FILES) $(EXE)
 -include $(OBJ_FILES:.o=.d)
 
 $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
-	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
+	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) $(GCOV_FLAG) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
 
 $(EXE): $(OBJ_FILES)
-	$(call Compile,$(COMPILER) $(LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
+	$(call Compile,$(COMPILER) $(LINK) $(GCOV_LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
 
 .PHONY : clean
 clean:

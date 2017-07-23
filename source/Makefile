@@ -22,16 +22,21 @@ endef
 define Compile
 mkdir -p $(@D)
 if [[ $(2) == Linking ]]; then \
-  $(call Print,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  width="$(WIDTH)";\
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 else \
-  $(call PrintCpp,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  var=$${var%.*}.cpp;\
+  width="$(WIDTH)";\
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 fi
 $(1) 2> $@.log; \
   RESULT=$$?; \
   if [ $$RESULT -ne 0 ]; then \
-    $(cross); \
+    printf "%b\n" "$(ERR_COLOR)\xE2\x9D\x8C $(NO_COLOR)"; \
   else \
-    $(check); \
+    printf "%b\n" "$(OK_COLOR)\xE2\x9C\x94 $(NO_COLOR)"; \
   fi; \
   cat $@.log; \
   rm -f $@.log

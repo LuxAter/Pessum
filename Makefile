@@ -6,16 +6,16 @@ export BUILD_DIR = build
 export GTEST_DIR = external/googletest/googletest
 export GH_PAGES_SOURCE = docs/source docs/Makefile
 
-export COMPILER = clang++
+export COMPILER = g++
 export CPPFLAGS = -MMD -std=c++11 -w -c
-export LINK =
+export LINK = 
 export NAME = pessum
 export TYPE = lib
 
 export LIB_PATH = /usr/local/
 export EXE_PATH = ~/bin/
 
-export GCOV_LINK = -lgcov
+export GCOV_LINK = -fprofile-arcs
 export GCOV_FLAG = -fprofile-arcs -ftest-coverage
 
 export RED = \033[0;31m
@@ -35,6 +35,7 @@ export INSTALL_COLOR = $(MAGENTA)
 
 export WIDTH=$(shell printf $$(($(call FindLongestFile, $(SOURCE_DIR)) + 19)))
 export BASE_PATH=$(shell pwd)
+export LINE=$(call Line,$(WIDTH),.)
 
 ifndef .VERBOSE
   .SILENT:
@@ -76,12 +77,12 @@ mkdir -p $(@D)
 if [[ $(2) == Linking ]]; then \
   var="$(2) $(@F)";\
   width="$(WIDTH)";\
-  printf "$$var --> $$width\n"; \
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 else \
   var="$(2) $(@F)";\
   var=$${var%.*}.cpp;\
   width="$(WIDTH)";\
-  printf "$$var --> $$width\n"; \
+  printf '%s%*.*s' "$$var" 0 $$(($$width - $${#var} - 1)) "$(LINE)"; \
 fi
 $(1) 2> $@.log; \
   RESULT=$$?; \
