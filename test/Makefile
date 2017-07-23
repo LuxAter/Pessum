@@ -63,7 +63,7 @@ all: $(OBJ_FILES) $(EXE)
 -include $(OBJ_FILES:.o=.d)
 
 $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
-	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) $(GCOV_FLAG) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
+	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
 
 $(EXE): $(OBJ_FILES)
 	$(call Compile,$(COMPILER) $(LINK) $(GCOV_LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
