@@ -219,6 +219,9 @@ uninstall:
 
 endif
 
+.PHONY : cov
+	for filename in `find . | egrep '\.cpp'`; do gcov -n -o . $$filename > dev/null; done
+
 .PHONY : start
 start:
 	printf "%b\n" "$(WHITE)Compiling $(NAME)$(NO_COLOR)"

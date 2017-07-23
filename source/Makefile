@@ -59,11 +59,11 @@ all: $(OBJ_FILES) $(EXE)
 -include $(OBJ_FILES:.o=.d)
 
 $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
-	$(call Compile,$(COMPILER) $(CPPFLAGS) $< -o $@,Compiling)
+	$(call Compile,$(COMPILER) $(CPPFLAGS) $(GCOV_FLAG) $< -o $@,Compiling)
 
 
 $(EXE): $(OBJ_FILES)
-	$(call Compile,$(COMPILER) $(OBJ_FILES) -o $(EXE),Linking) 
+	$(call Compile,$(COMPILER) $(OBJ_FILES) $(GCOV_LINK) -o $(EXE),Linking) 
 
 .PHONY : clean
 clean:
