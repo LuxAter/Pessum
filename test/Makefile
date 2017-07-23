@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 DIR = test
 
-GTEST = -I$(BASE_PATH)/$(GTEST_DIR)/include $(BASE_PATH)/$(BUILD_DIR)/libgtest.a $(BASE_PATH)/$(BUILD_DIR)/libgtest_main.a -lpthread
+GTEST = $(BASE_PATH)/$(BUILD_DIR)/libgtest.a $(BASE_PATH)/$(BUILD_DIR)/libgtest_main.a -lpthread
 
 define Line = 
 $(shell printf '%0.1s' "$(2)"{1..$(1)})
@@ -58,7 +58,7 @@ all: $(OBJ_FILES) $(EXE)
 -include $(OBJ_FILES:.o=.d)
 
 $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
-	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) $< -o $@,Compiling)
+	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
 
 $(EXE): $(OBJ_FILES)
 	$(call Compile,$(COMPILER) $(LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
