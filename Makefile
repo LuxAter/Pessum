@@ -3,17 +3,20 @@ SHELL = /bin/bash
 export SOURCE_DIR = source
 export TEST_DIR = test 
 export BUILD_DIR = build
-export GTEST_DIR = googletest/googletest
+export GTEST_DIR = external/googletest/googletest
 export GH_PAGES_SOURCE = docs/source docs/Makefile
 
 export COMPILER = clang++
 export CPPFLAGS = -MMD -std=c++11 -w -c
-export LINK = 
+export LINK =
 export NAME = pessum
 export TYPE = lib
 
 export LIB_PATH = /usr/local/
 export EXE_PATH = ~/bin/
+
+export GCOV_LINK = -lgcov
+export GCOV_FLAG = -fprofile-arcs -ftest-coverage
 
 export RED = \033[0;31m
 export GREEN = \033[0;32m
@@ -71,16 +74,21 @@ endef
 define Compile
 mkdir -p $(@D)
 if [[ $(2) == Linking ]]; then \
-  $(call Print,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  width="$(WIDTH)";\
+  printf "$$var --> $$width\n"; \
 else \
-  $(call PrintCpp,$(2) $(@F),$(WIDTH)); \
+  var="$(2) $(@F)";\
+  var=$${var%.*}.cpp;\
+  width="$(WIDTH)";\
+  printf "$$var --> $$width\n"; \
 fi
 $(1) 2> $@.log; \
   RESULT=$$?; \
   if [ $$RESULT -ne 0 ]; then \
-    $(cross); \
+    printf "%b\n" "$(ERR_COLOR)\xE2\x9D\x8C $(NO_COLOR)"; \
   else \
-    $(check); \
+    printf "%b\n" "$(OK_COLOR)\xE2\x9C\x94 $(NO_COLOR)"; \
   fi; \
   cat $@.log; \
   rm -f $@.log
