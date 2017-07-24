@@ -219,9 +219,6 @@ uninstall:
 
 endif
 
-.PHONY : cov
-	for filename in `find . | egrep '\.cpp'`; do gcov -n -o . $$filename > dev/null; done
-
 .PHONY : start
 start:
 	printf "%b\n" "$(WHITE)Compiling $(NAME)$(NO_COLOR)"
@@ -277,3 +274,18 @@ $(BASE_PATH)/$(BUILD_DIR)/gtest/gtest-all.o:
 
 $(BASE_PATH)/$(BUILD_DIR)/gtest/gtest_main.o:
 	$(call Compile,$(COMPILER) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest_main.cc -o $(BUILD_DIR)/gtest/gtest_main.o,Compiling)
+
+.PHONY : help
+help:
+	printf "Here is a list of valid make targets\n"
+	printf "====================================\n"
+	printf "all - Compiles all as needed\n"
+	printf "clean - Deletes all exe, and object files\n"
+	printf "new - (clean, all)\n"
+	printf "purge - (uninstall, clean)\n"
+	printf "docs - (docs-html, docs-latex)\n"
+	printf "docs-html - Creates Sphinx html docs\n"
+	printf "docs-latex - Creates Sphinx latex docs\n"
+	printf "gh-pages - Creates and pushes Sphinx html to gh page\n"
+	printf "install - Installs lib/exe\n"
+	printf "uninstall - Uninstalls lib/exe\n"
