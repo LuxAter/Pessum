@@ -83,6 +83,8 @@ TEST(LogTest, GetLog) {
   SetLogs();
   std::string log_entry = pessum::GetLog(pessum::SUCCESS);
   EXPECT_EQ(log_entry, "[SUCCESS]test 11[test]");
+  log_entry = pessum::GetLog(pessum::NONE);
+  EXPECT_EQ(log_entry, "[DATA]test 13[test]");
 }
 
 TEST(LogTest, FGetLog) {
