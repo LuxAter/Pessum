@@ -34,4 +34,5 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) || echo "CodeCov Error"
 
 notifications:
-  email: false
+  email:
+    on_failure: always
