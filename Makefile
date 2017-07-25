@@ -144,6 +144,16 @@ gh-pages:
 	git add -A
 	git commit -m"Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages; git checkout master
 
+.PHONY : source
+source: start source-make
+	printf "%b%s%b\n" "$(WHITE)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+	printf "%b\n" "$(WHITE)Compleated Compiling $(NAME)$(NO_COLOR)"
+
+.PHONY : test
+test: start test-make
+	printf "%b%s%b\n" "$(WHITE)" "$(call Line,$(WIDTH),=)" "$(NO_COLOR)"
+	printf "%b\n" "$(WHITE)Compleated Compiling $(NAME)$(NO_COLOR)"
+
 .PHONY : install
 ifeq ($(TYPE),lib)
 install: all
