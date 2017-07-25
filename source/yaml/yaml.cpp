@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 
-#include "log.hpp"
+#include "../log/log.hpp"
 
 pessum::yaml::Node::Node() {}
 

@@ -53,7 +53,7 @@ define cross =
 endef
 
 TEST_FILES = $(shell find -name "*.cpp")
-SOURCE_OBJ = $(filter-out $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/main.o, $(shell find $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/*.o))
+SOURCE_OBJ = $(filter-out $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR)/main.o, $(shell find $(BASE_PATH)/$(BUILD_DIR)/$(SOURCE_DIR) -name "*.o"))
 OBJ_FILES = $(TEST_FILES:%.cpp=$(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o)
 
 EXE = $(BASE_PATH)/unit-test
@@ -66,7 +66,7 @@ $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
 	$(call Compile,$(COMPILER) -I../$(SOURCE_DIR) $(CPPFLAGS) -I$(BASE_PATH)/$(GTEST_DIR)/include $< -o $@,Compiling)
 
 $(EXE): $(OBJ_FILES)
-	$(call Compile,$(COMPILER) $(LINK) $(GCOV_LINK) -I../$(SOURCE_DIR) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
+	$(call Compile,$(COMPILER) $(LINK) $(GCOV_LINK) $(OBJ_FILES) $(SOURCE_OBJ) -o $(EXE) $(GTEST) ,Linking) 
 
 .PHONY : clean
 clean:
