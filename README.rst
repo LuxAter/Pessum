@@ -17,6 +17,12 @@ These utilities include a logging system, and Data Loading system.
 - `Code Coverage <https://codecov.io/gh/LuxAtrumStudio/Pessum>`_
 - `Code Quality <https://www.codacy.com/app/LuxAtrumStudio/Pessum/dashboard>`_
 
+Coverage Graph
+~~~~~~~~~~~~~~
+
+.. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/master/graphs/sunburst.svg
+    :target:https://codecov.io/gh/LuxAtrunStudio/Pessum
+
 Components
 ~~~~~~~~~~
 

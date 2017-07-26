@@ -88,5 +88,20 @@
         ], 
         "directory": "/home/arden/Programming/libraries/pessum/test", 
         "file": "test_log.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-fprofile-arcs", 
+            "-ftest-coverage", 
+            "-o", 
+            "/home/arden/Programming/libraries/pessum/build/source/./yaml/yaml_file.o", 
+            "yaml/yaml_file.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libraries/pessum/source", 
+        "file": "yaml/yaml_file.cpp"
     }
 ]
