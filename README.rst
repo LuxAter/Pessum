@@ -21,7 +21,7 @@ Coverage Graph
 ~~~~~~~~~~~~~~
 
 .. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/master/graphs/sunburst.svg
-    :target:https://codecov.io/gh/LuxAtrunStudio/Pessum
+    :target: https://codecov.io/gh/LuxAtrunStudio/Pessum
 
 Components
 ~~~~~~~~~~
