@@ -40,9 +40,12 @@ namespace pessum {
       void operator=(std::string value);
       void operator=(const char* value);
       void operator=(bool value);
+      void operator=(const Node& value);
 
       Node& operator[](std::string key);
       Node& operator[](int key);
+
+      Node& operator()(std::string key);
 
       std::map<std::string, Node> sub_nodes_;
 

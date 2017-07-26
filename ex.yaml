@@ -1,0 +1,16 @@
+name: Martin D'vlopr
+job: Developer
+skill: Elite
+employed: true
+foods:
+  - Apple
+  - Orange
+  - Strawberry:
+    red: true
+    blue: false
+    green: true
+  - Mango
+languages:
+  perl: Elite
+  python: Elite
+  pascal: Lame

@@ -9,13 +9,13 @@
 
 pessum::yaml::Node::Node() {}
 
-pessum::yaml::Node::Node(const Node& copy) {
-  sub_nodes_ = copy.sub_nodes_;
-  int_ = copy.int_;
-  double_ = copy.double_;
-  string_ = copy.string_;
-  bool_ = copy.bool_;
-}
+pessum::yaml::Node::Node(const Node& copy)
+    : node_type_(copy.node_type_),
+      sub_nodes_(copy.sub_nodes_),
+      int_(copy.int_),
+      double_(copy.double_),
+      string_(copy.string_),
+      bool_(copy.bool_) {}
 
 pessum::yaml::Node::~Node() {}
 
@@ -44,12 +44,9 @@ pessum::yaml::Node& pessum::yaml::Node::find(std::string key) {
   std::string level_key, next_key;
   std::getline(ss, level_key, '.');
   std::getline(ss, next_key);
-  // Log(DATA, "%s/%s", "", level_key.c_str(), key.c_str());
   for (std::map<std::string, Node>::iterator it = sub_nodes_.begin();
        it != sub_nodes_.end(); ++it) {
-    // Log(DEBUG, "%s", "", it->first.c_str());
     if (it->first == level_key || node_type_ == LIST) {
-      // Log(SUCCESS, "%s", "", it->first.c_str());
       if ((it->second.type() != DICTIONARY && it->second.type() != LIST) ||
           next_key == std::string()) {
         return it->second;
@@ -123,17 +120,17 @@ std::string pessum::yaml::Node::GetString(int level, bool no_rise) const {
   return out.str();
 }
 
-void pessum::yaml::Node::operator=(int value) {
+void pessum::yaml::Node::operator=(const int value) {
   int_ = value;
   node_type_ = INT;
 }
 
-void pessum::yaml::Node::operator=(double value) {
+void pessum::yaml::Node::operator=(const double value) {
   double_ = value;
   node_type_ = DOUBLE;
 }
 
-void pessum::yaml::Node::operator=(std::string value) {
+void pessum::yaml::Node::operator=(const std::string value) {
   string_ = value;
   node_type_ = STRING;
 }
@@ -143,9 +140,18 @@ void pessum::yaml::Node::operator=(const char* value) {
   node_type_ = STRING;
 }
 
-void pessum::yaml::Node::operator=(bool value) {
+void pessum::yaml::Node::operator=(const bool value) {
   bool_ = value;
   node_type_ = BOOL;
+}
+
+void pessum::yaml::Node::operator=(const Node& value) {
+  node_type_ = value.node_type_;
+  int_ = value.int_;
+  double_ = value.double_;
+  string_ = value.string_;
+  bool_ = value.bool_;
+  sub_nodes_ = value.sub_nodes_;
 }
 
 pessum::yaml::Node& pessum::yaml::Node::operator[](std::string key) {
@@ -157,6 +163,21 @@ pessum::yaml::Node& pessum::yaml::Node::operator[](int key) {
   node_type_ = LIST;
   std::string key_str = std::to_string(key) + "_";
   return sub_nodes_[key_str];
+}
+
+pessum::yaml::Node& pessum::yaml::Node::operator()(std::string key) {
+  Node& ptr = find(key);
+  if (ptr.valid() == true) {
+    return ptr;
+  } else {
+    std::stringstream ss(key);
+    std::string level_key;
+    ptr = *this;
+    while (getline(ss, level_key, '.')) {
+      ptr = ptr[level_key];
+    }
+    return ptr;
+  }
 }
 
 std::ostream& pessum::yaml::operator<<(std::ostream& out, const Node& node) {
