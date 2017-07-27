@@ -1,10 +1,10 @@
 Pessum
 ======
 
-.. image:: https://travis-ci.org/LuxAtrumStudio/Pessum.svg?branch=master
+.. image:: https://travis-ci.org/LuxAtrumStudio/Pessum.svg?branch=trip
     :target: https://travis-ci.org/LuxAtrumStudio/Pessum
 
-.. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/trip/graph/badge.svg
     :target: https://codecov.io/gh/LuxAtrumStudio/Pessum
 
 .. image:: https://api.codacy.com/project/badge/Grade/76f87d72988a4c7b9816f04a48b102bb
@@ -20,8 +20,8 @@ These utilities include a logging system, and Data Loading system.
 Coverage Graph
 ~~~~~~~~~~~~~~
 
-.. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/master/graphs/sunburst.svg
-    :target: https://codecov.io/gh/LuxAtrunStudio/Pessum
+.. image:: https://codecov.io/gh/LuxAtrumStudio/Pessum/branch/trip/graphs/sunburst.svg
+    :target: https://codecov.io/gh/LuxAtrumStudio/Pessum
 
 Components
 ~~~~~~~~~~

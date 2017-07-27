@@ -6,11 +6,17 @@ foods:
   - Apple
   - Orange
   - Strawberry:
-    red: true
-    blue: false
-    green: true
+    - red
+    - blue:
+      hi: true
+      num: 2017
+      dig:
+        pos: 3.1415
+        neg: -3.1415
+    - green
   - Mango
 languages:
   perl: Elite
   python: Elite
   pascal: Lame
+  yaml: -1

@@ -35,6 +35,15 @@ namespace pessum {
 
       std::string GetString(int level = 0, bool no_rise = false) const;
 
+      void push_back(int value);
+      void push_back(double value);
+      void push_back(std::string value);
+      void push_back(const char* value);
+      void push_back(bool value);
+
+      void push_back(Node value);
+      void push_back(std::string key, Node value);
+
       void operator=(int value);
       void operator=(double value);
       void operator=(std::string value);

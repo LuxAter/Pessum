@@ -111,13 +111,43 @@ std::string pessum::yaml::Node::GetString(int level, bool no_rise) const {
     for (std::map<std::string, Node>::const_iterator it = sub_nodes_.begin();
          it != sub_nodes_.end(); ++it) {
       out << std::string(level * 2, ' ') << "- "
-          << it->second.GetString(level + 1, true);
+          << it->second.GetString(level, true);
       if (it != --sub_nodes_.end()) {
         out << "\n";
       }
     }
   }
   return out.str();
+}
+
+void pessum::yaml::Node::push_back(int value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+
+void pessum::yaml::Node::push_back(double value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+
+void pessum::yaml::Node::push_back(std::string value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+
+void pessum::yaml::Node::push_back(const char* value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+
+void pessum::yaml::Node::push_back(bool value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+
+void pessum::yaml::Node::push_back(Node value) {
+  (*this)[sub_nodes_.size()] = value;
+}
+void pessum::yaml::Node::push_back(std::string key, Node value) {
+  if (node_type_ == NONE) {
+    node_type_ = DICTIONARY;
+  }
+  sub_nodes_[key] = value;
 }
 
 void pessum::yaml::Node::operator=(const int value) {
