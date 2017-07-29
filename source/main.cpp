@@ -37,7 +37,11 @@ int main(int argc, char const* argv[]) {
 
   std::cout << node << std::endl;
 
-  std::cout << std::endl << node.find("foods.Strawberry") << std::endl;
+  std::cout << std::endl << node.find("languages.cpp") << std::endl;
+  std::cout << node("foods") << "\n";
+  std::cout << node("foods.Strawberry") << "\n";
+  std::cout << node("foods.Strawberry.red") << "\n";
+  std::cout << node("languages.python") << "\n";
 
   // pessum::SetLogOption(pessum::TIME_STAMP, true);
   // pessum::Log(pessum::ERROR, "ERROR 1", "main");

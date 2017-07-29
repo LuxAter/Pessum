@@ -46,24 +46,18 @@ pessum::yaml::Node& pessum::yaml::Node::find(std::string key) {
   std::getline(ss, next_key);
   for (std::map<std::string, Node>::iterator it = sub_nodes_.begin();
        it != sub_nodes_.end(); ++it) {
-    if (it->first == level_key || node_type_ == LIST) {
+    if (it->first == level_key) {
       if ((it->second.type() != DICTIONARY && it->second.type() != LIST) ||
           next_key == std::string()) {
         return it->second;
-      } else if (node_type_ == DICTIONARY) {
+      } else if (it->second.type() == DICTIONARY || it->second.type() == LIST) {
         Node& ptr = it->second.find(next_key);
         if (ptr.valid() == true) {
           return ptr;
         }
-      } else if (node_type_ == LIST) {
-        Node& ptr = it->second.find(key);
-        if (ptr.valid() == true) {
-          return ptr;
-        }
       }
-
-    } else if (it->second.type() == LIST) {
-      Node& ptr = it->second.find(next_key);
+    } else if (node_type_ == LIST) {
+      Node& ptr = it->second.find(key);
       if (ptr.valid() == true) {
         return ptr;
       }

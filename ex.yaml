@@ -6,14 +6,9 @@ foods:
   - Apple
   - Orange
   - Strawberry:
-    - red
-    - blue:
-      hi: true
-      num: 2017
-      dig:
-        pos: 3.1415
-        neg: -3.1415
-    - green
+    red: 0.5
+    blue: 0
+    green: 0.5
   - Mango
 languages:
   perl: Elite
