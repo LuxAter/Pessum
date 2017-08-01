@@ -17,6 +17,18 @@ pessum::yaml::Node::Node(const Node& copy)
       string_(copy.string_),
       bool_(copy.bool_) {}
 
+pessum::yaml::Node::Node(int value) : node_type_(INT), int_(value) {}
+
+pessum::yaml::Node::Node(double value) : node_type_(DOUBLE), double_(value) {}
+
+pessum::yaml::Node::Node(std::string value)
+    : node_type_(STRING), string_(value) {}
+
+pessum::yaml::Node::Node(const char* value)
+    : node_type_(STRING), string_(value) {}
+
+pessum::yaml::Node::Node(bool value) : node_type_(BOOL), bool_(value) {}
+
 pessum::yaml::Node::~Node() {}
 
 bool pessum::yaml::Node::valid() const {
@@ -178,6 +190,14 @@ void pessum::yaml::Node::operator=(const Node& value) {
   sub_nodes_ = value.sub_nodes_;
 }
 
+pessum::yaml::Node::operator int() { return int_; }
+
+pessum::yaml::Node::operator double() { return double_; }
+
+pessum::yaml::Node::operator std::string() { return string_; }
+
+pessum::yaml::Node::operator bool() { return bool_; }
+
 pessum::yaml::Node& pessum::yaml::Node::operator[](std::string key) {
   node_type_ = DICTIONARY;
   return sub_nodes_[key];
@@ -206,4 +226,118 @@ pessum::yaml::Node& pessum::yaml::Node::operator()(std::string key) {
 
 std::ostream& pessum::yaml::operator<<(std::ostream& out, const Node& node) {
   return out << node.GetString();
+}
+
+bool pessum::yaml::operator==(const Node& a, const Node& b) {
+  if (a.type() != b.type()) {
+    return false;
+  } else {
+    if (a.type() == NONE) {
+      return true;
+    } else if (a.type() == INT) {
+      return a.Int() == b.Int();
+    } else if (a.type() == DOUBLE) {
+      return a.Double() == b.Double();
+    } else if (a.type() == STRING) {
+      return a.String() == b.String();
+    } else if (a.type() == BOOL) {
+      return a.Bool() == b.Bool();
+    } else if (a.type() == DICTIONARY) {
+      return a.sub_nodes_ == b.sub_nodes_;
+    } else if (a.type() == LIST) {
+      return a.sub_nodes_ == b.sub_nodes_;
+    }
+  }
+}
+
+bool pessum::yaml::operator!=(const Node& a, const Node& b) {
+  return !(a == b);
+}
+
+bool pessum::yaml::operator<(const Node& a, const Node& b) {
+  if (a.type() != b.type()) {
+    return false;
+  } else {
+    if (a.type() == NONE) {
+      return true;
+    } else if (a.type() == INT) {
+      return a.Int() < b.Int();
+    } else if (a.type() == DOUBLE) {
+      return a.Double() < b.Double();
+    } else if (a.type() == STRING) {
+      return a.String() < b.String();
+    } else if (a.type() == BOOL) {
+      return a.Bool() < b.Bool();
+    } else if (a.type() == DICTIONARY) {
+      return a.sub_nodes_ < b.sub_nodes_;
+    } else if (a.type() == LIST) {
+      return a.sub_nodes_ < b.sub_nodes_;
+    }
+  }
+}
+
+bool pessum::yaml::operator>(const Node& a, const Node& b) {
+  if (a.type() != b.type()) {
+    return false;
+  } else {
+    if (a.type() == NONE) {
+      return true;
+    } else if (a.type() == INT) {
+      return a.Int() > b.Int();
+    } else if (a.type() == DOUBLE) {
+      return a.Double() > b.Double();
+    } else if (a.type() == STRING) {
+      return a.String() > b.String();
+    } else if (a.type() == BOOL) {
+      return a.Bool() > b.Bool();
+    } else if (a.type() == DICTIONARY) {
+      return a.sub_nodes_ > b.sub_nodes_;
+    } else if (a.type() == LIST) {
+      return a.sub_nodes_ > b.sub_nodes_;
+    }
+  }
+}
+
+bool pessum::yaml::operator<=(const Node& a, const Node& b) {
+  if (a.type() != b.type()) {
+    return false;
+  } else {
+    if (a.type() == NONE) {
+      return true;
+    } else if (a.type() == INT) {
+      return a.Int() <= b.Int();
+    } else if (a.type() == DOUBLE) {
+      return a.Double() <= b.Double();
+    } else if (a.type() == STRING) {
+      return a.String() <= b.String();
+    } else if (a.type() == BOOL) {
+      return a.Bool() <= b.Bool();
+    } else if (a.type() == DICTIONARY) {
+      return a.sub_nodes_ <= b.sub_nodes_;
+    } else if (a.type() == LIST) {
+      return a.sub_nodes_ <= b.sub_nodes_;
+    }
+  }
+}
+
+bool pessum::yaml::operator>=(const Node& a, const Node& b) {
+  if (a.type() != b.type()) {
+    return false;
+  } else {
+    if (a.type() == NONE) {
+      return true;
+    } else if (a.type() == INT) {
+      return a.Int() >= b.Int();
+    } else if (a.type() == DOUBLE) {
+      return a.Double() >= b.Double();
+    } else if (a.type() == STRING) {
+      return a.String() >= b.String();
+    } else if (a.type() == BOOL) {
+      return a.Bool() >= b.Bool();
+    } else if (a.type() == DICTIONARY) {
+      return a.sub_nodes_ >= b.sub_nodes_;
+    } else if (a.type() == LIST) {
+      return a.sub_nodes_ >= b.sub_nodes_;
+    }
+  }
 }

@@ -19,6 +19,13 @@ namespace pessum {
      public:
       Node();
       Node(const Node& copy);
+
+      Node(int value);
+      Node(double value);
+      Node(std::string value);
+      Node(const char* value);
+      Node(bool value);
+
       ~Node();
 
       bool valid() const;
@@ -51,6 +58,11 @@ namespace pessum {
       void operator=(bool value);
       void operator=(const Node& value);
 
+      explicit operator int();
+      explicit operator double();
+      explicit operator std::string();
+      explicit operator bool();
+
       Node& operator[](std::string key);
       Node& operator[](int key);
 
@@ -67,6 +79,14 @@ namespace pessum {
     };
 
     std::ostream& operator<<(std::ostream& out, const Node& node);
+
+    bool operator==(const Node& a, const Node& b);
+    bool operator!=(const Node& a, const Node& b);
+    bool operator>(const Node& a, const Node& b);
+    bool operator<(const Node& a, const Node& b);
+    bool operator>=(const Node& a, const Node& b);
+    bool operator<=(const Node& a, const Node& b);
+
   }  // namespace yaml
 }  // namespace pessum
 
