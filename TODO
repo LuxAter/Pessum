@@ -1,0 +1,7 @@
+# Pessum TODO #
+
+- [ ] (5) Code coverage
+  - [ ] (4) yaml.cpp
+  - [ ] (4) yaml_file.cpp
+- [ ] (3) Check if project should be split
+- [ ] (7) Create distrobution pipeline
