@@ -63,6 +63,21 @@
         "arguments": [
             "c++", 
             "-c", 
+            "-I../source", 
+            "-std=c++11", 
+            "-w", 
+            "-I/home/arden/Programming/libraries/pessum/external/googletest/googletest/include", 
+            "-o", 
+            "/home/arden/Programming/libraries/pessum/build/test/./test_yaml.o", 
+            "test_yaml.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libraries/pessum/test", 
+        "file": "test_yaml.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
             "-isystem", 
             "external/googletest/googletest/include", 
             "-Iexternal/googletest/googletest", 

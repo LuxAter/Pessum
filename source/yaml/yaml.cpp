@@ -56,6 +56,9 @@ pessum::yaml::Node& pessum::yaml::Node::find(std::string key) {
   std::string level_key, next_key;
   std::getline(ss, level_key, '.');
   std::getline(ss, next_key);
+  if (is_int(level_key) == true && node_type_ == LIST) {
+    level_key = level_key + "_";
+  }
   for (std::map<std::string, Node>::iterator it = sub_nodes_.begin();
        it != sub_nodes_.end(); ++it) {
     if (it->first == level_key) {
@@ -222,6 +225,16 @@ pessum::yaml::Node& pessum::yaml::Node::operator()(std::string key) {
     }
     return ptr;
   }
+}
+
+bool pessum::yaml::is_int(std::string str) {
+  bool good = true;
+  for (int i = 0; i < str.size() && good == true; i++) {
+    if (str[i] > 57 || str[i] < 48) {
+      good = false;
+    }
+  }
+  return good;
 }
 
 std::ostream& pessum::yaml::operator<<(std::ostream& out, const Node& node) {

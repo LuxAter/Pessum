@@ -78,6 +78,8 @@ namespace pessum {
       bool bool_;
     };
 
+    bool is_int(std::string str);
+
     std::ostream& operator<<(std::ostream& out, const Node& node);
 
     bool operator==(const Node& a, const Node& b);

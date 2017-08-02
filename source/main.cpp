@@ -28,7 +28,7 @@ int main(int argc, char const* argv[]) {
 
   std::cout << node2 << std::endl;
 
-  if (yaml != node) {
+  if (node2 == "Hello World!") {
     std::cout << true;
   } else {
     std::cout << false;
