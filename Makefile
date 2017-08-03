@@ -127,6 +127,10 @@ docs: docs-html docs-latex
 docs-html:
 	cd docs && $(MAKE) html
 
+.PHONY : open-html-docs
+open-html-docs:
+	gnome-open docs/build/html/index.html
+
 .PHONY : docs-latex
 docs-latex:
 	cd docs && $(MAKE) latexpdf
