@@ -8,14 +8,13 @@ Pessum documentation
 
 Pessum is a base library for backend of programs. It provides a simple system
 for logging. These logs can be saved to a file, or handled in the program
-imediatly (:doc:`log`). Pessum also provides a simple system fo saving and
-loading basic variables from a external file (:doc:`data`).
+imediatly (:doc:`log`).
+
+The source code for the project can be found on the `Github Page <https://github.com/LuxAtrumStudio/Pessum/>`_.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   data
-   datapoint
    log
    downloads
