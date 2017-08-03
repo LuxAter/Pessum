@@ -6,11 +6,12 @@ foods:
   - Apple
   - Orange
   - Strawberry:
-    red: true
-    blue: false
-    green: true
+    red: 0.5
+    blue: 0
+    green: 0.5
   - Mango
 languages:
   perl: Elite
   python: Elite
   pascal: Lame
+  yaml: -1

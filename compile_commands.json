@@ -3,51 +3,6 @@
         "arguments": [
             "c++", 
             "-c", 
-            "-std=c++11", 
-            "-w", 
-            "-fprofile-arcs", 
-            "-ftest-coverage", 
-            "-o", 
-            "/home/arden/Programming/libraries/pessum/build/source/./log/log.o", 
-            "log/log.cpp"
-        ], 
-        "directory": "/home/arden/Programming/libraries/pessum/source", 
-        "file": "log/log.cpp"
-    }, 
-    {
-        "arguments": [
-            "c++", 
-            "-c", 
-            "-std=c++11", 
-            "-w", 
-            "-fprofile-arcs", 
-            "-ftest-coverage", 
-            "-o", 
-            "/home/arden/Programming/libraries/pessum/build/source/./main.o", 
-            "main.cpp"
-        ], 
-        "directory": "/home/arden/Programming/libraries/pessum/source", 
-        "file": "main.cpp"
-    }, 
-    {
-        "arguments": [
-            "c++", 
-            "-c", 
-            "-std=c++11", 
-            "-w", 
-            "-fprofile-arcs", 
-            "-ftest-coverage", 
-            "-o", 
-            "/home/arden/Programming/libraries/pessum/build/source/./yaml/yaml.o", 
-            "yaml/yaml.cpp"
-        ], 
-        "directory": "/home/arden/Programming/libraries/pessum/source", 
-        "file": "yaml/yaml.cpp"
-    }, 
-    {
-        "arguments": [
-            "c++", 
-            "-c", 
             "-isystem", 
             "external/googletest/googletest/include", 
             "-Iexternal/googletest/googletest", 
@@ -88,5 +43,35 @@
         ], 
         "directory": "/home/arden/Programming/libraries/pessum/test", 
         "file": "test_log.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-fprofile-arcs", 
+            "-ftest-coverage", 
+            "-o", 
+            "/home/arden/Programming/libraries/pessum/build/source/./log.o", 
+            "log.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libraries/pessum/source", 
+        "file": "log.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-std=c++11", 
+            "-w", 
+            "-fprofile-arcs", 
+            "-ftest-coverage", 
+            "-o", 
+            "/home/arden/Programming/libraries/pessum/build/source/./main.o", 
+            "main.cpp"
+        ], 
+        "directory": "/home/arden/Programming/libraries/pessum/source", 
+        "file": "main.cpp"
     }
 ]

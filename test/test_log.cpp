@@ -1,4 +1,4 @@
-#include "log/log.hpp"
+#include "log.hpp"
 
 #include <time.h>
 #include <fstream>
