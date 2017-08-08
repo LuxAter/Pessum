@@ -57,7 +57,10 @@ Then run the following commands in the terminal:
 ::
 
    cd Pessum
-   sudo make install
+   mkdir -p build
+   cd build
+   cmake ..
+   make install
 
 Reference
 ~~~~~~~~~
