@@ -26,7 +26,7 @@ install:
 script:
   - mkdir -p build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON ..
+  - cmake -DCMAKE_BUILD_TYPE=Coverage -DBUILD_TESTS=ON -DDOCS=OFF ..
   - make
   - make coverage
   - ctest
