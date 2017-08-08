@@ -10,7 +10,7 @@ project(${PROJECT_NAME})
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/.cmake)
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
-set(LIBS SDL2 SDL2_image SDL2_ttf SDL2_mixer)
+set(LIBS)
 
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 include_directories(${COMMON_INCLUDES})
