@@ -4,9 +4,35 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-08-08</lastmod>
+     <lastmod>2017-08-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
+        
+    <url>
+     <loc>/tutorial/</loc>
+     <lastmod>2017-08-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/reference/</loc>
+     <lastmod>2017-08-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/reference/log/</loc>
+     <lastmod>2017-08-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
 </urlset>

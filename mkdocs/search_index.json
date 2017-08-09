@@ -2,18 +2,68 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Pessum\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction\n\n\nPessum is a small header only library focused on providing implementation for\nlog handeling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.", 
+            "text": "Introduction\n\n\nPessum is a small header only library focused on providing implementation for\nlog handling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.\n\n\nExample\n\n\nHere is a simple example that will set the handle to output log message to the\nconsole.\n\n#include\n \niostream\n\n\n#include\n \npessum/pessum.hpp\n\n\n\nvoid\n \nlog_handle\n(\nstd\n::\nstring\n \nmsg\n){\n\n  \nstd\n::\ncout\n \n \nmsg\n;\n\n\n}\n\n\n\nint\n \nmain\n(\nvoid\n){\n\n  \npessum\n::\nSetLogHandle\n(\nlog_handle\n);\n\n  \npessum\n::\nLog\n(\npessum\n::\nSUCCESS\n,\n \nSet Log Handle\n,\n \nmain\n)\n\n\n}\n\n\n\n\n[SUCCESS]Set Log Handle[main]\n\n\n\n\nGetting Started\n\n\nA complete tutorial guide is provided at\n\nTutorials\n. This guide will walk new users\nthrough the different methods that are available in the Pessum library, and how\nto implement them successfully.\n\n\nA full API reference guide can be found at \nReference\n. The API\nreference provides specific documentation on each function, including\nparameters, and return results.", 
             "title": "Home"
         }, 
         {
-            "location": "/#pessum", 
-            "text": "", 
-            "title": "Pessum"
+            "location": "/#introduction", 
+            "text": "Pessum is a small header only library focused on providing implementation for\nlog handling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.", 
+            "title": "Introduction"
         }, 
         {
-            "location": "/#introduction", 
-            "text": "Pessum is a small header only library focused on providing implementation for\nlog handeling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.", 
-            "title": "Introduction"
+            "location": "/#example", 
+            "text": "Here is a simple example that will set the handle to output log message to the\nconsole. #include   iostream  #include   pessum/pessum.hpp  void   log_handle ( std :: string   msg ){ \n   std :: cout     msg ;  }  int   main ( void ){ \n   pessum :: SetLogHandle ( log_handle ); \n   pessum :: Log ( pessum :: SUCCESS ,   Set Log Handle ,   main )  }   [SUCCESS]Set Log Handle[main]", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/#getting-started", 
+            "text": "A complete tutorial guide is provided at Tutorials . This guide will walk new users\nthrough the different methods that are available in the Pessum library, and how\nto implement them successfully.  A full API reference guide can be found at  Reference . The API\nreference provides specific documentation on each function, including\nparameters, and return results.", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/tutorial/", 
+            "text": "Tutorials\n\n\nHere is a selection of tutorials that will walk through the different uses of\nthe Pessum library. Demenstrating different methods, and how to implement them\neffectivly.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/tutorial/#tutorials", 
+            "text": "Here is a selection of tutorials that will walk through the different uses of\nthe Pessum library. Demenstrating different methods, and how to implement them\neffectivly.", 
+            "title": "Tutorials"
+        }, 
+        {
+            "location": "/reference/", 
+            "text": "API Reference\n\n\n\n\n\n\n\n\nReference\n\n\nFile\n\n\n\n\n\n\n\n\n\n\nLog\n\n\nlog.hpp", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/reference/#api-reference", 
+            "text": "Reference  File      Log  log.hpp", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/reference/log/", 
+            "text": "Logging\n\n\n#include\n \npessum/log.hpp\n\n\n\n\n\nThe logging functionality of Pessum is very simple. It permits logs entries to\nbe added to a set of global log entries, which is handled internaly. These log\nentries can then be handled by providing a handle function which is called at\nthe addition of a log entry, or they can be retreved later through one of the\nseveral log retreval functions. The entire list of log entries can also be\nsaved to an external file through the save log function.\n\n\nSummary\n\n\n\n\n\n\n\n\nEnumerators\n\n\nDescriptions\n\n\n\n\n\n\n\n\n\n\nLogOptions\n\n\nOptions used to specify log options\n\n\n\n\n\n\nLogType\n\n\nOptions used to define the type\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nvoid\n\n\nLog\n(int type, std::string msg, std::string func, ...)\n\n\nEnters log entry into system\n\n\n\n\n\n\nsize_t\n\n\nGetLogSize\n()\n\n\nGets length of log entries\n\n\n\n\n\n\nvoid\n\n\nClearLogs\n()\n\n\nClears all log entries\n\n\n\n\n\n\nstring\n\n\nGetLog\n(int type)\n\n\nGets last log entry of matching type\n\n\n\n\n\n\n\n\nEnumerators\n\n\nLogOptions\n\n\nOptions used to specify log option to set in \nSetLogOption\n.\n\n\n\n\n\n\n\n\nOption\n\n\nValue\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nTIME_STAMP\n\n\n0\n\n\nEnables time stamps on logs.\n\n\n\n\n\n\nDATE_STAMP\n\n\n1\n\n\nEnables date stamps on logs.\n\n\n\n\n\n\n\n\nLogType\n\n\nOptions used to define the type and importance of the log entry. Must be\nprovided when \nLog\n is called.\n\n\n\n\n\n\n\n\nOption\n\n\nValue\n\n\nNode\n\n\n\n\n\n\n\n\n\n\nERROR\n\n\n0\n\n\nError log type\n\n\n\n\n\n\nWARNING\n\n\n1\n\n\nWarning log type\n\n\n\n\n\n\nTRACE\n\n\n2\n\n\nTrace log type\n\n\n\n\n\n\nDEBUG\n\n\n3\n\n\nDebug log type (only for development)\n\n\n\n\n\n\nSUCCESS\n\n\n4\n\n\nSuccess log type\n\n\n\n\n\n\nINFO\n\n\n5\n\n\nInformation log type\n\n\n\n\n\n\nDATA\n\n\n6\n\n\nData log type\n\n\n\n\n\n\nNONE\n\n\n7\n\n\nNo log type\n\n\n\n\n\n\n\n\nFunctions\n\n\nLog\n\n\nvoid\n \nLog\n(\nint\n \ntype\n,\n \nstd\n::\nstring\n \nmsg\n,\n \nstd\n::\nstring\n \nfunc\n,\n \n...)\n\n\n\nSaves formatted string, log types, and function to global log entries.\n\n\n\n\ntype\n Sets log type\n\n\nmsg\n Log format string\n\n\nfunc\n Name of function that called the log\n\n\n...\n Additional format arguments", 
+            "title": "Logging"
+        }, 
+        {
+            "location": "/reference/log/#logging", 
+            "text": "#include   pessum/log.hpp   The logging functionality of Pessum is very simple. It permits logs entries to\nbe added to a set of global log entries, which is handled internaly. These log\nentries can then be handled by providing a handle function which is called at\nthe addition of a log entry, or they can be retreved later through one of the\nseveral log retreval functions. The entire list of log entries can also be\nsaved to an external file through the save log function.", 
+            "title": "Logging"
+        }, 
+        {
+            "location": "/reference/log/#summary", 
+            "text": "Enumerators  Descriptions      LogOptions  Options used to specify log options    LogType  Options used to define the type         Functions  Description      void  Log (int type, std::string msg, std::string func, ...)  Enters log entry into system    size_t  GetLogSize ()  Gets length of log entries    void  ClearLogs ()  Clears all log entries    string  GetLog (int type)  Gets last log entry of matching type", 
+            "title": "Summary"
+        }, 
+        {
+            "location": "/reference/log/#enumerators", 
+            "text": "", 
+            "title": "Enumerators"
+        }, 
+        {
+            "location": "/reference/log/#functions", 
+            "text": "", 
+            "title": "Functions"
         }
     ]
 }
