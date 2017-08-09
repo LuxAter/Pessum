@@ -1,9 +1,10 @@
 site_name: Pessum
 theme: 'material'
 extra:
+  logo: 'pessum_icon.svg'
   palette:
-    primary: 'blue'
-    accent: 'deep purple'
+    primary: 'purple'
+    accent: 'indigo'
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 google_analytics:
