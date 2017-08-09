@@ -1,39 +1,39 @@
 sudo: true
-
 language:
-  - cpp
-
+- cpp
 compiler:
-  - g++
-
+- g++
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - lcov
-
+    - lcov
 before_install:
-  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
-  - sudo apt-get update -qq
-
+- if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
+  fi
+- sudo apt-get update -qq
 install:
-  - if [ "$CXX" == "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  - if [ "$CXX" == "g++" ]; then export CXX="g++-4.8"; fi
-  - pip install mkdocs
-  - pip install mkdocs-material
-
+- if [ "$CXX" == "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+- if [ "$CXX" == "g++" ]; then export CXX="g++-4.8"; fi
+- pip install mkdocs
+- pip install mkdocs-material
 script:
-  - make
-  - ./unit-test
-
+- make
+- "./unit-test"
 after_success:
-  - cd build
-  - lcov --directory . --capture --output-file coverage.info
-  - lcov --remove coverage.info '/usr/*' '*/external/*' --output-file coverage.info
-  - lcov --list coverage.info
-  - bash <(curl -s https://codecov.io/bash) || echo "CodeCov Error"
-
+- cd build
+- lcov --directory . --capture --output-file coverage.info
+- lcov --remove coverage.info '/usr/*' '*/external/*' --output-file coverage.info
+- lcov --list coverage.info
+- bash <(curl -s https://codecov.io/bash) || echo "CodeCov Error"
 notifications:
   email:
     on_failure: always
+deploy:
+  provider: releases
+  api_key:
+    secure: t8LtwAvb+r3q9wq7Ip1o0p3aJWXhuF3tRPSSE/FO3KKLhCFC/jez0Pk/PtPbMYe7ad016DOnIt/zieKp7N0DrojAopFRxw3MKGI4dBiBcwMllhxZb0yIjt0FmoGMM2BGckXnScDEqssdO7AQ6jcIm9S84UdpxpBC5vcYmDvUbX2PUlRQJKdXBU7rlaet/TZTXqnunyeJY2YfUxhABGtVFeQDfK5C5XyBpWVQGz9q1d/587QmtwH7l/01lWkv0goTz+besHZWTz6kIiDnkQetj7qJRF/ybnSDJCX6NG/ot6W0fdJg5X0t8GaCtIinK9vOCxc3KIzcHwsH8jUxg23mYP0EN6Y3bKA8JTxsbjyrI1yw7oV57Mpf2ldEMR0AFqxDv27bagYcKu8s0jSdCNz4Z9yaMhdyG95GNsUBcozWTDJ6xgz3dnTHhdBekdJM1H82AxyDe7cOcr9wkW2TBoQo8nrOtjYfEFwjaz3kIL4U264yX1XjwruNj9X3dF8HYYvSdg7wXbBYvbaLva06Dobp5CVP55imyydGBAygBidAye0TG8KX7MCFLuy7zoBZTBN5/TD86NjpTAUnBQo/4HqbGqkjZmOYyiJC5byZUBpP8/+08NQM7IYqpxR7Y4BkfgUzVxQuWYGYEtGHbswiOVb+6KyNLu+wUDdKKk135gwwhgw=
+  file: "."
+  on:
+    repo: LuxAtrumStudio/Pessum

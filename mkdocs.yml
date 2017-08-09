@@ -1,7 +1,9 @@
 site_name: Pessum
 theme: 'material'
 extra:
-  logo: 'pessum_icon.svg'
+  logo: 'pessum.svg'
+  feature:
+    tabs: true
   palette:
     primary: 'purple'
     accent: 'indigo'
@@ -25,4 +27,9 @@ markdown_extensions:
 repo_name: 'Pessum'
 repo_url: 'https://github.com/LuxAtrumStudio/Pessum'
 pages:
-  - Home: index.md
+  - Home: 'index.md'
+  - Tutorial:
+    - 'Home': 'tutorial/index.md'
+  - Reference:
+    - 'Home': 'reference/index.md'
+    - 'Logging': 'reference/log.md'
