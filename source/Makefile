@@ -42,7 +42,7 @@ clean:
 $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
 	mkdir -p $(@D)
 	$(call print,Building $@,$(COMPILE_COLOR))
-	$(COMPILER) $(COMMON_INCLUDE) $(CXXFLAGS) $(GCOV_FLAGS) $< -o $@
+	$(COMPILER) $(COMMON_INCLUDE) $(CXXFLAGS) $(GCOV_FLAG) $< -o $@
 
 $(LIB): lib_start $(LIB_OBJ)
 	$(call print,Linking $(shell basename $(LIB)),$(LINK_COLOR))
@@ -55,7 +55,7 @@ lib_start:
 
 $(EXE): exe_start $(LIB) $(EXE_OBJ)
 	$(call print,Linking $(shell basename $(EXE)),$(LINK_COLOR))
-	$(COMPILER) $(EXE_OBJ) $(LIB) -o $(EXE)
+	$(COMPILER) $(EXE_OBJ) $(LIB) $(GCOV_LINK) -o $(EXE)
 
 .PHONY : exe_start
 exe_start:
