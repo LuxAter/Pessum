@@ -35,6 +35,30 @@ clean:
 	$(call print,Removing $(shell basename $(EXE)),$(CLEAN_COLOR))
 	if [ -e "$(EXE)" ]; then rm $(EXE); fi
 
+.PHONY : install
+install:
+	if [ "$(TYPE)" == "lib" ] && [ -e "$(LIB)" ]; then\
+	  $(call print,Installing $(shell basename $(LIB)),$(INSTALL_COLOR));\
+	  sudo mkdir $(INSTALL_PATH)/lib/ -p;\
+	  sudo cp $(LIB) $(INSTALL_PATH)/lib/;\
+	fi
+	if [ "$(TYPE)" == "exe" ] && [ -e "$(EXE)" ]; then\
+	  $(call print,Installing $(shell basename $(EXE)),$(INSTALL_COLOR));\
+	  sudo mkdir $(INSTALL_PATH)/bin/ -p;\
+	  sudo cp $(EXE) $(INSTALL_PATH)/bin/;\
+	fi
+
+.PHONY : uninstall
+uninstall:
+	if [ "$(TYPE)" == "lib" ] && [ -e "$(INSTALL_PATH)/lib/$(shell basename $(LIB))" ]; then\
+	  $(call print,Uninstalling $(shell basename $(LIB)),$(INSTALL_COLOR));\
+	  sudo rm $(INSTALL_PATH)/lib/$(shell basename $(LIB));\
+	fi
+	if [ "$(TYPE)" == "exe" ] && [ -e "$(INSTALL_PATH)/bin/$(shell basename $(EXE))" ]; then\
+	  $(call print,Uninstalling $(shell basename $(EXE)),$(INSTALL_COLOR));\
+	  sudo rm $(INSTALL_PATH)/bin/$(shell basename $(EXE));\
+	fi
+
 
 -include $(EXE_OBJ:.o=.d)
 -include $(LIB_OBJ:.o=.d)
@@ -46,8 +70,7 @@ $(BASE_PATH)/$(BUILD_DIR)/$(DIR)/%.o: %.cpp
 
 $(LIB): lib_start $(LIB_OBJ)
 	$(call print,Linking $(shell basename $(LIB)),$(LINK_COLOR))
-	ar rcs $(LIB) $(LIB_OBJ)
-
+	if [[ ! -z "$(LIB_OBJ)" ]]; then ar rcs $(LIB) $(LIB_OBJ); fi
 
 .PHONY : lib_start
 lib_start:
@@ -55,7 +78,7 @@ lib_start:
 
 $(EXE): exe_start $(LIB) $(EXE_OBJ)
 	$(call print,Linking $(shell basename $(EXE)),$(LINK_COLOR))
-	$(COMPILER) $(EXE_OBJ) $(LIB) $(GCOV_LINK) -o $(EXE)
+	$(COMPILER) $(EXE_OBJ) $(LIB) $(LINK) $(GCOV_LINK) -o $(EXE)
 
 .PHONY : exe_start
 exe_start:

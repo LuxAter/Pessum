@@ -16,7 +16,7 @@ export BASE_PATH=$(shell pwd)
 export COMPILER=g++
 export CXXFLAGS= -MMD -std=c++11 -w -c
 
-export INSTALL_PATH=/user/local/
+export INSTALL_PATH=/usr/local
 
 export GCOV_LINK = -lgcov --coverage
 export GCOV_FLAG = -fprofile-arcs -ftest-coverage
@@ -28,6 +28,8 @@ export TARGET_COLOR=\033[0;34m
 export LINK_COLOR=\033[0;35m
 export CLEAN_COLOR=\033[0;33m
 export COMPILE_COLOR=\033[0;32m
+export INSTALL_COLOR=\033[0;36m
+export ERROR_COLOR=\033[1;31m
 export NO_COLOR=\033[m
 
 ifndef .VERBOSE
@@ -45,6 +47,10 @@ str="$(1)";\
     printf "%b\n" "$(NO_COLOR)"
 endef
 
+define print
+printf "%b%s%b\n" "$(2)" "$(1)" "$(NO_COLOR)"
+endef
+
 define help
 printf "%b%*s%b: %s\n" "$(TARGET_COLOR)" 14 "$(1)" "$(NO_COLOR)" "$(2)"
 endef
@@ -54,6 +60,21 @@ all: external source test
 
 .PHONY : clean
 clean: clean-external clean-source clean-test
+
+.PHONY : install
+install: source root-access install-source
+	if [ $(TYPE) == "lib" ] && ! [ -d "$(INSTALL_PATH)/include/$(NAME)" ]; then \
+	  $(call print,Installing include directory,$(INSTALL_COLOR));\
+	  sudo mkdir $(INSTALL_PATH)/include/ -p;\
+	  sudo cp $(INCLUDE_DIR)/ $(INSTALL_PATH)/include/$(NAME)/ -r;\
+	fi
+
+.PHONY : uninstall
+uninstall: root-access uninstall-source
+	if [ $(TYPE) == "lib" ] && [ -d "$(INSTALL_PATH)/include/$(NAME)" ]; then \
+	  $(call print,Uninstalling include directory,$(INSTALL_COLOR));\
+	  sudo rm $(INSTALL_PATH)/include/$(NAME) -rf;\
+	fi
 
 .PHONY : help
 help:
@@ -68,6 +89,13 @@ help:
 	$(call help,clean-source,Cleans files created from source)
 	$(call help,test,Builds test files and projects)
 	$(call help,clean-test,Cleans files created from test)
+
+.PHONY : root-access
+root-access:
+	if [[ $$UID != 0 ]]; then \
+	  $(call print,Target requiers root access,$(ERROR_COLOR)); \
+	  exit 1; \
+	fi
 
 .PHONY : external 
 external:	
@@ -86,6 +114,14 @@ source:
 clean-source:
 	$(call print_section,Source Files)
 	if [ -d "$(SOURCE_DIR)" ]; then cd "$(SOURCE_DIR)" && $(MAKE) clean; fi
+.PHONY : install-source
+install-source:
+	$(call print_section,Source Files)
+	if [ -d "$(SOURCE_DIR)" ]; then cd "$(SOURCE_DIR)" && $(MAKE) install; fi
+.PHONY: uninstall-source
+uninstall-source:
+	$(call print_section,Source Files)
+	if [ -d "$(SOURCE_DIR)" ]; then cd "$(SOURCE_DIR)" && $(MAKE) uninstall; fi
 
 .PHONY : test
 test:
