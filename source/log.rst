@@ -237,7 +237,7 @@ options
 
    Array storing values for the different log options set in :func:`SetLogOption`.
 
-   **Note:** Variable is private.
+.. Note:: Variable is private.
 
 global_logs
 -----------

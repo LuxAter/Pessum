@@ -1,0 +1,19 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Pessum\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction\n\n\nPessum is a small header only library focused on providing implementation for\nlog handeling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#pessum", 
+            "text": "", 
+            "title": "Pessum"
+        }, 
+        {
+            "location": "/#introduction", 
+            "text": "Pessum is a small header only library focused on providing implementation for\nlog handeling. Pessum provides a system for storing logs in a global vector,\nwhich contains log type, log message, and log origin. It can optionally\nimplement the inclusion of time stamps and date stamps.", 
+            "title": "Introduction"
+        }
+    ]
+}
