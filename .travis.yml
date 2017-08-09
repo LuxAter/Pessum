@@ -30,10 +30,3 @@ after_success:
 notifications:
   email:
     on_failure: always
-deploy:
-  provider: releases
-  api_key:
-    secure: t8LtwAvb+r3q9wq7Ip1o0p3aJWXhuF3tRPSSE/FO3KKLhCFC/jez0Pk/PtPbMYe7ad016DOnIt/zieKp7N0DrojAopFRxw3MKGI4dBiBcwMllhxZb0yIjt0FmoGMM2BGckXnScDEqssdO7AQ6jcIm9S84UdpxpBC5vcYmDvUbX2PUlRQJKdXBU7rlaet/TZTXqnunyeJY2YfUxhABGtVFeQDfK5C5XyBpWVQGz9q1d/587QmtwH7l/01lWkv0goTz+besHZWTz6kIiDnkQetj7qJRF/ybnSDJCX6NG/ot6W0fdJg5X0t8GaCtIinK9vOCxc3KIzcHwsH8jUxg23mYP0EN6Y3bKA8JTxsbjyrI1yw7oV57Mpf2ldEMR0AFqxDv27bagYcKu8s0jSdCNz4Z9yaMhdyG95GNsUBcozWTDJ6xgz3dnTHhdBekdJM1H82AxyDe7cOcr9wkW2TBoQo8nrOtjYfEFwjaz3kIL4U264yX1XjwruNj9X3dF8HYYvSdg7wXbBYvbaLva06Dobp5CVP55imyydGBAygBidAye0TG8KX7MCFLuy7zoBZTBN5/TD86NjpTAUnBQo/4HqbGqkjZmOYyiJC5byZUBpP8/+08NQM7IYqpxR7Y4BkfgUzVxQuWYGYEtGHbswiOVb+6KyNLu+wUDdKKk135gwwhgw=
-  file: "."
-  on:
-    repo: LuxAtrumStudio/Pessum
