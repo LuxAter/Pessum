@@ -11,7 +11,7 @@ bool full_handle_called = false;
 
 void BaseHandle(std::string entry) { base_handle_called = true; }
 
-void FullHandle(std::pair<unsigned int, std::string> entry) {
+void FullHandle(std::pair<int, std::string> entry) {
   full_handle_called = true;
 }
 
