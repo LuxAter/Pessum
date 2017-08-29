@@ -10,13 +10,13 @@
 #include <vector>
 
 namespace pessum {
-  std::array<int, 2> options = {{0, 0}};
-  std::vector<std::pair<int, std::string>> global_logs;
-  void (*log_handle_full)(std::pair<int, std::string>) = NULL;
+  std::array<unsigned int, 2> options = {{0, 0}};
+  std::vector<std::pair<unsigned int, std::string>> global_logs;
+  void (*log_handle_full)(std::pair<unsigned int, std::string>) = NULL;
   void (*log_handle)(std::string) = NULL;
 }
 
-void pessum::Log(int type, std::string msg, std::string func, ...) {
+void pessum::Log(unsigned int type, std::string msg, std::string func, ...) {
   std::string str;
   va_list args, buff_args;
   va_start(args, func);
@@ -26,15 +26,17 @@ void pessum::Log(int type, std::string msg, std::string func, ...) {
   vsprintf(formated_string, msg.c_str(), args);
   va_end(buff_args);
   va_end(args);
-  str = std::string(formated_string);
+  str = '[' + std::string(formated_string) + ']';
   if (options[0] == true || options[1] == true) {
     time_t current = time(NULL);
-    std::string time_stamp = ctime(&current);
+    struct tm* time_info = localtime(&current);
+    char buffer[80];
+    strftime(buffer, 80, "%D %T", time_info);
+    std::string time_stamp(buffer);
     if (options[0] == false) {
-      time_stamp.erase(time_stamp.begin() + 10, time_stamp.begin() + 18);
+      time_stamp.erase(time_stamp.end() - 9, time_stamp.end());
     } else if (options[1] == false) {
-      time_stamp.erase(time_stamp.begin(), time_stamp.begin() + 11);
-      time_stamp.erase(time_stamp.end() - 6, time_stamp.end());
+      time_stamp.erase(time_stamp.begin(), time_stamp.begin() + 9);
     }
     str = "[" + time_stamp + "]" + str;
   }
@@ -52,7 +54,7 @@ int pessum::GetLogSize() { return global_logs.size(); }
 
 void pessum::ClearLogs() { global_logs.clear(); }
 
-std::string pessum::GetLog(int type) {
+std::string pessum::GetLog(unsigned int type) {
   std::string entry;
   if (type == NONE && global_logs.size() > 0) {
     entry = global_logs[global_logs.size() - 1].second;
@@ -65,8 +67,8 @@ std::string pessum::GetLog(int type) {
   return entry;
 }
 
-std::pair<int, std::string> pessum::FGetLog(int type) {
-  std::pair<int, std::string> entry;
+std::pair<unsigned int, std::string> pessum::FGetLog(unsigned int type) {
+  std::pair<unsigned int, std::string> entry;
   bool search = true;
   if (type == NONE && global_logs.size() > 0) {
     entry = global_logs[global_logs.size() - 1];
@@ -89,8 +91,8 @@ std::string pessum::IGetLog(int index) {
   return entry;
 }
 
-std::pair<int, std::string> pessum::IFGetLog(int index) {
-  std::pair<int, std::string> entry;
+std::pair<unsigned int, std::string> pessum::IFGetLog(int index) {
+  std::pair<unsigned int, std::string> entry;
   if (index >= 0 && (size_t)index < global_logs.size()) {
     entry = global_logs[index];
   }
@@ -106,8 +108,9 @@ std::vector<std::string> pessum::VGetLog(int start, int end) {
   return entries;
 }
 
-std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
-  std::vector<std::pair<int, std::string>> entries;
+std::vector<std::pair<unsigned int, std::string>> pessum::VFGetLog(int start,
+                                                                   int end) {
+  std::vector<std::pair<unsigned int, std::string>> entries;
   for (int i = start; i <= end && i >= 0 && (size_t)i < global_logs.size();
        i++) {
     entries.push_back(global_logs[i]);
@@ -115,13 +118,14 @@ std::vector<std::pair<int, std::string>> pessum::VFGetLog(int start, int end) {
   return entries;
 }
 
-void pessum::SetLogHandle(void (*handle)(std::pair<int, std::string>)) {
+void pessum::SetLogHandle(
+    void (*handle)(std::pair<unsigned int, std::string>)) {
   log_handle_full = handle;
 }
 
 void pessum::SetLogHandle(void (*handle)(std::string)) { log_handle = handle; }
 
-void pessum::SetLogOption(int option, int setting) {
+void pessum::SetLogOption(unsigned int option, int setting) {
   if (option == TIME_STAMP) {
     options[0] = setting;
   } else if (option == DATE_STAMP) {
@@ -129,9 +133,11 @@ void pessum::SetLogOption(int option, int setting) {
   }
 }
 
-std::string pessum::GetTypeStr(int type) {
+std::string pessum::GetTypeStr(unsigned int type) {
   std::string str;
-  if (type == ERROR) {
+  if (type == FATAL) {
+    str = "FATAL";
+  } else if (type == ERROR) {
     str = "ERROR";
   } else if (type == WARNING) {
     str = "WARNING";
@@ -145,6 +151,8 @@ std::string pessum::GetTypeStr(int type) {
     str = "INFO";
   } else if (type == DATA) {
     str = "DATA";
+  } else if (type == VERSION) {
+    str = "VERSION";
   }
   return str;
 }
